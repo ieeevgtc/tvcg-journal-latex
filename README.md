@@ -1,1 +1,0 @@
-# tvcg-journal-style
