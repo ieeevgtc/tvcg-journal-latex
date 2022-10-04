@@ -88,16 +88,19 @@
 %% This is how authors are specified in the journal style
 
 %% indicate IEEE Member or Student Member in form indicated below
-\author{Roy G. Biv, Ed Grimley, \textit{Member, IEEE}, and Martha Stewart}
+\author{Roy G.\ Biv, Ed Grimley, \textit{Member, IEEE}, and Martha Stewart}
 \authorfooter{
-%% insert punctuation at end of each item
-\item
- Roy G. Biv is with Starbucks Research. E-mail: roy.g.biv@aol.com.
-\item
- Ed Grimley is with Grimley Widgets, Inc.. E-mail: ed.grimley@aol.com.
-\item
- Martha Stewart is with Martha Stewart Enterprises at Microsoft
- Research. E-mail: martha.stewart@marthastewart.com.
+	%% insert punctuation at end of each item
+	\item
+		Roy G. Biv is with Starbucks Research.
+		E-mail: roy.g.biv@aol.com.
+	\item
+		Ed Grimley is with Grimley Widgets, Inc.
+		E-mail: ed.grimley@aol.com.
+
+	\item Martha Stewart is with Martha Stewart Enterprises at Microsoft
+	Research.
+		E-mail: martha.stewart@marthastewart.com.
 }
 
 %other entries to be set up for journal
@@ -105,18 +108,11 @@
 %\shortauthortitle{Firstauthor \MakeLowercase{\textit{et al.}}: Paper Title}
 
 %% Abstract section.
-\abstract{Duis autem vel eum iriure dolor in hendrerit in vulputate
-velit esse molestie consequat, vel illum dolore eu feugiat nulla
-facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
-praesent luptatum zzril delenit augue duis dolore te feugait nulla
-facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
-suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem
-vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et
-accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
-delenit augue duis dolore te feugait nulla facilisi.%
+\abstract{%
+	Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+	Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+	Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+	Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.%
 } % end of abstract
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
@@ -137,7 +133,11 @@ delenit augue duis dolore te feugait nulla facilisi.%
 \teaser{
   \centering
   \includegraphics[width=\linewidth]{CypressView}
-  \caption{In the Clouds: Vancouver from Cypress Mountain. Note that the teaser may not be wider than the abstract block.}
+  \caption{%
+		In the Clouds: Vancouver from Cypress Mountain.
+		Image credit: Scott Miller / Special to the Vancouver Sun, January 22, 2009, page A6.
+		Note that the teaser may not be wider than the abstract block.%
+	}
   \label{fig:teaser}
 }
 
@@ -166,268 +166,379 @@ delenit augue duis dolore te feugait nulla facilisi.%
 \maketitle
 
 %% \section{Introduction} %for journal use above \firstsection{..} instead
-This template is for papers of VGTC-sponsored conferences such as IEEE VIS, IEEE VR, and ISMAR which are published as special issues of TVCG. The template does not contain the respective dates of the conference/journal issue, these will be entered by IEEE as part of the publication production process. Therefore, \textbf{please leave the copyright statement at the bottom-left of this first page untouched}.
+This template is for papers of VGTC-sponsored conferences such as IEEE VIS, IEEE VR, and ISMAR which are published as special issues of TVCG.
+The template does not contain the respective dates of the conference/journal issue, these will be entered by IEEE as part of the publication production process.
+Therefore, \textbf{please leave the copyright statement at the bottom-left of this first page untouched}.
+
 
 \section{Using the Style Template}
 
 \begin{itemize}
-\item If you receive compilation errors along the lines of ``\texttt{Package ifpdf Error: Name clash, \textbackslash ifpdf is already defined}'' then please add a new line ``\texttt{\textbackslash let\textbackslash ifpdf\textbackslash relax}'' right after the ``\texttt{\textbackslash documentclass[journal]\{vgtc\}}'' call. Note that your error is due to packages you use that define ``\texttt{\textbackslash ifpdf}'' which is obsolete (the result is that \texttt{\textbackslash ifpdf} is defined twice); these packages should be changed to use ifpdf package instead.
-\item Note that each author's affiliations have to be provided in the author footer on the bottom-left corner of the first page. It is permitted to merge two or more people from the same institution as long as they are shown in the same order as in the overall author sequence on the top of the first page. For example, if authors A, B, C, and D are from institutions 1, 2, 1, and 2, respectively, then it is ok to use 2 bullets as follows:
+	\item If you receive compilation errors along the lines of ``\texttt{Package ifpdf Error: Name clash, \textbackslash ifpdf is already defined}'' then please add a new line ``\texttt{\textbackslash let\textbackslash ifpdf\textbackslash relax}'' right after the ``\texttt{\textbackslash documentclass[journal]\{vgtc\}}'' call.	
+		Note that your error is due to packages you use that define ``\texttt{\textbackslash ifpdf}'' which is obsolete (the result is that \texttt{\textbackslash ifpdf} is defined twice); these packages should be changed to use ifpdf package instead.
+	
+	\item Note that each author's affiliations have to be provided in the author footer on the bottom-left corner of the first page.
+		It is permitted to merge two or more people from the same institution as long as they are shown in the same order as in the overall author sequence on the top of the first page.
+		For example, if authors A, B, C, and D are from institutions 1, 2, 1, and 2, respectively, then it is ok to use 2 bullets as follows:
+		\begin{itemize}		
+			\item A and C are with Institution 1. E-mail: \{a\,$|$\,c\}@i1.com\,.
+			
+			\item B and D are with Institution 2. E-mail: \{b\,$|$\,d\}@i2.org\,.
+		\end{itemize}
+	
+	\item The style uses the hyperref package, thus turns references into internal links.
+		We thus recommend to make use of the ``\texttt{\textbackslash autoref\{reference\}}'' call (instead of ``\texttt{Figure\~{}\textbackslash ref\{reference\}}'' or similar) since ``\texttt{\textbackslash autoref\{reference\}}'' turns the entire reference into an internal link, not just the number.
+		Examples: \autoref{fig:sample} and \autoref{tab:vis_papers}.
+	
+	\item The style automatically looks for image files with the correct extension (eps for regular \LaTeX; pdf, png, and jpg for pdf\LaTeX), in a set of given subfolders defined above using \texttt{\textbackslash graphicspath}: figures/, pictures/, images/.
+		It is thus sufficient to use ``\texttt{\textbackslash includegraphics\{CypressView\}}'' (instead of ``\texttt{\textbackslash includegraphics\{pictures/CypressView.jpg\}}'').
+		(Note that png is more appropriate for line art and text than jpg, but vector graphics are best in that case.)
+	
+	\item For adding hyperlinks and DOIs to the list of references, you can use ``\texttt{\textbackslash bibliographystyle\{abbrv-doi-hyperref-narrow\}}'' (instead of ``\texttt{\textbackslash bibliographystyle\{abbrv\}}'').
+		It uses the doi and url fields in a bib\TeX\ entry and turns the entire reference into a link, giving priority to the doi.
+		The doi can be entered with or without the ``\texttt{http://dx.doi.org/}'' url part.
+		See the examples in the bib\TeX\ file and the bibliography at the end of this template.\\[1em]
+		%
+		\textbf{Note 1:} occasionally (for some \LaTeX\ distributions) this hyper-linked bib\TeX\ style may lead to \textbf{compilation errors} (``\texttt{pdfendlink ended up in different nesting level ...}'') if a reference entry is broken across two pages (due to a bug in hyperref).
+		In this case make sure you have the latest version of the hyperref package (i.e., update your \LaTeX\ installation/packages) or, alternatively, revert back to ``\texttt{\textbackslash bibliographystyle\{abbrv-doi-narrow\}}'' (at the expense of removing hyperlinks from the bibliography) and try ``\texttt{\textbackslash bibliographystyle\{abbrv-doi-hyperref-narrow\}}'' again after some more editing.\\[1em]
+		%
+		\textbf{Note 2:} the ``\texttt{-narrow}'' versions of the bibliography style use the font ``PTSansNarrow-TLF'' for typesetting the DOIs in a compact way.
+		This font needs to be available on your \LaTeX\ system.
+		It is part of the \href{https://www.ctan.org/pkg/paratype}{``paratype'' package}, and many distributions (such as MikTeX) have it automatically installed.
+		If you do not have this package yet and want to use a ``\texttt{-narrow}'' bibliography style then use your \LaTeX\ system's package installer to add it.
+		If this is not possible you can also revert to the respective bibliography styles without the ``\texttt{-narrow}'' in the file name.\\[1em]
+		%
+		DVI-based processes to compile the template apparently cannot handle the different font so, by default, the template file uses the \texttt{abbrv-doi} bibliography style but the compiled PDF shows you the effect of the \texttt{abbrv-doi-hyperref-narrow} style.
+\end{itemize}
+
+
+\section{Supplemental Material Instructions}
+
+\subsection{Long-term Open Science goals}
+
+\textbf{Research should be accessible to everyone.}
+Financial means and privileged access should not limit anyone's ability to participate in and learn from research.
+As such, research articles and their accompanying supplemental materials should be freely accessible to researchers from all backgrounds, discoverable, and uniquely and persistently identifiable in perpetuity.
+
+\textbf{Research should be transparent, reproducible, and trustworthy.}
+Authors should be as transparent as possible about their research process.
+Increased transparency can help reviewers and readers judge for themselves whether the research conducted was plausible and whether the results are reliable.
+In particular, research should be:
 \begin{itemize}
-\item A and C are with Institution 1. E-mail: \{a\,$|$\,c\}@i1.com\,.
-\item B and D are with Institution 2. E-mail: \{b\,$|$\,d\}@i2.org\,.
+	\item \textit{Transparent}---enough description and supplemental material should be provided so that reviewers and readers can follow all important details of any processes or analyses.
+	
+	\item \textit{Reproducible}---a reviewer or reader should, to the extent possible, be able to use the process, software, data, and operating conditions provided by the authors to obtain the same result
+	
+	\item \textit{Trustworthy}---This combination of transparency and reproducibility will help readers to gain trust in the research process and results.
 \end{itemize}
-\item The style uses the hyperref package, thus turns references into internal links. We thus recommend to make use of the ``\texttt{\textbackslash autoref\{reference\}}'' call (instead of ``\texttt{Figure\~{}\textbackslash ref\{reference\}}'' or similar) since ``\texttt{\textbackslash autoref\{reference\}}'' turns the entire reference into an internal link, not just the number. Examples: \autoref{fig:sample} and \autoref{tab:vis_papers}.
-\item The style automatically looks for image files with the correct extension (eps for regular \LaTeX; pdf, png, and jpg for pdf\LaTeX), in a set of given subfolders (figures/, pictures/, images/). It is thus sufficient to use ``\texttt{\textbackslash includegraphics\{CypressView\}}'' (instead of ``\texttt{\textbackslash includegraphics\{pictures/CypressView.jpg\}}'').
-\item For adding hyperlinks and DOIs to the list of references, you can use ``\texttt{\textbackslash bibliographystyle\{abbrv-doi-hyperref-narrow\}}'' (instead of ``\texttt{\textbackslash bibliographystyle\{abbrv\}}''). It uses the doi and url fields in a bib\TeX\ entry and turns the entire reference into a link, giving priority to the doi. The doi can be entered with or without the ``\texttt{http://dx.doi.org/}'' url part. See the examples in the bib\TeX\ file and the bibliography at the end of this template.\\[1em]
-\textbf{Note 1:} occasionally (for some \LaTeX\ distributions) this hyper-linked bib\TeX\ style may lead to \textbf{compilation errors} (``\texttt{pdfendlink ended up in different nesting level ...}'') if a reference entry is broken across two pages (due to a bug in hyperref). In this case make sure you have the latest version of the hyperref package (i.\,e., update your \LaTeX\ installation/packages) or, alternatively, revert back to ``\texttt{\textbackslash bibliographystyle\{abbrv-doi-narrow\}}'' (at the expense of removing hyperlinks from the bibliography) and try ``\texttt{\textbackslash bibliographystyle\{abbrv-doi-hyperref-narrow\}}'' again after some more editing.\\[1em]
-\textbf{Note 2:} the ``\texttt{-narrow}'' versions of the bibliography style use the font ``PTSansNarrow-TLF'' for typesetting the DOIs in a compact way. This font needs to be available on your \LaTeX\ system. It is part of the \href{https://www.ctan.org/pkg/paratype}{``paratype'' package}, and many distributions (such as MikTeX) have it automatically installed. If you do not have this package yet and want to use a ``\texttt{-narrow}'' bibliography style then use your \LaTeX\ system's package installer to add it. If this is not possible you can also revert to the respective bibliography styles without the ``\texttt{-narrow}'' in the file name.\\[1em]
-DVI-based processes to compile the template apparently cannot handle the different font so, by default, the template file uses the \texttt{abbrv-doi} bibliography style but the compiled PDF shows you the effect of the \texttt{abbrv-doi-hyperref-narrow} style.
-\end{itemize}
+	
+\textbf{Research should be replicable and transferable.}
+We believe that our community should support knowledge transfer between teams and that research results should stand up to scrutiny by future researchers. An independent team should be able to replicate or transfer the research results in other contexts, locations, domains, and in multiple trials. By making research more transparent and reproducible, we make it easier for future researchers to adopt and adapt the research methodologies to new situations as well as larger or otherwise more convincing studies.
+
+\subsection{Where to upload supplementary material}
+We recommend using \url{https://osf.io} as the primary repository for supplemental materials and that authors justify using an alternative repository.
+In some cases, \url{https://databrary.org} or \url{https://dataverse.org} may be more appropriate.
+We caution authors against using solely IEEE Xplore and IEEE Dataport, GitHub \& GitLab, or institutional repositories / homepages / lab pages, but do encourage hosting multiple mirrors of material.
+
+\subsection{What to include in the Supplemental Material section}
+
+In the Supplemental Material section at the end of the paper, authors should try to be as descriptive and complete as possible about (1) what supplemental materials are available, (2) where they are hosted, and (3) justifications for why materials were omitted (if any).
+This section does not count against the page limit, instead being included in the 2-page allotment for References, Acknowledgments, and Credits.
+An example is provided below.
 
 \section{Bibliography Instructions}
 
 \begin{itemize}
-\item Sort all bibliographic entries alphabetically but the last name of the first author. This \LaTeX/bib\TeX\ template takes care of this sorting automatically.
-\item Merge multiple references into one; e.\,g., use \cite{Max:1995:OMF,Kitware:2003} (not \cite{Kitware:2003}\cite{Max:1995:OMF}). Within each set of multiple references, the references should be sorted in ascending order. This \LaTeX/bib\TeX\ template takes care of both the merging and the sorting automatically.
-\item Verify all data obtained from digital libraries, even ACM's DL and IEEE Xplore  etc.\ are sometimes wrong or incomplete.
-\item Do not trust bibliographic data from other services such as Mendeley.com, Google Scholar, or similar; these are even more likely to be incorrect or incomplete.
-\item Articles in journal---items to include:
-  \begin{itemize}
-  \item author names
-	\item title
-	\item journal name
-	\item year
-	\item volume
-	\item number
-	\item month of publication as variable name (i.\,e., \{jan\} for January, etc.; month ranges using \{jan \#\{/\}\# feb\} or \{jan \#\{-{}-\}\# feb\})
-  \end{itemize}
-\item use journal names in proper style: correct: ``IEEE Transactions on Visualization and Computer Graphics'', incorrect: ``Visualization and Computer Graphics, IEEE Transactions on''
-\item Papers in proceedings---items to include:
-  \begin{itemize}
-  \item author names
-	\item title
-	\item abbreviated proceedings name: e.\,g., ``Proc.\textbackslash{} CONF\_ACRONYNM'' without the year; example: ``Proc.\textbackslash{} CHI'', ``Proc.\textbackslash{} 3DUI'', ``Proc.\textbackslash{} Eurographics'', ``Proc.\textbackslash{} EuroVis''
-	\item year
-	\item publisher
-	\item town with country of publisher (the town can be abbreviated for well-known towns such as New York or Berlin)
-  \end{itemize}
-\item article/paper title convention: refrain from using curly brackets, except for acronyms/proper names/words following dashes/question marks etc.; example:
-\begin{itemize}
-	\item paper ``Marching Cubes: A High Resolution 3D Surface Construction Algorithm''
-	\item should be entered as ``\{M\}arching \{C\}ubes: A High Resolution \{3D\} Surface Construction Algorithm'' or  ``\{M\}arching \{C\}ubes: A high resolution \{3D\} surface construction algorithm''
-	\item will be typeset as ``Marching Cubes: A high resolution 3D surface construction algorithm''
+	\item Sort all bibliographic entries alphabetically but the last name of the first author.
+	This \LaTeX/bib\TeX\ template takes care of this sorting automatically.
+	\item Merge multiple references into one; e.\,g., use \cite{Max:1995:OMF,Kitware:2003} (not \cite{Kitware:2003}\cite{Max:1995:OMF}).
+	Within each set of multiple references, the references should be sorted in ascending order.
+	This \LaTeX/bib\TeX\ template takes care of both the merging and the sorting automatically.
+	\item Verify all data obtained from digital libraries, even ACM's DL and IEEE Xplore  etc.\ are sometimes wrong or incomplete.
+	\item Do not trust bibliographic data from other services such as Mendeley.com, Google Scholar, or similar; these are even more likely to be incorrect or incomplete.
+	\item Articles in journal---items to include:
+		\begin{itemize}
+		\item author names
+		\item title
+		\item journal name
+		\item year
+		\item volume
+		\item number
+		\item month of publication as variable name (i.e., \{jan\} for January, etc.; month ranges using \{jan \#\{/\}\# feb\} or \{jan \#\{-{}-\}\# feb\})
+		\end{itemize}
+	\item use journal names in proper style: correct: ``IEEE Transactions on Visualization and Computer Graphics'', incorrect: ``Visualization and Computer Graphics, IEEE Transactions on''
+	\item Papers in proceedings---items to include:
+		\begin{itemize}
+		\item author names
+		\item title
+		\item abbreviated proceedings name: e.g., ``Proc.\textbackslash{} CONF\_ACRONYNM'' without the year; example: ``Proc.\textbackslash{} CHI'', ``Proc.\textbackslash{} 3DUI'', ``Proc.\textbackslash{} Eurographics'', ``Proc.\textbackslash{} EuroVis''
+		\item year
+		\item publisher
+		\item town with country of publisher (the town can be abbreviated for well-known towns such as New York or Berlin)
+		\end{itemize}
+	
+	\item article/paper title convention: refrain from using curly brackets, except for acronyms/proper names/words following dashes/question marks etc.; example:
+		\begin{itemize}
+			\item paper ``Marching Cubes: A High Resolution 3D Surface Construction Algorithm''
+			\item should be entered as ``\{M\}arching \{C\}ubes: A High Resolution \{3D\} Surface Construction Algorithm'' or  ``\{M\}arching \{C\}ubes: A high resolution \{3D\} surface construction algorithm''
+			\item will be typeset as ``Marching Cubes: A high resolution 3D surface construction algorithm''
+		\end{itemize}
+		\item for all entries
+		\begin{itemize}
+			\item DOI can be entered in the DOI field as plain DOI number or as DOI url; alternative: a url in the URL field
+			\item provide full page ranges AA-{}-BB
+		\end{itemize}
+		
+	\item when citing references, do not use the reference as a sentence object; e.\,g., wrong: ``In \cite{Lorensen:1987:MCA} the authors describe \dots'', correct: ``Lorensen and Cline \cite{Lorensen:1987:MCA} describe \dots''
 \end{itemize}
-\item for all entries
-\begin{itemize}
-	\item DOI can be entered in the DOI field as plain DOI number or as DOI url; alternative: a url in the URL field
-	\item provide full page ranges AA-{}-BB
-\end{itemize}
-\item when citing references, do not use the reference as a sentence object; e.\,g., wrong: ``In \cite{Lorensen:1987:MCA} the authors describe \dots'', correct: ``Lorensen and Cline \cite{Lorensen:1987:MCA} describe \dots''
-\end{itemize}
+
 
 \section{Example Section}
 
-Lorem\marginpar{\small You can use the margins for comments while editing the submission, but please remove the marginpar comments for submission.} ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-dolore magna aliquyam erat, sed diam
-voluptua~\cite{Kitware:2003,Max:1995:OMF}. At vero eos et accusam et
-justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-invidunt ut labore et dolore magna aliquyam erat, sed diam
-voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum. Stet clita kasd gubergren, no sea takimata sanctus est.
+Lorem\marginpar{\small You can use the margins for comments while editing the submission, but please remove the marginpar comments for submission.}
+ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua~\cite{Kitware:2003,Max:1995:OMF}.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est.
+
 
 \section{Exposition}
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
-molestie consequat, vel illum dolore eu feugiat nulla facilisis at
-vero eros et accumsan et iusto odio dignissim qui blandit praesent
-luptatum zzril delenit augue duis dolore te feugait nulla
-facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-aliquam erat volutpat~\cite{Kindlmann:1999:SAG}.
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat~\cite{Kindlmann:1999:SAG}.
 
 \begin{equation}
 \sum_{j=1}^{z} j = \frac{z(z+1)}{2}
 \end{equation}
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 \subsection{Lorem ipsum}
 
-Lorem ipsum dolor sit amet (see \autoref{tab:vis_papers}), consetetur sadipscing elitr, sed diam
-nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-invidunt ut labore et dolore magna aliquyam erat, sed diam
-voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum. 
+Lorem ipsum dolor sit amet (see \autoref{tab:vis_papers}), consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
 
 \begin{table}[tb]
-  \caption{VIS/VisWeek accepted/presented papers: 1990--2016.}
+  \caption{%
+		VIS/VisWeek accepted/presented papers: 1990--2016.%
+	}
   \label{tab:vis_papers}
   \scriptsize%
 	\centering%
   \begin{tabu}{%
-	r%
-	*{7}{c}%
-	*{2}{r}%
+		r%
+		*{7}{c}%
+		*{2}{r}%
 	}
-  \toprule
-   year & \rotatebox{90}{Vis/SciVis} &   \rotatebox{90}{SciVis conf} &   \rotatebox{90}{InfoVis} &   \rotatebox{90}{VAST} &   \rotatebox{90}{VAST conf} &   \rotatebox{90}{TVCG @ VIS} &   \rotatebox{90}{CG\&A @ VIS} &   \rotatebox{90}{VIS/VisWeek} \rotatebox{90}{incl. TVCG/CG\&A}   &   \rotatebox{90}{VIS/VisWeek} \rotatebox{90}{w/o TVCG/CG\&A}   \\
-  \midrule
-	2016 & 30 &   & 37 & 33 & 15 & 23 & 10 & 148 & 115 \\
-  2015 & 33 & 9 & 38 & 33 & 14 & 17 & 15 & 159 & 127 \\
-  2014 & 34 &   & 45 & 33 & 21 & 20 &   & 153 & 133 \\
-  2013 & 31 &   & 38 & 32 &   & 20 &   & 121 & 101 \\
-  2012 & 42 &   & 44 & 30 &   & 23 &   & 139 & 116 \\
-  2011 & 49 &   & 44 & 26 &   & 20 &   & 139 & 119 \\
-  2010 & 48 &   & 35 & 26 &   &   &   & 109 & 109 \\
-  2009 & 54 &   & 37 & 26 &   &   &   & 117 & 117 \\
-  2008 & 50 &   & 28 & 21 &   &   &   & 99 & 99 \\
-  2007 & 56 &   & 27 & 24 &   &   &   & 107 & 107 \\
-  2006 & 63 &   & 24 & 26 &   &   &   & 113 & 113 \\
-  2005 & 88 &   & 31 &   &   &   &   & 119 & 119 \\
-  2004 & 70 &   & 27 &   &   &   &   & 97 & 97 \\
-  2003 & 74 &   & 29 &   &   &   &   & 103 & 103 \\
-  2002 & 78 &   & 23 &   &   &   &   & 101 & 101 \\
-  2001 & 74 &   & 22 &   &   &   &   & 96 & 96 \\
-  2000 & 73 &   & 20 &   &   &   &   & 93 & 93 \\
-  1999 & 69 &   & 19 &   &   &   &   & 88 & 88 \\
-  1998 & 72 &   & 18 &   &   &   &   & 90 & 90 \\
-  1997 & 72 &   & 16 &   &   &   &   & 88 & 88 \\
-  1996 & 65 &   & 12 &   &   &   &   & 77 & 77 \\
-  1995 & 56 &   & 18 &   &   &   &   & 74 & 74 \\
-  1994 & 53 &   &   &   &   &   &   & 53 & 53 \\
-  1993 & 55 &   &   &   &   &   &   & 55 & 55 \\
-  1992 & 53 &   &   &   &   &   &   & 53 & 53 \\
-  1991 & 50 &   &   &   &   &   &   & 50 & 50 \\
-  1990 & 53 &   &   &   &   &   &   & 53 & 53 \\
-  \midrule
-  \textbf{sum} & \textbf{1545} & \textbf{9} & \textbf{632} & \textbf{310} & \textbf{50} & \textbf{123} & \textbf{25} & \textbf{2694} & \textbf{2546} \\
-  \bottomrule
+		\toprule
+		year & \rotatebox{90}{Vis/SciVis} &   \rotatebox{90}{SciVis conf} &   \rotatebox{90}{InfoVis} &   \rotatebox{90}{VAST} &   \rotatebox{90}{VAST conf} &   \rotatebox{90}{TVCG @ VIS} &   \rotatebox{90}{CG\&A @ VIS} &   \rotatebox{90}{VIS/VisWeek} \rotatebox{90}{incl.\ TVCG/CG\&A}   &   \rotatebox{90}{VIS/VisWeek} \rotatebox{90}{w/o TVCG/CG\&A}   \\
+		\midrule
+		2016 & 30 &   & 37 & 33 & 15 & 23 & 10 & 148 & 115 \\
+		2015 & 33 & 9 & 38 & 33 & 14 & 17 & 15 & 159 & 127 \\
+		2014 & 34 &   & 45 & 33 & 21 & 20 &   & 153 & 133 \\
+		2013 & 31 &   & 38 & 32 &   & 20 &   & 121 & 101 \\
+		2012 & 42 &   & 44 & 30 &   & 23 &   & 139 & 116 \\
+		2011 & 49 &   & 44 & 26 &   & 20 &   & 139 & 119 \\
+		2010 & 48 &   & 35 & 26 &   &   &   & 109 & 109 \\
+		2009 & 54 &   & 37 & 26 &   &   &   & 117 & 117 \\
+		2008 & 50 &   & 28 & 21 &   &   &   & 99 & 99 \\
+		2007 & 56 &   & 27 & 24 &   &   &   & 107 & 107 \\
+		2006 & 63 &   & 24 & 26 &   &   &   & 113 & 113 \\
+		2005 & 88 &   & 31 &   &   &   &   & 119 & 119 \\
+		2004 & 70 &   & 27 &   &   &   &   & 97 & 97 \\
+		2003 & 74 &   & 29 &   &   &   &   & 103 & 103 \\
+		2002 & 78 &   & 23 &   &   &   &   & 101 & 101 \\
+		2001 & 74 &   & 22 &   &   &   &   & 96 & 96 \\
+		2000 & 73 &   & 20 &   &   &   &   & 93 & 93 \\
+		1999 & 69 &   & 19 &   &   &   &   & 88 & 88 \\
+		1998 & 72 &   & 18 &   &   &   &   & 90 & 90 \\
+		1997 & 72 &   & 16 &   &   &   &   & 88 & 88 \\
+		1996 & 65 &   & 12 &   &   &   &   & 77 & 77 \\
+		1995 & 56 &   & 18 &   &   &   &   & 74 & 74 \\
+		1994 & 53 &   &   &   &   &   &   & 53 & 53 \\
+		1993 & 55 &   &   &   &   &   &   & 55 & 55 \\
+		1992 & 53 &   &   &   &   &   &   & 53 & 53 \\
+		1991 & 50 &   &   &   &   &   &   & 50 & 50 \\
+		1990 & 53 &   &   &   &   &   &   & 53 & 53 \\
+		\midrule
+		\textbf{sum} & \textbf{1545} & \textbf{9} & \textbf{632} & \textbf{310} & \textbf{50} & \textbf{123} & \textbf{25} & \textbf{2694} & \textbf{2546} \\
+		\bottomrule
   \end{tabu}%
 \end{table}
 
+
 \subsection{Mezcal Head}
 
-Lorem ipsum dolor sit amet (see \autoref{fig:sample}), consetetur sadipscing elitr, sed diam
-nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-takimata sanctus est Lorem ipsum dolor sit amet. 
+Lorem ipsum dolor sit amet (see \autoref{fig:sample}), consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
 
 \subsubsection{Duis Autem}
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-invidunt ut labore et dolore magna aliquyam erat, sed diam
-voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum. Stet clita kasd gubergren, no sea takimata sanctus est. Lorem
-ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est.
+Lorem ipsum dolor sit amet.
 
 \begin{figure}[tb]
  \centering % avoid the use of \begin{center}...\end{center} and use \centering instead (more compact)
- \includegraphics[width=\columnwidth]{paper-count-w-2015-new}
- \caption{A visualization of the 1990--2015 data from \autoref{tab:vis_papers}. The image is from \cite{Isenberg:2017:VMC} and is in the public domain.}
+ \includegraphics[width=\columnwidth]{paper-count-2016}
+ \caption{%
+	A visualization of the 1990--2016 data from \autoref{tab:vis_papers}.
+	The image is a partial recreation of Fig.\ 1 from \cite{Isenberg:2017:VMC}, which is in the public domain.%
+	}
  \label{fig:sample}
 \end{figure}
 
+
 \subsubsection{Ejector Seat Reservation}
 
-Duis autem~\cite{Lorensen:1987:MCA}\footnote{The algorithm behind
-Marching Cubes \cite{Lorensen:1987:MCA} had already been
-described by Wyvill et al. \cite{Wyvill:1986:DSS} a year
-earlier.} vel eum iriure dolor in hendrerit
-in vulputate velit esse molestie consequat,\footnote{Footnotes
-appear at the bottom of the column.} vel illum dolore eu
-feugiat nulla facilisis at vero eros et accumsan et iusto odio
-dignissim qui blandit praesent luptatum zzril delenit augue duis
-dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,
-consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-ut laoreet dolore magna aliquam erat volutpat.
+Duis autem~\cite{Lorensen:1987:MCA}\footnote{The algorithm behind Marching Cubes \cite{Lorensen:1987:MCA} had already been described by Wyvill et al.\ \cite{Wyvill:1986:DSS} a year earlier.} 
+vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat,\footnote{Footnotes appear at the bottom of the column.}
+vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 
 
 \paragraph{Confirmed Ejector Seat Reservation}
 
 Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
-suscipit lobortis nisl ut aliquip ex ea commodo
-consequat~\cite{Nielson:1991:TAD}. Duis autem vel eum iriure dolor in
-hendrerit in vulputate velit esse molestie consequat, vel illum dolore
-eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
-dignissim qui blandit praesent luptatum zzril delenit augue duis
-dolore te feugait nulla facilisi.
+suscipit lobortis nisl ut aliquip ex ea commodo consequat~\cite{Nielson:1991:TAD}.
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
 
 \paragraph{Rejected Ejector Seat Reservation}
 
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
-suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem
-vel eum iriure dolor in hendrerit in vulputate velit esse molestie
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie.
 
 \subsection{Vestibulum}
 
-Vestibulum ut est libero. Suspendisse non libero id massa congue egestas nec at ligula. Donec nibh lorem, ornare et odio eu, cursus accumsan felis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec dapibus quam vel eros mattis, id ornare dolor convallis. Donec at nisl sapien. Integer fringilla laoreet tempor. Fusce accumsan ante vel augue euismod, sit amet maximus turpis mattis. Nam accumsan vestibulum rhoncus. Aenean quis pellentesque augue. Suspendisse sed augue et velit consequat bibendum id nec est. Quisque erat purus, ullamcorper ut ex vel, dapibus dignissim erat.
+Vestibulum ut est libero.
+Suspendisse non libero id massa congue egestas nec at ligula.
+Donec nibh lorem, ornare et odio eu, cursus accumsan felis.
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+Donec dapibus quam vel eros mattis, id ornare dolor convallis.
+Donec at nisl sapien.
+Integer fringilla laoreet tempor.
+Fusce accumsan ante vel augue euismod, sit amet maximus turpis mattis.
+Nam accumsan vestibulum rhoncus.
+Aenean quis pellentesque augue.
+Suspendisse sed augue et velit consequat bibendum id nec est.
+Quisque erat purus, ullamcorper ut ex vel, dapibus dignissim erat.
 
-Quisque sit amet orci quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pharetra, nunc non efficitur convallis, tellus purus iaculis lorem, nec ultricies dolor ligula in metus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean eu ex nulla. Morbi id ex interdum, scelerisque lorem nec, iaculis dui. Phasellus ultricies nunc vitae quam fringilla laoreet. Quisque sed dolor at sem vestibulum fringilla nec ac augue. Ut consequat, velit ac mattis ornare, eros arcu pellentesque erat, non ultricies libero metus nec mi. Sed eget elit sed quam malesuada viverra. Quisque ullamcorper, felis ut convallis fermentum, purus ligula varius ligula, sit amet tempor neque dui non neque. Donec vulputate ultricies tortor in mollis.
+Quisque sit amet orci quam.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Aliquam pharetra, nunc non efficitur convallis, tellus purus iaculis lorem, nec ultricies dolor ligula in metus.
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+Aenean eu ex nulla.
+Morbi id ex interdum, scelerisque lorem nec, iaculis dui.
+Phasellus ultricies nunc vitae quam fringilla laoreet.
+Quisque sed dolor at sem vestibulum fringilla nec ac augue.
+Ut consequat, velit ac mattis ornare, eros arcu pellentesque erat, non ultricies libero metus nec mi.
+Sed eget elit sed quam malesuada viverra.
+Quisque ullamcorper, felis ut convallis fermentum, purus ligula varius ligula, sit amet tempor neque dui non neque.
+Donec vulputate ultricies tortor in mollis.
 
-Integer sit amet dolor sit amet turpis ullamcorper varius. Cras volutpat bibendum scelerisque. Maecenas mauris dolor, gravida eu elit et, sodales consequat tortor. Integer id commodo elit. Pellentesque sollicitudin ex non nulla molestie eleifend. Mauris sagittis metus nec turpis imperdiet, vel ullamcorper nibh tincidunt. Sed semper tempus ex, ut aliquet erat hendrerit id. Maecenas sit amet dolor sollicitudin, luctus nunc sit amet, malesuada justo.
+Integer sit amet dolor sit amet turpis ullamcorper varius.
+Cras volutpat bibendum scelerisque.
+Maecenas mauris dolor, gravida eu elit et, sodales consequat tortor.
+Integer id commodo elit.
+Pellentesque sollicitudin ex non nulla molestie eleifend.
+Mauris sagittis metus nec turpis imperdiet, vel ullamcorper nibh tincidunt.
+Sed semper tempus ex, ut aliquet erat hendrerit id.
+Maecenas sit amet dolor sollicitudin, luctus nunc sit amet, malesuada justo.
 
-Mauris ut sapien non ipsum imperdiet sodales sit amet ac diam. Nulla vel convallis est. Etiam dapibus augue urna. Aenean enim leo, fermentum quis pulvinar at, ultrices quis enim. Sed placerat porta libero et feugiat. Phasellus ullamcorper, felis id porta sollicitudin, dolor dui venenatis augue, vel fringilla risus massa non risus. Maecenas ut nulla vitae ligula pharetra feugiat non eu ante. Donec quis neque quis lorem cursus pretium ac vulputate quam. Cras viverra tellus vitae sapien pretium laoreet. Pellentesque fringilla odio venenatis ex viverra, quis eleifend tortor ornare. Ut ut enim nunc. Vivamus id ligula nec est dignissim eleifend.
+Mauris ut sapien non ipsum imperdiet sodales sit amet ac diam.
+Nulla vel convallis est.
+Etiam dapibus augue urna.
+Aenean enim leo, fermentum quis pulvinar at, ultrices quis enim.
+Sed placerat porta libero et feugiat.
+Phasellus ullamcorper, felis id porta sollicitudin, dolor dui venenatis augue, vel fringilla risus massa non risus.
+Maecenas ut nulla vitae ligula pharetra feugiat non eu ante.
+Donec quis neque quis lorem cursus pretium ac vulputate quam.
+Cras viverra tellus vitae sapien pretium laoreet.
+Pellentesque fringilla odio venenatis ex viverra, quis eleifend tortor ornare.
+Ut ut enim nunc.
+Vivamus id ligula nec est dignissim eleifend.
 
-Nunc ac velit tellus. Donec et venenatis mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae lectus vel ante mollis congue. Vestibulum at cursus velit. Curabitur in facilisis enim. Vestibulum eget dui aliquet risus laoreet laoreet. Phasellus et est id magna interdum venenatis. Donec luctus vehicula justo sed laoreet. Quisque tincidunt suscipit augue, in molestie sem accumsan sed.
+Nunc ac velit tellus.
+Donec et venenatis mauris.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Ut vitae lectus vel ante mollis congue.
+Vestibulum at cursus velit.
+Curabitur in facilisis enim.
+Vestibulum eget dui aliquet risus laoreet laoreet.
+Phasellus et est id magna interdum venenatis.
+Donec luctus vehicula justo sed laoreet.
+Quisque tincidunt suscipit augue, in molestie sem accumsan sed.
+
 \section{Conclusion}
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-invidunt ut labore et dolore magna aliquyam erat, sed diam
-voluptua. At vero eos et accusam et justo duo dolores et ea
-rebum.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+At vero eos et accusam et justo duo dolores et ea rebum.
 
 
-%% if specified like this the section will be committed in review mode
-\acknowledgments{
-The authors wish to thank A, B, and C. This work was supported in part by
-a grant from XYZ (\# 12345-67890).}
+
+%% VVVVV EVERYTHING BELOW DOES NOT COUNT FOR THE CONTENT PAGE LIMIT (UP TO 2 PAGES) VVVV %%
+
+\section*{Supplemental Materials}
+\label{sec:supplemental_materials}
+
+
+
+\url{https://doi.org/10.17605/OSF.IO/2NBSG}
+
+ justification for missing Starbucks Research
+
+
+
+\section*{Paper Credits / License}
+
+%% if specified like this the section will be ommitted in review mode
+\acknowledgments{%
+	The authors wish to thank A, B, and C.
+	This work was supported in part by a grant from XYZ (\# 12345-67890).%
+}
+
+
+
+
+
+
 
 %\bibliographystyle{abbrv}
 \bibliographystyle{abbrv-doi}
