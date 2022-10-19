@@ -42,7 +42,7 @@
   \DeclareGraphicsExtensions{.eps}     % for pure latex we expect eps files
 \fi%
 
-%% it is recomended to use ``\autoref{sec:bla}'' instead of ``Fig.~\ref{sec:bla}''
+%% it is recomended to use ``\cref{sec:bla}'' instead of ``Fig.~\ref{sec:bla}''
 \graphicspath{{figures/}{pictures/}{images/}{./}} % where to search for the images
 
 \usepackage{microtype}                 % use micro-typography (slightly more compact, better to read)
@@ -135,7 +135,6 @@
   \includegraphics[width=\linewidth]{CypressView}
   \caption{%
 		In the Clouds: Vancouver from Cypress Mountain.
-		Image credit: Scott Miller / Special to the Vancouver Sun, January 22, 2009, page A6.
 		Note that the teaser may not be wider than the abstract block.%
 	}
   \label{fig:teaser}
@@ -187,8 +186,8 @@ Therefore, \textbf{please leave the copyright statement at the bottom-left of th
 		\end{itemize}
 	
 	\item The style uses the hyperref package, thus turns references into internal links.
-		We thus recommend to make use of the ``\texttt{\textbackslash autoref\{reference\}}'' call (instead of ``\texttt{Figure\~{}\textbackslash ref\{reference\}}'' or similar) since ``\texttt{\textbackslash autoref\{reference\}}'' turns the entire reference into an internal link, not just the number.
-		Examples: \autoref{fig:sample} and \autoref{tab:vis_papers}.
+		We thus recommend to make use of the ``\texttt{\textbackslash cref\{reference\}}'' call (instead of ``\texttt{Figure\~{}\textbackslash ref\{reference\}}'' or similar) since ``\texttt{\textbackslash cref\{reference\}}'' turns the entire reference into an internal link, not just the number.
+		Examples: \cref{fig:vis_papers} and \cref{tab:vis_papers}.
 	
 	\item The style automatically looks for image files with the correct extension (eps for regular \LaTeX; pdf, png, and jpg for pdf\LaTeX), in a set of given subfolders defined above using \texttt{\textbackslash graphicspath}: figures/, pictures/, images/.
 		It is thus sufficient to use ``\texttt{\textbackslash includegraphics\{CypressView\}}'' (instead of ``\texttt{\textbackslash includegraphics\{pictures/CypressView.jpg\}}'').
@@ -326,7 +325,7 @@ Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit ame
 
 \subsection{Lorem ipsum}
 
-Lorem ipsum dolor sit amet (see \autoref{tab:vis_papers}), consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+Lorem ipsum dolor sit amet (see \cref{tab:vis_papers}), consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 At vero eos et accusam et justo duo dolores et ea rebum.
 Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -386,7 +385,7 @@ At vero eos et accusam et justo duo dolores et ea rebum.
 
 \subsection{Mezcal Head}
 
-Lorem ipsum dolor sit amet (see \autoref{fig:sample}), consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+Lorem ipsum dolor sit amet (see \cref{fig:vis_papers}), consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 At vero eos et accusam et justo duo dolores et ea rebum.
 Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
@@ -413,10 +412,10 @@ Lorem ipsum dolor sit amet.
  \centering % avoid the use of \begin{center}...\end{center} and use \centering instead (more compact)
  \includegraphics[width=\columnwidth]{paper-count-2016}
  \caption{%
-	A visualization of the 1990--2016 data from \autoref{tab:vis_papers}.
+	A visualization of the 1990--2016 data from \cref{tab:vis_papers}.
 	The image is a partial recreation of Fig.\ 1 from \cite{Isenberg:2017:VMC}, which is in the public domain.%
 	}
- \label{fig:sample}
+ \label{fig:vis_papers}
 \end{figure}
 
 
@@ -518,15 +517,15 @@ At vero eos et accusam et justo duo dolores et ea rebum.
 \section*{Supplemental Materials}
 \label{sec:supplemental_materials}
 
+All supplemental materials are available on OSF at \url{https://doi.org/10.17605/OSF.IO/2NBSG}, released under a CC BY 4.0 license.
+In particular, they include (1) Excel files containing the data for and analyses for creating \cref{tab:vis_papers} and \cref{fig:vis_papers}, (2) figure images in multiple formats, and (3) a full version of this paper with all appendices.
+Our other code is intellectual property of a corporation---Starbucks Research---and there is no feasible way to share it publicly.
 
 
-\url{https://doi.org/10.17605/OSF.IO/2NBSG}
+\section*{Figure Credits}
 
- justification for missing Starbucks Research
+\Cref{fig:teaser} image credit: Scott Miller / Special to the Vancouver Sun, January 22, 2009, page A6.
 
-
-
-\section*{Paper Credits / License}
 
 %% if specified like this the section will be ommitted in review mode
 \acknowledgments{%

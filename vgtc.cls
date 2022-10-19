@@ -3,8 +3,10 @@
 % OF THE VGTC PUBLICATIONS CHAIR (submissions@vgtc.org).
 %
 % Changelog:
+% - modifications by Cody Dunne 2022/10/19
+%   - added cleveref, removed autoref (more removal to do)
 % - modifications by Cagatay Turkay and Soumya Dutta on 2019/09/11
-%   - modified the preprint article style to contain the IEEE copyright notices to produce IEEE compliant OA preprints.
+%   - modified the preprint article style to contain the IEEE copyright notices to produce IEEE-compliant OA preprints.
 %   - included two different statements for journal and conference papers
 %   - added a new command \ieeedoi for authors to set IEEE generated DOIs on their preprints
 %   - added comments on the template.tex for preprint guidance
@@ -216,6 +218,8 @@
   \renewcommand{\sectionautorefname}{Sect.}
   \renewcommand{\subsectionautorefname}{Sect.}
   \renewcommand{\subsubsectionautorefname}{Sect.}
+	
+	\usepackage{cleveref}
  }
 \else%                     % else we use pure latex
  \renewcommand{\vgtcinsertpkg}{%
@@ -253,6 +257,8 @@
   \renewcommand{\sectionautorefname}{Sect.}
   \renewcommand{\subsectionautorefname}{Sect.}
   \renewcommand{\subsubsectionautorefname}{Sect.}
+	
+	\usepackage{cleveref}
  }
 \fi
 }
