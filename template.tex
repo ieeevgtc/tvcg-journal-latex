@@ -1,6 +1,6 @@
-\documentclass[journal]{vgtc}                % final (journal style)
+%\documentclass[journal]{vgtc}                % final (journal style)
 %\documentclass[review,journal]{vgtc}         % review (journal style)
-%\documentclass[widereview]{vgtc}             % wide-spaced review
+\documentclass[widereview]{vgtc}             % wide-spaced review
 %\documentclass[preprint,journal]{vgtc}       % preprint (journal style)
 
 %% Uncomment one of the lines above depending on where your paper is
@@ -54,6 +54,7 @@
 \usepackage{cite}                      % needed to automatically sort the references
 \usepackage{tabu}                      % only used for the table example
 \usepackage{booktabs}                  % only used for the table example
+\usepackage{lipsum}										 % used to generate placeholder text
 %% We encourage the use of mathptmx for consistent usage of times font
 %% throughout the proceedings. However, if you encounter conflicts
 %% with other math-related packages, you may want to disable it.
@@ -112,7 +113,7 @@
 	Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
 	Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 	Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-	Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.%
+	Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. A free copy of this paper and all supplemental materials are available at \url{https://OSF.IO/2NBSG}.%
 } % end of abstract
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
@@ -146,9 +147,6 @@
 %% Copyright space is enabled by default as required by guidelines.
 %% It is disabled by the 'review' option or via the following command:
 % \nocopyrightspace
-
-
-\vgtcinsertpkg
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%% START OF THE PAPER %%%%%%%%%%%%%%%%%%%%%%
@@ -185,21 +183,28 @@ Therefore, \textbf{please leave the copyright statement at the bottom-left of th
 			\item B and D are with Institution 2. E-mail: \{b\,$|$\,d\}@i2.org\,.
 		\end{itemize}
 	
-	\item The style uses the hyperref package, thus turns references into internal links.
-		We thus recommend to make use of the ``\texttt{\textbackslash cref\{reference\}}'' call (instead of ``\texttt{Figure\~{}\textbackslash ref\{reference\}}'' or similar) since ``\texttt{\textbackslash cref\{reference\}}'' turns the entire reference into an internal link, not just the number.
-		Examples: \cref{fig:vis_papers} and \cref{tab:vis_papers}.
+	\item The style uses the \verb|hyperref| package which can typeset clickable hyperlinks using \verb|\href{...}{...}|, hyperlinked URLs using \verb|\url{...}|, and turns references into internal links.
+		The style also uses \verb|cleveref| for automatically formatting cross references in a consistent format.
+		We recommend that you use the \verb|\cref{label}| and \verb|\Cref{label}| calls instead of \verb|Figure~\ref{label}| or similar.
+		\verb|\Cref| should be used when starting a sentence to spell out the reference (e.g.\ \verb|Section|) while \verb|\cref| should be used when referencing within a sentence to abbreviate (e.g.\ \verb|Sec.|).
+		Here are examples for use within a sentence: \cref{fig:vis_papers}, \cref{tab:vis_papers}, \cref{sec:supplement_inst,sec:bib_inst}, \cref{eq:sum}.
+		The following sentences all start with a reference, so use \verb|\Cref|.
+		\Cref{fig:vis_papers} is a \verb|figure| environment.
+		\Cref{tab:vis_papers} is a \verb|table| environment. 
+		\Cref{sec:supplement_inst,sec:bib_inst} are \verb|section| environments.
+		\Cref{eq:sum} is an \verb|equation| environment.
 	
 	\item The style automatically looks for image files with the correct extension (eps for regular \LaTeX; pdf, png, and jpg for pdf\LaTeX), in a set of given subfolders defined above using \texttt{\textbackslash graphicspath}: figures/, pictures/, images/.
 		It is thus sufficient to use ``\texttt{\textbackslash includegraphics\{CypressView\}}'' (instead of ``\texttt{\textbackslash includegraphics\{pictures/CypressView.jpg\}}'').
 		(Note that png is more appropriate for line art and text than jpg, but vector graphics are best in that case.)
 	
-	\item For adding hyperlinks and DOIs to the list of references, you can use ``\texttt{\textbackslash bibliographystyle\{abbrv-doi-hyperref-narrow\}}'' (instead of ``\texttt{\textbackslash bibliographystyle\{abbrv\}}'').
-		It uses the doi and url fields in a bib\TeX\ entry and turns the entire reference into a link, giving priority to the doi.
-		The doi can be entered with or without the ``\texttt{http://dx.doi.org/}'' url part.
-		See the examples in the bib\TeX\ file and the bibliography at the end of this template.\\[1em]
+	\item For the list of references, you can use \verb|\bibliographystyle{abbrv}| to avoid adding hyperlinks and DOIs like the default \verb|\bibliographystyle{abbrv-doi-hyperref-narrow}| does.
+		By default, the DOI and URL fields in a bib\TeX\ entry and turns the entire reference into a link, giving priority to the DOI.
+		The DOI can be entered with or without the \url{https://doi.org/} prefix.
+		See the examples in the bib\TeX\ file and the bibliography at the end of this template.\\\\
 		%
 		\textbf{Note 1:} occasionally (for some \LaTeX\ distributions) this hyper-linked bib\TeX\ style may lead to \textbf{compilation errors} (``\texttt{pdfendlink ended up in different nesting level ...}'') if a reference entry is broken across two pages (due to a bug in hyperref).
-		In this case make sure you have the latest version of the hyperref package (i.e., update your \LaTeX\ installation/packages) or, alternatively, revert back to ``\texttt{\textbackslash bibliographystyle\{abbrv-doi-narrow\}}'' (at the expense of removing hyperlinks from the bibliography) and try ``\texttt{\textbackslash bibliographystyle\{abbrv-doi-hyperref-narrow\}}'' again after some more editing.\\[1em]
+		In this case make sure you have the latest version of the hyperref package (i.e., update your \LaTeX\ installation/packages) or, alternatively, revert back to ``\texttt{\textbackslash bibliographystyle\{abbrv-doi-narrow\}}'' (at the expense of removing hyperlinks from the bibliography) and try ``\texttt{\textbackslash bibliographystyle\{abbrv-doi-hyperref-narrow\}}'' again after some more editing.\\\\
 		%
 		\textbf{Note 2:} the ``\texttt{-narrow}'' versions of the bibliography style use the font ``PTSansNarrow-TLF'' for typesetting the DOIs in a compact way.
 		This font needs to be available on your \LaTeX\ system.
@@ -212,6 +217,7 @@ Therefore, \textbf{please leave the copyright statement at the bottom-left of th
 
 
 \section{Supplemental Material Instructions}
+\label{sec:supplement_inst}
 
 \subsection{Long-term Open Science goals}
 
@@ -246,6 +252,7 @@ This section does not count against the page limit, instead being included in th
 An example is provided below.
 
 \section{Bibliography Instructions}
+\label{sec:bib_inst}
 
 \begin{itemize}
 	\item Sort all bibliographic entries alphabetically but the last name of the first author.
@@ -291,48 +298,19 @@ An example is provided below.
 	\item when citing references, do not use the reference as a sentence object; e.\,g., wrong: ``In \cite{Lorensen:1987:MCA} the authors describe \dots'', correct: ``Lorensen and Cline \cite{Lorensen:1987:MCA} describe \dots''
 \end{itemize}
 
+%% The Following
 
 \section{Example Section}
 
-Lorem\marginpar{\small You can use the margins for comments while editing the submission, but please remove the marginpar comments for submission.}
-ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua~\cite{Kitware:2003,Max:1995:OMF}.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est.
-
-
-\section{Exposition}
-
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat~\cite{Kindlmann:1999:SAG}.
+Equations can be added like so:
 
 \begin{equation}
+\label{eq:sum}
 \sum_{j=1}^{z} j = \frac{z(z+1)}{2}
 \end{equation}
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\marginpar{\small You can use the margins for comments while editing the submission, but please remove the marginpar comments for submission.}
 
-\subsection{Lorem ipsum}
-
-Lorem ipsum dolor sit amet (see \cref{tab:vis_papers}), consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
 
 \begin{table}[tb]
   \caption{%
@@ -382,6 +360,19 @@ At vero eos et accusam et justo duo dolores et ea rebum.
   \end{tabu}%
 \end{table}
 
+\begin{figure}[tb]% specify a combination of t, b, p, or h for top, bottom, on its own page, or here
+ \centering % avoid the use of \begin{center}...\end{center} and use \centering instead (more compact)
+ \includegraphics[width=\columnwidth]{paper-count-2016}
+ \caption{%
+	A visualization of the 1990--2016 data from \cref{tab:vis_papers}, recreated based on Fig.\ 1 from \cite{Isenberg:2017:VMC}.%
+	}
+ \label{fig:vis_papers}
+\end{figure}
+
+
+\section{Lorem Ipsum Filler Text}
+
+\lipsum
 
 \subsection{Mezcal Head}
 
@@ -408,15 +399,7 @@ At vero eos et accusam et justo duo dolores et ea rebum.
 Stet clita kasd gubergren, no sea takimata sanctus est.
 Lorem ipsum dolor sit amet.
 
-\begin{figure}[tb]
- \centering % avoid the use of \begin{center}...\end{center} and use \centering instead (more compact)
- \includegraphics[width=\columnwidth]{paper-count-2016}
- \caption{%
-	A visualization of the 1990--2016 data from \cref{tab:vis_papers}.
-	The image is a partial recreation of Fig.\ 1 from \cite{Isenberg:2017:VMC}, which is in the public domain.%
-	}
- \label{fig:vis_papers}
-\end{figure}
+
 
 
 \subsubsection{Ejector Seat Reservation}
@@ -429,86 +412,19 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
 
 \paragraph{Confirmed Ejector Seat Reservation}
 
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
-suscipit lobortis nisl ut aliquip ex ea commodo consequat~\cite{Nielson:1991:TAD}.
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+\lipsum[1]
 
 \paragraph{Rejected Ejector Seat Reservation}
 
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie.
+\lipsum[1]
 
 \subsection{Vestibulum}
 
-Vestibulum ut est libero.
-Suspendisse non libero id massa congue egestas nec at ligula.
-Donec nibh lorem, ornare et odio eu, cursus accumsan felis.
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-Donec dapibus quam vel eros mattis, id ornare dolor convallis.
-Donec at nisl sapien.
-Integer fringilla laoreet tempor.
-Fusce accumsan ante vel augue euismod, sit amet maximus turpis mattis.
-Nam accumsan vestibulum rhoncus.
-Aenean quis pellentesque augue.
-Suspendisse sed augue et velit consequat bibendum id nec est.
-Quisque erat purus, ullamcorper ut ex vel, dapibus dignissim erat.
-
-Quisque sit amet orci quam.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Aliquam pharetra, nunc non efficitur convallis, tellus purus iaculis lorem, nec ultricies dolor ligula in metus.
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-Aenean eu ex nulla.
-Morbi id ex interdum, scelerisque lorem nec, iaculis dui.
-Phasellus ultricies nunc vitae quam fringilla laoreet.
-Quisque sed dolor at sem vestibulum fringilla nec ac augue.
-Ut consequat, velit ac mattis ornare, eros arcu pellentesque erat, non ultricies libero metus nec mi.
-Sed eget elit sed quam malesuada viverra.
-Quisque ullamcorper, felis ut convallis fermentum, purus ligula varius ligula, sit amet tempor neque dui non neque.
-Donec vulputate ultricies tortor in mollis.
-
-Integer sit amet dolor sit amet turpis ullamcorper varius.
-Cras volutpat bibendum scelerisque.
-Maecenas mauris dolor, gravida eu elit et, sodales consequat tortor.
-Integer id commodo elit.
-Pellentesque sollicitudin ex non nulla molestie eleifend.
-Mauris sagittis metus nec turpis imperdiet, vel ullamcorper nibh tincidunt.
-Sed semper tempus ex, ut aliquet erat hendrerit id.
-Maecenas sit amet dolor sollicitudin, luctus nunc sit amet, malesuada justo.
-
-Mauris ut sapien non ipsum imperdiet sodales sit amet ac diam.
-Nulla vel convallis est.
-Etiam dapibus augue urna.
-Aenean enim leo, fermentum quis pulvinar at, ultrices quis enim.
-Sed placerat porta libero et feugiat.
-Phasellus ullamcorper, felis id porta sollicitudin, dolor dui venenatis augue, vel fringilla risus massa non risus.
-Maecenas ut nulla vitae ligula pharetra feugiat non eu ante.
-Donec quis neque quis lorem cursus pretium ac vulputate quam.
-Cras viverra tellus vitae sapien pretium laoreet.
-Pellentesque fringilla odio venenatis ex viverra, quis eleifend tortor ornare.
-Ut ut enim nunc.
-Vivamus id ligula nec est dignissim eleifend.
-
-Nunc ac velit tellus.
-Donec et venenatis mauris.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Ut vitae lectus vel ante mollis congue.
-Vestibulum at cursus velit.
-Curabitur in facilisis enim.
-Vestibulum eget dui aliquet risus laoreet laoreet.
-Phasellus et est id magna interdum venenatis.
-Donec luctus vehicula justo sed laoreet.
-Quisque tincidunt suscipit augue, in molestie sem accumsan sed.
+\lipsum
 
 \section{Conclusion}
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-At vero eos et accusam et justo duo dolores et ea rebum.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua...
 
 
 
@@ -525,6 +441,8 @@ Our other code is intellectual property of a corporation---Starbucks Research---
 \section*{Figure Credits}
 
 \Cref{fig:teaser} image credit: Scott Miller / Special to the Vancouver Sun, January 22, 2009, page A6.
+
+\Cref{fig:vis_papers} is a partial recreation of Fig.\ 1 from \cite{Isenberg:2017:VMC}, which is in the public domain.
 
 
 %% if specified like this the section will be ommitted in review mode
