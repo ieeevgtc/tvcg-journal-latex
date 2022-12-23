@@ -101,182 +101,152 @@
 
 % ------------ initial code --------------
 
-\newif\ifvgtc@camera
-\newif\ifvgtc@preprint
-\newif\ifvgtc@review
-\newif\ifvgtc@doublespaced
-\newif\ifvgtc@wide                    \vgtc@widefalse
-\newif\ifhavecopyrightspace           \havecopyrightspacetrue
-\newif\ifvgtcjournal                  \vgtcjournalfalse
-\newif\iftvcgsize                     \tvcgsizefalse
+\RequirePackage{etoolbox}
+
+\newtoggle{vgtc@camera}					\togglefalse{vgtc@camera}
+\newtoggle{vgtc@preprint}				\togglefalse{vgtc@preprint}
+\newtoggle{vgtc@review}					\togglefalse{vgtc@review}
+\newtoggle{vgtc@doublespaced} 	\togglefalse{vgtc@doublespaced}
+\newtoggle{vgtc@wide}           \togglefalse{vgtc@wide}
+\newtoggle{havecopyrightspace}  \toggletrue{havecopyrightspace}
+\newtoggle{vgtcjournal}         \togglefalse{vgtcjournal}
+\newtoggle{tvcgsize}            \togglefalse{tvcgsize}
 
 \newcommand{\vgtc@columnmode}{}
 \newcommand{\vgtc@pointsize}{}
 
 \RequirePackage{ifpdf}%
 
+
 % ------------ declaration of options --------------
 
 % 'cameraready' option.
 
 \DeclareOption{cameraready}{%
-   \vgtc@cameratrue%
-   \vgtc@preprintfalse%
-   \vgtc@reviewfalse%
-   \renewcommand{\vgtc@columnmode}{twocolumn}%
-   \vgtc@doublespacedfalse%
-   \renewcommand{\vgtc@pointsize}{9pt}}
+	\toggletrue{vgtc@camera}%
+	\togglefalse{vgtc@preprint}%
+	\togglefalse{vgtc@review}%
+	\renewcommand{\vgtc@columnmode}{twocolumn}%
+	\togglefalse{vgtc@doublespaced}%
+	\renewcommand{\vgtc@pointsize}{9pt}%
+	}
 
 % 'review' option.
 
 \DeclareOption{review}{%
-   \vgtc@camerafalse%
-   \vgtc@preprintfalse%
-   \vgtc@reviewtrue%
-   \renewcommand{\vgtc@columnmode}{twocolumn}%
-   \vgtc@doublespacedfalse%
-   \renewcommand{\vgtc@pointsize}{9pt}
-   \havecopyrightspacefalse}
+	\togglefalse{vgtc@camera}%
+	\togglefalse{vgtc@preprint}%
+	\toggletrue{vgtc@reviewtrue%
+	\renewcommand{\vgtc@columnmode}{twocolumn}%
+	\togglefalse{vgtc@doublespaced}%
+	\renewcommand{\vgtc@pointsize}{9pt}
+	\togglefalse{havecopyrightspace}%
+	}
 
 % 'widereview' option.
 
 \DeclareOption{widereview}{%
-   \vgtc@camerafalse%
-   \vgtc@preprintfalse%
-   \vgtc@reviewtrue%
-   \renewcommand{\vgtc@columnmode}{onecolumn}%
-   \vgtc@widetrue%
-   \vgtc@doublespacedtrue%
-   \renewcommand{\vgtc@pointsize}{12pt}}
+	\togglefalse{vgtc@camera}%
+	\togglefalse{vgtc@preprint}%
+	\toggletrue{vgtc@review}%
+	\renewcommand{\vgtc@columnmode}{onecolumn}%
+	\toggletrue{vgtc@wide}%
+	\toggletrue{vgtc@doublespaced}%
+	\renewcommand{\vgtc@pointsize}{12pt}%
+	}
 
 % 'preprint' option.
 
 \DeclareOption{preprint}{%
-   \vgtc@camerafalse%
-   \vgtc@preprinttrue%
-   \vgtc@reviewfalse%
+   \togglefalse{vgtc@camera}%
+   \toggletrue{vgtc@preprint}%
+   \togglefalse{vgtc@review}%
    \renewcommand{\vgtc@columnmode}{twocolumn}%
-   \vgtc@doublespacedfalse%
+   \togglefalse{vgtc@doublespaced}%
    \renewcommand{\vgtc@pointsize}{9pt}}
 
 \DeclareOption{tvcgpapersize}
   {\setlength\paperheight {10.75in}%
    \setlength\paperwidth  {7.875in}
-   \tvcgsizetrue
+   \toggletrue{tvcgsize}
 }
 
 % 'journal' option
 \DeclareOption{journal}{%
-   \vgtcjournaltrue %
-   \@twosidetrue  \@mparswitchtrue %
+  \toggletrue{vgtcjournal} %
+  \@twosidetrue  \@mparswitchtrue %
    %\ExecuteOptions{tvcgpapersize}
 }
 
+\DeclareOption{electronic}{%  % if electronic, load hyperref  
 
-%%% the following code has partly been adapted from egpubl.cls
-%\newif\ifpdf  % determine if we are running PDFLaTeX or not
-%\ifx\pdfoutput\undefined \pdffalse % we are not running PDFLaTeX 
-%\else 
-% %\pdfoutput=1 % we are running PDFLaTeX 
-% \pdftrue 
-%\fi
+	\newcommand{\commonpkgelements}{%
+		\usepackage{hyperref}
+		\usepackage{xcolor}
+		\expandafter\hypersetup\expandafter{\in@hyperref,
+			pagebackref=true,
+			pdfpagemode=UseNone,
+			pdftitle={\@title},
+			pdfauthor={\@author},
+			pdfsubject={VGTC Special Issue Paper for TVCG},
+			pdfkeywords={\vgtc@keywords},
+			pageanchor=true,
+			plainpages=false,       % for problems with page referencing
+			hypertexnames=false,    % for handling subfigures correctly
+			bookmarks=true,         % we want bookmarks
+			bookmarksnumbered=false,% include the section numbers in the list
+			bookmarksopen=true,     % In the list, display highest level only
+			bookmarksopenlevel=3,   % display three levels of bookmarks
+			pdfpagemode=UseNone,    % show just the page
+			pdfstartview=Fit,       % defail page view is the whole page at once
+			pdfborder={0 0 0},      % we don't want those silly boxes for links
+			breaklinks=true,        % allow breaking links
+			colorlinks=false,       % don't change coloring of links
+			nesting=true,
+			linktocpage}
+			
+		%% it is recommended to use ``\cref{sec:bla}`` instead of ``Sec.~\ref{sec:bla}''
+		%% the following lines load cleveref for consistent, style-dependent cross-references
+		%% then customize how sections and tables are referenced. Note that both ``\crefname``
+		%% AND ``\Crefname`` must be specified for each, otherwise cleveref uses whatever is
+		%% given for both cases.
+		\usepackage[nameinlink,capitalise]{cleveref}
+		\crefname{table}{Tab.}{Tabs.}
+		\Crefname{table}{Table}{Tables}
+		\crefname{section}{Sec.}{Secs.}
+		\Crefname{section}{Section}{Sections}
+	}
 
-\newcommand{\vgtcinsertpkg}{}
-\DeclareOption{electronic}{%
-\ifpdf%                    % if we use pdflatex
- \renewcommand{\vgtcinsertpkg}{%
-  \usepackage{hyperref}
-  \usepackage{xcolor}
-  \hypersetup{pdftex,
-   pagebackref=true,
-   pdfpagemode=UseNone,
-   pdftitle={\@title},
-   pdfauthor={\@author},
-   pdfsubject={VGTC Special Issue Paper for TVCG},
-   pdfkeywords={\vgtc@keywords},
-   pageanchor=true,
-   plainpages=false,       % for problems with page referencing
-   hypertexnames=false,    % for handling subfigures correctly
-   bookmarks=true,         % we want bookmarks
-   bookmarksnumbered=false,% include the section numbers in the list
-   bookmarksopen=true,     % In the list, display highest level only
-   bookmarksopenlevel=3,   % display three levels of bookmarks
-   pdfpagemode=UseNone,    % show just the page
-   pdfstartview=Fit,       % defail page view is the whole page at once
-   pdfborder={0 0 0},      % we don't want those silly boxes for links
-   breaklinks=true,        % allow breaking links
-   colorlinks=false,       % don't change coloring of links
-   nesting=true,
-   linktocpage}
-  
-	%% it is recomended to use ``\autoref{sec:bla}'' instead of ``Fig.~\ref{sec:bla}''
-  %% the following lines re-define the respective tags used in the \autoref calls
-  \newcommand{\subfigureautorefname}{Fig.} % in case someone uses subfigures
-  \renewcommand{\figureautorefname}{Fig.}
-  \renewcommand{\tableautorefname}{Ta\-ble}
-  \renewcommand{\chapterautorefname}{Chapter}
-  \renewcommand{\sectionautorefname}{Sect.}
-  \renewcommand{\subsectionautorefname}{Sect.}
-  \renewcommand{\subsubsectionautorefname}{Sect.}
-	
-	\usepackage{cleveref}
- }
-\else%                     % else we use pure latex
- \renewcommand{\vgtcinsertpkg}{%
-  \usepackage{hyperref}
-  \usepackage{xcolor}
-  \hypersetup{dvips,
-   pagebackref=true,
-   pdfpagemode=UseNone,
-   pdftitle={\@title},
-   pdfauthor={\@author},
-   pdfsubject={VGTC Special Issue Paper for TVCG},
-   pdfkeywords={\vgtc@keywords},
-   pageanchor=true,
-   plainpages=false,       % for problems with page referencing
-   hypertexnames=false,    % for handling subfigures correctly
-   bookmarks=true,         % we want bookmarks
-   bookmarksnumbered=false,% include the section numbers in the list
-   bookmarksopen=true,     % In the list, display highest level only
-   bookmarksopenlevel=3,   % display three levels of bookmarks
-   pdfpagemode=UseNone,    % show just the page
-   pdfstartview=Fit,       % defail page view is the whole page at once
-   pdfborder={0 0 0},      % we don't want those silly boxes for links
-   breaklinks=true,        % allow breaking links
-   colorlinks=false,       % don't change coloring of links
-   nesting=true,
-   linktocpage}
-  \renewcommand{\pdfbookmark}[3][]{}
-
-	%% it is recomended to use ``\autoref{sec:bla}'' instead of ``Fig.~\ref{sec:bla}''
-  %% the following lines re-define the respective tags used in the \autoref calls
-  \newcommand{\subfigureautorefname}{Fig.} % in case someone uses subfigures
-  \renewcommand{\figureautorefname}{Fig.}
-  \renewcommand{\tableautorefname}{Ta\-ble}
-  \renewcommand{\chapterautorefname}{Chapter}
-  \renewcommand{\sectionautorefname}{Sect.}
-  \renewcommand{\subsectionautorefname}{Sect.}
-  \renewcommand{\subsubsectionautorefname}{Sect.}
-	
-	\usepackage{cleveref}
- }
-\fi
+	\AtEndPreamble{%
+		\ifpdf%                    % if we use pdflatex
+			\def\in@hyperref{pdftex}	
+			\commonpkgelements
+		\else%                     % else we use pure latex
+			\def\in@hyperref{dvips}
+			\commonpkgelements
+			\renewcommand{\pdfbookmark}[3][]{}
+		\fi
+	}
 }
+
+
+
+
+
 %% end of code adapted from egpubl.cls
 
 % Assume, for the moment, that we're preparing a 'cameraready' version.
 
 \ExecuteOptions{electronic,cameraready}
-%\AtBeginDocument{\vgtcinsertpkg}
 
 % Here's a warning command for use just below.
 
 \newcommand{\vgtc@optwarning}[1]{%
-   \ifvgtc@camera
+   \iftoggle{vgtc@camera}{%
        \ClassWarningNoLine{vgtc}%
            {#1 option used in camera-ready mode.\MessageBreak
             This violates submission specifications}
-   \fi
+   }{}
 }
 
 % The 'onecolumn' option doesn't work in 'cameraready' mode.
@@ -307,13 +277,13 @@
 % The 'singlespace' option works in 'cameraready' mode.
 
 \DeclareOption{singlespace}{%
-   \vgtc@doublespacedfalse}
+   \togglefalse{vgtc@doublespaced}}
 
 % The 'doublespace' option does not work in 'cameraready' mode.
 
 \DeclareOption{doublespace}{%
    \vgtc@optwarning{doublespace}
-   \vgtc@doublespacedtrue}
+   \toggletrue{vgtc@doublespaced}}
 
 % No 'titlepage' option in 'cameraready' mode.
 
@@ -332,9 +302,9 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions
 \PassOptionsToClass{\vgtc@columnmode}{article}
-\ifvgtcjournal
-\PassOptionsToClass{twoside}{article}
-\fi
+\iftoggle{vgtcjournal}{%
+	\PassOptionsToClass{twoside}{article}
+}{}
 \ifdim\vgtc@pointsize>9pt
    \PassOptionsToClass{\vgtc@pointsize}{article}
 \fi
@@ -352,11 +322,11 @@
 
 \newcommand{\vgtc@DOI}{xx.xxxx/TVCG.201x.xxxxxxx/}
 
-\ifvgtcjournal
+\iftoggle{vgtcjournal}{%
 	\newcommand{\vgtc@preprinttext}{\parbox{0.9\textwidth}{$\copyright$ \the\year~IEEE. This is the author's version of the article that has been published in IEEE Transactions on Visualization and Computer Graphics. The final version of this record is available at: \href{https://doi.org/\vgtc@DOI}{\color{blue}\vgtc@DOI}}}
-\else
+}{%
 	\newcommand{\vgtc@preprinttext}{\parbox{0.9\textwidth}{$\copyright$ \the\year~IEEE. This is the author's version of the article that has been published in the proceedings of IEEE Visualization conference. The final version of this record is available at: \href{https://doi.org/\vgtc@DOI}{\color{blue}\vgtc@DOI}}}
-\fi
+}
 
 
 \newcommand{\preprinttext}[1]{\renewcommand{\vgtc@preprinttext}{#1}}
@@ -389,66 +359,65 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
 \newcommand{\firstsectiontxt}{}
 \newcommand{\firstsection}[1]{\renewcommand{\firstsectiontxt}{#1}}
 \newcommand{\acknowledgments}[1]{%
-\ifvgtc@review\else%
-\section*{Acknowledgments}
-#1
-\fi}
+\iftoggle{vgtc@review}{}{%
+	\section*{Acknowledgments}
+	#1
+}
 
-\newcommand{\ifcamera}[1]{\ifvgtc@camera #1 \fi}
-\newcommand{\ifreview}[1]{\ifvgtc@review #1 \fi}
-\newcommand{\ifcameraelse}[2]{\ifvgtc@camera #1 \else #2 \fi}
-\newcommand{\ifreviewelse}[2]{\ifvgtc@review #1 \else #2 \fi}
+\newcommand{\ifcamera}[1]{\iftoggle{vgtc@camera}{#1}{}}
+\newcommand{\ifreview}[1]{\iftoggle{vgtc@review}{#1}{}}
+\newcommand{\ifcameraelse}[2]{\iftoggle{vgtc@camera}{#1}{#2}}
+\newcommand{\ifreviewelse}[2]{\iftoggle{vgtc@review}{#1}{#2}}
 
-\ifvgtcjournal
-\renewcommand{\figurename}{Fig.}
+\iftoggle{vgtcjournal}{%
+%\renewcommand{\figurename}{Fig.}
 
-\setlength{\textheight}{9.625in}
-\setlength{\topmargin}{-0.625in}
-\setlength{\headheight}{0.0625in}
-\setlength{\headsep}{0.250in}
-\setlength{\footskip}{0.25in}
-\flushbottom
-\setlength{\textwidth}{7.125in}
-\setlength{\columnsep}{0.17in}
-\newlength{\captionmargin}
-\setlength{\captionmargin}{0in}
+	\setlength{\textheight}{9.625in}
+	\setlength{\topmargin}{-0.625in}
+	\setlength{\headheight}{0.0625in}
+	\setlength{\headsep}{0.250in}
+	\setlength{\footskip}{0.25in}
+	\flushbottom
+	\setlength{\textwidth}{7.125in}
+	\setlength{\columnsep}{0.17in}
+	\newlength{\captionmargin}
+	\setlength{\captionmargin}{0in}
 
-\iftvcgsize
- \setlength\paperheight {10.75in}
- \setlength\paperwidth  {7.875in}
- \setlength{\evensidemargin}{-0.6875in} %1in-0.3125
- \setlength{\oddsidemargin}{-.58in} %1in-0.4375
-\else %else assume letter
- \setlength\paperheight {11in}
- \setlength\paperwidth  {8.5in}
- \setlength{\evensidemargin}{-0.375in} %1-(0.3125+0.3125)
- \setlength{\oddsidemargin}{-.25in} %1-(0.4375+0.3125)
-\fi
-
-
-\else
-% conference template margins
-\setlength{\textheight}{9.25in}
-\setlength{\topmargin}{-0.700in}
-\setlength{\headheight}{0.2in}
-\setlength{\headsep}{0.250in}
-\setlength{\footskip}{0.5in}
-\flushbottom
-\setlength{\textwidth}{7in}
-\setlength{\oddsidemargin}{-0.25in}
-\setlength{\evensidemargin}{-0.25in}
-\setlength{\columnsep}{2pc}
-%%\setlength{\parindent}{1em}
-\newlength{\captionmargin}
-\setlength{\captionmargin}{0in}
-\fi
+	\iftoggle{tvcgsize}{%
+	 \setlength\paperheight {10.75in}
+	 \setlength\paperwidth  {7.875in}
+	 \setlength{\evensidemargin}{-0.6875in} %1in-0.3125
+	 \setlength{\oddsidemargin}{-.58in} %1in-0.4375
+	}{%else assume letter
+	 \setlength\paperheight {11in}
+	 \setlength\paperwidth  {8.5in}
+	 \setlength{\evensidemargin}{-0.375in} %1-(0.3125+0.3125)
+	 \setlength{\oddsidemargin}{-.25in} %1-(0.4375+0.3125)
+	}
+}{
+	% conference template margins
+	\setlength{\textheight}{9.25in}
+	\setlength{\topmargin}{-0.700in}
+	\setlength{\headheight}{0.2in}
+	\setlength{\headsep}{0.250in}
+	\setlength{\footskip}{0.5in}
+	\flushbottom
+	\setlength{\textwidth}{7in}
+	\setlength{\oddsidemargin}{-0.25in}
+	\setlength{\evensidemargin}{-0.25in}
+	\setlength{\columnsep}{2pc}
+	%%\setlength{\parindent}{1em}
+	\newlength{\captionmargin}
+	\setlength{\captionmargin}{0in}
+}
 
 % adjust marginpars so that they can be used for comments during editing
-\ifvgtcjournal % for journal style
-\addtolength{\marginparwidth}{-1.5mm} % fix margin
-\else % conference style
-\addtolength{\marginparwidth}{16mm}
-\fi
+\iftoggle{vgtcjournal}{% for journal style
+	\addtolength{\marginparwidth}{-1.5mm} % fix margin
+}{% conference style
+	\addtolength{\marginparwidth}{16mm}
+}
+
 \addtolength{\marginparsep}{-2mm} % fix margin
 
 \renewcommand{\ps@plain}%
@@ -456,55 +425,55 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
    \renewcommand{\@oddhead}{}%
    \renewcommand{\@oddfoot}{}%
 
-   \ifvgtc@preprint%
+   \iftoggle{vgtc@preprint}{%
      \renewcommand{\@oddhead}{\hfil\textit{\vgtc@preprinttext}\hfil}%
      \renewcommand{\@oddfoot}{\hfil\textrm{\thepage}\hfil}%
-   \fi%
+   }{}%
 
-   \ifvgtc@review%
+   \iftoggle{vgtc@review}{%
      \renewcommand{\@oddhead}{\hfil\textit{\large\vgtc@reviewtext}\hfil}%
      \renewcommand{\@oddfoot}{\hfil\textrm{\thepage}\hfil}%
-   \fi%
+   }{}%
 
-   \ifvgtcjournal%
-     \ifvgtc@review\else\ifvgtc@preprint\else%
-%        \renewcommand{\@evenhead}{\hfil\sffamily\small\MakeUppercase{\journalidtxt}}%
-%        \renewcommand{\@oddhead}{\sffamily\small\MakeUppercase{\shortauthortitletext}\hfil}%
-       \renewcommand{\@oddfoot}{}% no page number
-       \renewcommand{\@evenfoot}{\@oddfoot}%
-     \fi\fi%
-   \else%
 
+	
+	\iftoggle{vgtcjournal}{%
+		\ifboolexpr { not togl {vgtc@review} and not togl {vgtc@preprint} }{%       
+			% \renewcommand{\@evenhead}{\hfil\sffamily\small\MakeUppercase{\journalidtxt}}%
+	    % \renewcommand{\@oddhead}{\sffamily\small\MakeUppercase{\shortauthortitletext}\hfil}%
+			\renewcommand{\@oddfoot}{}% no page number
+			\renewcommand{\@evenfoot}{\@oddfoot}%
+		}{}%
+	}{%
      \renewcommand{\@evenhead}{\@oddhead}%
      \renewcommand{\@evenfoot}{\@oddfoot}%
-   \fi%
+   }%
    }
 
 % will be used on the first page
-\renewcommand{\ps@empty}%
-   {%
+\renewcommand{\ps@empty}{%
    \renewcommand{\@oddhead}{}%
    \renewcommand{\@oddfoot}{}%
 
-   \ifvgtc@preprint%
+   \iftoggle{vgtc@preprint}{%
      \renewcommand{\@oddhead}{\hfil\textit{\vgtc@preprinttext}\hfil}%
      \renewcommand{\@oddfoot}{\hfil\textrm{\thepage}\hfil}%
-   \fi%
+   }{}%
 
-   \ifvgtc@review%
+   \iftoggle{vgtc@review}{%
      \renewcommand{\@oddhead}{\hfil\textit{\large\vgtc@reviewtext}\hfil}%
      \renewcommand{\@oddfoot}{\hfil\textrm{\thepage}\hfil}%
-   \fi%
+   }{}%
 
-   \ifvgtcjournal%
-     \ifvgtc@review\else\ifvgtc@preprint\else%
-%        \renewcommand{\@oddhead}{\sffamily\small\MakeUppercase{\journalidtxt}\hfil}%
-       \renewcommand{\@oddfoot}{\hfil{\small\sffamily\copyrighttext}\hfil}%
-     \fi\fi%
-   \fi%
+   \iftoggle{vgtcjournal}{%
+     		\ifboolexpr { not togl {vgtc@review} and not togl {vgtc@preprint} }{%
+					% \renewcommand{\@oddhead}{\sffamily\small\MakeUppercase{\journalidtxt}\hfil}%
+					\renewcommand{\@oddfoot}{\hfil{\small\sffamily\copyrighttext}\hfil}%
+				}{}%
+   }{}%
    \renewcommand{\@evenhead}{\@oddhead}%
    \renewcommand{\@evenfoot}{\@oddfoot}%
-   }
+	}
 
 % no page numbers - they are added in production
 
@@ -580,27 +549,34 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
                {-1em}%
                {\reset@font\normalsize\sffamily\bfseries\vgtc@sectionfont}}
 
-\ifvgtc@wide\else
-%% make captionfont 8pt
- \newcommand{\captionfonts}{\scriptsize\sffamily}
+\iftoggle{vgtc@wide}{}{%
+	\newcommand{\captionfonts}{\scriptsize\sffamily} % make captionfont 8pt
 
+%
+ % As of 2022-12-23 the following code doesn't work with the error
+ % ``Illegal parameter number in definition of \x.`` This is due to
+ % the #1 and #2 in the \edef. Commenting out until a fix is made.
+ % This motivated the change to etoolbox toggles rather than latex
+ % built-in \if statements.
+ % - Cody Dunne
+ %
  \def\instring#1#2{TT\fi\begingroup
    \edef\x{\endgroup\noexpand\in@{#1}{#2}}\x\ifin@}
  \long\def\@makecaption#1#2{%
    \if\instring{Table}{#1}\else\vskip\abovecaptionskip\fi
    \leftskip = \captionmargin \rightskip = \leftskip%
-   \sbox\@tempboxa{\captionfonts #1\ifvgtcjournal. \else: \fi #2}%
+   \sbox\@tempboxa{\captionfonts #1\iftoggle{vgtcjournal}{.}{:} #2}%
    \ifdim \wd\@tempboxa >\hsize
-     {\captionfonts #1\ifvgtcjournal. \else: \fi #2\par}
+     {\captionfonts #1\iftoggle{vgtcjournal}{.}{:} \fi #2\par}
    \else %single line caption
      \global \@minipagefalse
      \def\@figcaptype{figure}
      \hskip0.0in%needed to make leftskip work
-     \hb@xt@\hsize{\ifvgtcjournal\ifx\@captype\@figcaptype\else\hfil\fi\else\hfil\fi\box\@tempboxa\hfil}%
+     \hb@xt@\hsize{\iftoggle{vgtcjournal}{\ifx\@captype\@figcaptype\else\hfil\fi}{\hfil\fi\box\@tempboxa\hfil}}%
    \fi
    \if\instring{Table}{#1}\vskip.5\abovecaptionskip\else\vskip\belowcaptionskip\fi}
-
-%% fix the font size of the bibliography to 8pt
+%
+% fix the font size of the bibliography to 8pt
  \newdimen\bibindent
  \newdimen\bibspacing
  \setlength\bibindent{1em}
@@ -627,7 +603,7 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
       {\def\@noitemerr
         {\@latex@warning{Empty `thebibliography' environment}}%
        \endlist}
-\fi
+}
 
 \newcommand{\vgtc@empty}{}
 
@@ -699,10 +675,10 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
 \setlength{\abstxtspace}{0.20in}
 
 \renewcommand{\@maketitle}{%
-   \ifvgtc@review
+   \iftoggle{vgtc@review}{%
        \begin{center}%
            \renewcommand{\thanks}[1]{}
-           {\sffamily\ifvgtcjournal\huge\else\LARGE\bfseries\fi%
+           {\sffamily\iftoggle{vgtcjournal}{\huge}{\LARGE\bfseries}%
 	      \vgtc@sectionfont%
 	      \@title \par}%
            \vspace{1\baselineskip}%
@@ -721,16 +697,17 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
                \vspace{\teaserspace}%
            \fi%
        \end{center} \par%
-   \else
+   }{%
        \begin{center}%
-           {\sffamily\ifvgtcjournal\huge\else\LARGE\bfseries\fi%
+           {\sffamily\iftoggle{vgtcjournal}{\huge}{\LARGE\bfseries}%
 	      \vgtc@sectionfont%
 	      \@title \par}%
-           \ifvgtcjournal%
+           \iftoggle{vgtcjournal}{%
              %\vspace{2\baselineskip}%
              \vspace{14pt}%
-           \else%
-	    \vspace{1\baselineskip}\fi%
+           }{%
+						\vspace{1\baselineskip}
+					}%
            \large\sffamily\vgtc@sectionfont 
            \begin{tabular}[t]{c}%
                \@author
@@ -739,7 +716,7 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
                \par\vspace{1\baselineskip}%
                \vgtc@affiliation\par%
            \fi%
-          \ifvgtcjournal\vspace{0.08in}\else\vspace{\titlespace}\fi%
+          \iftoggle{vgtcjournal}{\vspace{0.08in}}{\vspace{\titlespace}}%
            \ifx\vgtc@teaser\vgtc@empty \else%
              { 
                \begingroup%
@@ -750,8 +727,8 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
                \vspace{\teaserspace}%
            \fi%
        \end{center} \par%
-   \fi
-   \ifvgtcjournal%
+   }%
+   \iftoggle{vgtcjournal}{%
        {\scriptsize\sffamily%\renewcommand{\baselinestretch}{1.1}
        \leftskip = 0.33in \rightskip = \leftskip%
        \ifx\vgtc@abstxt\vgtc@empty \else%
@@ -780,7 +757,7 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
 	\ifx\firstsectiontxt\vgtc@empty \else
 	  \section{\firstsectiontxt}
 	\fi
-    \fi%
+   }{}%
 }
 
 \let\vgtc@origmaketitle\maketitle
@@ -790,11 +767,11 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
    \let\vgtc@author\@author%
    \vgtc@origmaketitle%
    \thispagestyle{empty}%
-   \ifvgtc@doublespaced%
+   \iftoggle{vgtc@doublespaced}{%
        \renewcommand{\baselinestretch}{1.66}\selectfont%
-   \fi%
-   \ifvgtcjournal% no copyrightspace for journal, but authorfooter
-     \ifvgtc@review\else
+   }{}%
+   \iftoggle{vgtcjournal}{% no copyrightspace for journal, but authorfooter
+     \iftoggle{vgtc@review}{}{%
        \renewcommand{\thefootnote}{}%
        \footnotetext[0]{
          \begin{flushleft}
@@ -812,9 +789,9 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
          \end{flushleft}
        }%
        \renewcommand{\thefootnote}{\arabic{footnote}}
-     \fi
-   \else%
-       \ifhavecopyrightspace\copyrightspace\fi%
+     }%
+   }{%
+       \iftoggle{havecopyrightspace}{\copyrightspace}{}%
        \ifx\vgtc@abstxt\vgtc@empty \else%
             \begingroup%
                 \begin{origabstract} \vgtc@abstxt \end{origabstract} %
@@ -838,15 +815,15 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
             \endgroup\par%
             %\vspace{\abstxtspace}%
         \fi%
-    \fi%
+    }%
     \ifx\firstsectiontxt\vgtc@empty \else
-      \ifvgtcjournal
+      \iftoggle{vgtcjournal}{%
         \section*{}
         \vskip -1.5em
-      \else
+      }{%
         \section{\firstsectiontxt}
-      \fi
-    \fi
+      }%
+    \fi%
 }
 
 %% \newtoks\vgtc@abs
@@ -906,7 +883,7 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
 \renewcommand{\footnoterule}{%
    \kern-3pt
    \leftline{\hskip1in\vbox{\hrule width 0.45\columnwidth}\hfil}
-   \ifvgtcjournal \else \kern 2.6pt \fi
+   \iftoggle{vgtcjournal}{}{\kern 2.6pt}
 }
 
 \newcommand{\vgtc@contactname}{}
@@ -927,60 +904,6 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
 \newcommand{\vgtc@estpages}{}
 \newcommand{\estpages}[1]{\renewcommand{\vgtc@estpages}{#1}}
 
-\newif\ifvgtc@cover
-\vgtc@coverfalse
-%\ifvgtc@review
-%    \vgtc@covertrue
-%\else
-%    \vgtc@coverfalse
-%\fi
-
-\newcommand{\suppresscover}{\vgtc@coverfalse}
-\newcommand{\vgtc@coverpage}{%
-   \begin{titlepage}%
-       \def\thanks##1{}
-       \let\and\vgtc@origand
-       \vgtc@setninepoint\normalsize
-       \renewcommand{\baselinestretch}{1}\selectfont
-       \begin{center}%
-           \vspace*{\fill}
-           {\LARGE\sffamily\bfseries\vgtc@sectionfont \vgtc@title \par}%
-           \vspace{2\baselineskip}%
-           {\large
-               \begin{tabular}[t]{c}%
-               \vgtc@author
-            \end{tabular}\par%
-           }%
-           \vspace{1\baselineskip}%
-           {\large \vgtc@affiliation \par}%
-           \addvspace{3\baselineskip}%
-           {Category: \vgtc@category \par}%
-%            \vspace{0.5\baselineskip}%		% no longer needed (1996)
-%            {Format: \vgtc@format \par}%	% no longer needed (1996)
-           \vspace{3\baselineskip}%
-           \begin{tabular}{ll}
-               Contact: & \vgtc@contactname \\[1\baselineskip]
-                        & \begin{tabular}[b]{@{}l@{}}
-                              \vgtc@contactaddress
-                              \end{tabular} \\[1\baselineskip]
-               phone: & \vgtc@contactphone \\
-               fax: & \vgtc@contactfax \\
-               email: & \vgtc@contactemail
-           \end{tabular}\par%
-           \vspace*{3\baselineskip}%
-           {Estimated \# of pages: \vgtc@estpages \par}%
-           \vspace*{\baselineskip}%
-           {Keywords: \vgtc@keywords \par}%
-           \vspace*{\fill}%
-           \begin{minipage}{5in}%
-               \the\vgtc@abs
-           \end{minipage}\par%
-           \vspace*{\fill}
-       \end{center}%
-   \end{titlepage}%
-}
-
-\AtEndDocument{\ifvgtc@cover \vgtc@coverpage \fi}
 \newcommand{\vgtcopening}[1]{%
  \ClassError{vgtc}{%
    The vgtcopening command is no longer needed.\MessageBreak%
