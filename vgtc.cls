@@ -37,6 +37,7 @@
 %     - removed Google Scholar fields from template.bib.
 %     - updated Readme.md and added Overleaf links. **NOTE: I did not test readme.md 
 %       makefile instructions.**
+%     - added \iflabelexists to cross-reference appendices if they exist
 %   - non-author-facing changes
 %     - eliminated redundant hyperref code (which removed the need for \vgtcinsertpkg 
 %       in the .tex file).
@@ -718,6 +719,18 @@
 \newcommand{\vgtc@papertype}{}
 \newcommand{\papertype}[1]{\renewcommand{\vgtc@papertype}{#1}}
 \newcommand{\vgtcpapertype}[1]{\papertype{#1}}
+
+
+% Check if a cross reference exists (e.g., for an optionally-removed appendix). If so, do one thing. If not, do the other.
+% https://tex.stackexchange.com/questions/111311/how-to-make-a-conditional-reference-to-a-text-label
+%
+% Example usage:
+%
+% \iflabelexists{appendix:intuitiveexamples}
+%   {\cref{appendix:intuitiveexamples}.}
+%   {the appendix, available at \url{} % You have another macro that inserts the OSF link
+\RequirePackage{etoolbox}
+\newcommand{\iflabelexists}[3]{\ifcsundef{r@#1}{#3}{#2}}
 
 
 %% handle old commands used in the template gracefully
