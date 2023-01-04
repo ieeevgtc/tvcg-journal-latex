@@ -1,7 +1,10 @@
-\documentclass[journal]{vgtc}                % final (journal style)
-%\documentclass[review,journal]{vgtc}         % review (journal style)
-%\documentclass[widereview]{vgtc}             % wide-spaced review
-%\documentclass[preprint,journal]{vgtc}       % preprint (journal style)
+\documentclass[journal]{vgtc}                     % final (journal style)
+%\documentclass[journal,hideappendix]{vgtc}        % final (journal style) without appendices
+%\documentclass[review,journal]{vgtc}              % review (journal style)
+%\documentclass[review,journal,hideappendix]{vgtc} % review (journal style)
+%\documentclass[widereview]{vgtc}                  % wide-spaced review
+%\documentclass[preprint,journal]{vgtc}            % preprint (journal style)
+
 
 %% Uncomment one of the lines above depending on where your paper is
 %% in the conference process. ``review'' and ``widereview'' are for review
@@ -88,7 +91,7 @@
 
 %% Copyright space is enabled by default as required by guidelines.
 %% It is disabled by the 'review' option or via the following command:
-% \nocopyrightspace
+%\nocopyrightspace
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -233,7 +236,7 @@ Include any license details necessary, as well as links to the original material
 For credits to figures from academic papers, include a citation that is listed in the \textbf{References} section.
 An example is provided \hyperref[sec:figure_credits]{below}.
 
-\textbf{For IEEE VIS}, this section is included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
+\textbf{For IEEE VIS}, this section may be included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
 
 
 
@@ -348,7 +351,7 @@ However, ensure that you make the OSF project public and spell out the URL in te
 In the \hyperref[sec:supplemental_materials]{Supplemental Materials} section at the end of the paper, authors should try to be as descriptive and complete as possible about (1) what supplemental materials are available, (2) where they are hosted, and (3) justifications for why materials were omitted (if any).
 An example is provided \hyperref[sec:supplemental_materials]{below}.
 
-\textbf{For IEEE VIS}, this section is included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
+\textbf{For IEEE VIS}, this section may be included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
 
 
 \section{References}
@@ -356,7 +359,7 @@ An example is provided \hyperref[sec:supplemental_materials]{below}.
 
 An example of the reference formatting is provided in the \textbf{References} section at the end.
 
-\textbf{For IEEE VIS}, the References section is included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
+\textbf{For IEEE VIS}, the References section may be included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
 
 \subsection{Include DOIs}
 
@@ -431,9 +434,9 @@ For example, our Troubleshooting instructions in
   {\cref{appendix:troubleshooting}}
   {the appendix of the full paper at \url{https://osf.io/nrmyc}}.
 
-
-Note, however, that appendices do count against the page limit and that reviewers are not required to review appendices in the supplemental material.
-Regardless, we suggest creating a complete version of the paper with all appendices that you then upload in your supplemental material and to arXiv, OSF, or another preprint server.
+Note that the paper submission has to end after the \textbf{References} section and within the page limit of the conference you are submitting to.
+Any version of Appendices or the paper with Appendices included has to be submitted separately as supplementary material.
+You can use the \verb|hideappendix| class option to remove everything after \verb|\appendix|.
 
 We provide the \verb|\iflabelexists| macro to help you cross reference an appendix from the main text, but only if that label (i.e.\ the appendix) actually exists.
 For example, above we use 
@@ -479,7 +482,7 @@ Here are the actual figure credits for this template:
 
 %% if specified like this the section will be ommitted in review mode
 \acknowledgments{%
-  \textbf{For IEEE VIS}, this section is included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
+  \textbf{For IEEE VIS}, this section may be included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
 	
 	The authors wish to thank A, B, and C.
   This work was supported in part by a grant from XYZ (\# 12345-67890).%

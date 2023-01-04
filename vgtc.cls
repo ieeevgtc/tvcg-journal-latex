@@ -3,7 +3,7 @@
 % OF THE VGTC PUBLICATIONS CHAIR (submissions@vgtc.org).
 %
 % Changelog:
-% - modifications by Cody Dunne 2022/12/23
+% - modifications by Cody Dunne 2023/01/04
 %   - author-facing changes and documentation
 %     - added Supplemental Materials and Figure Credits sections at the end.
 %     - added supplemental materials instructions and goals, an example project 
@@ -17,6 +17,8 @@
 %     - expanded discussion of figures, esp. vector graphics.
 %     - added figure credits for CypressView after digital archaeology to track it down.
 %     - added an example appendix and consolidated troubleshooting advice there.
+%     - added \iflabelexists to cross-reference appendices if they exist
+%     - added hideappendix option to remove appendices for submission / camera ready
 %     - changed to hyperlink DOIs by default, but removed URL hyperlinking
 %       of references. Additionally, only hyperlinks on the DOIs themselves.
 %     - more emphasis on asking for DOIs by default.
@@ -37,12 +39,12 @@
 %     - removed Google Scholar fields from template.bib.
 %     - updated Readme.md and added Overleaf links. **NOTE: I did not test readme.md 
 %       makefile instructions.**
-%     - added \iflabelexists to cross-reference appendices if they exist
 %   - non-author-facing changes
 %     - eliminated redundant hyperref code (which removed the need for \vgtcinsertpkg 
 %       in the .tex file).
 %     - consolidated errors for using old commands like \vgtcinsertpkg.
-%     - eliminated the unused electronic option (which has been the default) but kept its code.
+%     - eliminated the unused electronic, cameraready, and tvcgsize options
+%       (which has been the default) but kept the code.
 %     - the widereview option fix motivated the class-wide change to using etoolbox
 %       toggles rather than plain LaTeX if statements to avoid unexpected problems: 
 %       https://tex.stackexchange.com/a/5896. 
@@ -144,23 +146,23 @@
 
 % ------------ identification --------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{vgtc}[2022/12/23 IEEE VGTC]
+\ProvidesClass{vgtc}[2023/01/04 IEEE VGTC]
 
 % ------------ initial code --------------
 
 \RequirePackage{etoolbox}
 
-\newtoggle{vgtc@camera}          \togglefalse{vgtc@camera}
-\newtoggle{vgtc@preprint}        \togglefalse{vgtc@preprint}
-\newtoggle{vgtc@review}          \togglefalse{vgtc@review}
-\newtoggle{vgtc@doublespaced}   \togglefalse{vgtc@doublespaced}
-\newtoggle{vgtc@wide}           \togglefalse{vgtc@wide}
-\newtoggle{havecopyrightspace}  \toggletrue{havecopyrightspace}
-\newtoggle{vgtcjournal}         \togglefalse{vgtcjournal}
-\newtoggle{tvcgsize}            \togglefalse{tvcgsize}
+\newtoggle{vgtc@submitorcamera}      \toggletrue{vgtc@submitorcamera}%
+\newtoggle{vgtc@preprint}            \togglefalse{vgtc@preprint}
+\newtoggle{vgtc@review}              \togglefalse{vgtc@review}
+\newtoggle{vgtc@doublespaced}        \togglefalse{vgtc@doublespaced}
+\newtoggle{vgtc@wide}                \togglefalse{vgtc@wide}
+\newtoggle{vgtc@havecopyrightspace}  \toggletrue{vgtc@havecopyrightspace}
+\newtoggle{vgtc@journal}             \togglefalse{vgtc@journal}
+\newtoggle{vgtc@hideappendix}        \togglefalse{vgtc@hideappendix}
 
-\newcommand{\vgtc@columnmode}{}
-\newcommand{\vgtc@pointsize}{}
+\newcommand{\vgtc@columnmode}{twocolumn}
+\newcommand{\vgtc@pointsize}{9pt}
 
 \RequirePackage{ifpdf}%
 
@@ -181,30 +183,15 @@
 
 % ------------ declaration of options --------------
 
-% 'cameraready' option.
-\DeclareOption{cameraready}{%
-  \toggletrue{vgtc@camera}%
-  \togglefalse{vgtc@preprint}%
-  \togglefalse{vgtc@review}%
-  \renewcommand{\vgtc@columnmode}{twocolumn}%
-  \togglefalse{vgtc@doublespaced}%
-  \renewcommand{\vgtc@pointsize}{9pt}%
-}
-
 % 'review' option.
 \DeclareOption{review}{%
-  \togglefalse{vgtc@camera}%
   \togglefalse{vgtc@preprint}%
   \toggletrue{vgtc@review}%
-  \renewcommand{\vgtc@columnmode}{twocolumn}%
-  \togglefalse{vgtc@doublespaced}%
-  \renewcommand{\vgtc@pointsize}{9pt}
-  \togglefalse{havecopyrightspace}%
+  \togglefalse{vgtc@havecopyrightspace}%
 }
 
 % 'widereview' option.
 \DeclareOption{widereview}{%
-  \togglefalse{vgtc@camera}%
   \togglefalse{vgtc@preprint}%
   \toggletrue{vgtc@review}%
   \renewcommand{\vgtc@columnmode}{onecolumn}%
@@ -215,27 +202,114 @@
 
 % 'preprint' option.
 \DeclareOption{preprint}{%
-  \togglefalse{vgtc@camera}%
+  \togglefalse{vgtc@submitorcamera}%
   \toggletrue{vgtc@preprint}%
-  \togglefalse{vgtc@review}%
-  \renewcommand{\vgtc@columnmode}{twocolumn}%
-  \togglefalse{vgtc@doublespaced}%
-  \renewcommand{\vgtc@pointsize}{9pt}%
 }
 
-% Question: Is this option tvcgpapersize actually used any more? 
-% If not, let's nix it. -2022-12-23 Cody Dunne
-\DeclareOption{tvcgpapersize}{%
-  \setlength\paperheight {10.75in}%
-  \setlength\paperwidth  {7.875in}
-  \toggletrue{tvcgsize}
+% 'hideappendix' option.
+\DeclareOption{preprint}{%
+  \togglefalse{vgtc@submitorcamera}%
+  \toggletrue{vgtc@preprint}%
 }
 
 % 'journal' option
 \DeclareOption{journal}{%
-  \toggletrue{vgtcjournal}%
+  \toggletrue{vgtc@journal}%
   \@twosidetrue \@mparswitchtrue %
 }
+
+% 'hideappendix' option
+\DeclareOption{hideappendix}{%
+  \toggletrue{vgtc@hideappendix}%
+}
+
+% Here's a warning command for use just below.
+\newcommand{\vgtc@optwarning}[1]{%
+  \iftoggle{vgtc@submitorcamera}{%
+    \ClassWarningNoLine{vgtc}%
+    {#1 option used outside of preprint mode.\MessageBreak
+      This violates submission specifications}
+  }{}
+}
+
+% The 'onecolumn' option doesn't work in 'cameraready' mode.
+
+\DeclareOption{onecolumn}{%
+  \vgtc@optwarning{onecolumn}
+  \renewcommand{\vgtc@columnmode}{onecolumn}}
+
+% The 'twocolumn' option works in 'cameraready' mode.
+
+\DeclareOption{twocolumn}{%
+  \renewcommand{\vgtc@columnmode}{twocolumn}}
+
+% Only the '9pt' size works in 'cameraready' mode.
+
+\DeclareOption{9pt}{%
+  \renewcommand{\vgtc@pointsize}{9pt}}
+\DeclareOption{10pt}{%
+  \vgtc@optwarning{10pt}
+  \renewcommand{\vgtc@pointsize}{10pt}}
+\DeclareOption{11pt}{%
+  \vgtc@optwarning{11pt}
+  \renewcommand{\vgtc@pointsize}{11pt}}
+\DeclareOption{12pt}{%
+  \vgtc@optwarning{12pt}
+  \renewcommand{\vgtc@pointsize}{12pt}}
+
+% The 'singlespace' option works in 'cameraready' mode.
+
+\DeclareOption{singlespace}{%
+  \togglefalse{vgtc@doublespaced}
+}
+
+% The 'doublespace' option does not work in 'cameraready' mode.
+
+\DeclareOption{doublespace}{%
+  \vgtc@optwarning{doublespace}
+  \toggletrue{vgtc@doublespaced}
+}
+
+% No 'titlepage' option in 'cameraready' mode.
+
+\DeclareOption{titlepage}{%
+  \OptionNotUsed%
+  \ClassWarningNoLine{vgtc}{titlepage option not allowed}}
+
+% No 'landscape' mode in 'cameraready' mode, either.
+
+\DeclareOption{landscape}{%
+  \OptionNotUsed%
+  \ClassWarningNoLine{vgtc}{landscape option not allowed}}
+
+% Pass everything else to the 'article' class, upon which this is based.
+
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ProcessOptions
+\PassOptionsToClass{\vgtc@columnmode}{article}
+\iftoggle{vgtc@journal}{%
+  \PassOptionsToClass{twoside}{article}
+}{}
+\ifdim\vgtc@pointsize>9pt
+  \PassOptionsToClass{\vgtc@pointsize}{article}
+\fi
+
+
+% ------------ package loading --------------
+
+\LoadClass{article}
+\RequirePackage[T1]{fontenc}                 % to use more chars e.g. umlauts and other diaeresis & support copy & paste of special chars from PDF
+\RequirePackage[utf8]{inputenc}              % Translate UTF into ASCII for using non-ASCII chars
+\RequirePackage{microtype}                   % use micro-typography (slightly more compact, better to read)
+\PassOptionsToPackage{warn}{textcomp}        % to address font issues with \textrightarrow
+\RequirePackage{textcomp}                    % use better special symbols
+\RequirePackage{times}                       % we use Times as the main font
+\renewcommand*\ttdefault{txtt}               % a nicer typewriter font
+\RequirePackage{cite}                        % needed to automatically sort the references
+\RequirePackage{enumitem}                    % more compact lists
+\setlist[enumerate]{itemsep=1pt,topsep=3pt}
+\setlist[itemize]{itemsep=1pt,topsep=3pt}
+\setlist[description]{itemsep=1pt,topsep=3pt}
 
 
 %% Load hyperref, cleveref, etc. at the end of the preamble
@@ -319,103 +393,7 @@
   \RequirePackage[aboveskip=4pt, belowskip=4pt]{subcaption}                % for subfigures
   \captionsetup{subrefformat=parens}
   \newcommand{\subfigsCaption}[1]{\vspace{-.9em}\caption{#1}}
-
 }
-
-
-% Assume, for the moment, that we're preparing a 'cameraready' version.
-
-\ExecuteOptions{electronic,cameraready}
-
-% Here's a warning command for use just below.
-
-\newcommand{\vgtc@optwarning}[1]{%
-  \iftoggle{vgtc@camera}{%
-    \ClassWarningNoLine{vgtc}%
-    {#1 option used in camera-ready mode.\MessageBreak
-      This violates submission specifications}
-  }{}
-}
-
-% The 'onecolumn' option doesn't work in 'cameraready' mode.
-
-\DeclareOption{onecolumn}{%
-  \vgtc@optwarning{onecolumn}
-  \renewcommand{\vgtc@columnmode}{onecolumn}}
-
-% The 'twocolumn' option works in 'cameraready' mode.
-
-\DeclareOption{twocolumn}{%
-  \renewcommand{\vgtc@columnmode}{twocolumn}}
-
-% Only the '9pt' size works in 'cameraready' mode.
-
-\DeclareOption{9pt}{%
-  \renewcommand{\vgtc@pointsize}{9pt}}
-\DeclareOption{10pt}{%
-  \vgtc@optwarning{10pt}
-  \renewcommand{\vgtc@pointsize}{10pt}}
-\DeclareOption{11pt}{%
-  \vgtc@optwarning{11pt}
-  \renewcommand{\vgtc@pointsize}{11pt}}
-\DeclareOption{12pt}{%
-  \vgtc@optwarning{12pt}
-  \renewcommand{\vgtc@pointsize}{12pt}}
-
-% The 'singlespace' option works in 'cameraready' mode.
-
-\DeclareOption{singlespace}{%
-  \togglefalse{vgtc@doublespaced}
-}
-
-% The 'doublespace' option does not work in 'cameraready' mode.
-
-\DeclareOption{doublespace}{%
-  \vgtc@optwarning{doublespace}
-  \toggletrue{vgtc@doublespaced}
-}
-
-% No 'titlepage' option in 'cameraready' mode.
-
-\DeclareOption{titlepage}{%
-  \OptionNotUsed%
-  \ClassWarningNoLine{vgtc}{titlepage option not allowed}}
-
-% No 'landscape' mode in 'cameraready' mode, either.
-
-\DeclareOption{landscape}{%
-  \OptionNotUsed%
-  \ClassWarningNoLine{vgtc}{landscape option not allowed}}
-
-% Pass everything else to the 'article' class, upon which this is based.
-
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-\ProcessOptions
-\PassOptionsToClass{\vgtc@columnmode}{article}
-\iftoggle{vgtcjournal}{%
-  \PassOptionsToClass{twoside}{article}
-}{}
-\ifdim\vgtc@pointsize>9pt
-  \PassOptionsToClass{\vgtc@pointsize}{article}
-\fi
-
-% ------------ package loading --------------
-
-\LoadClass{article}
-\RequirePackage[T1]{fontenc}                 % to use more chars e.g. umlauts and other diaeresis & support copy & paste of special chars from PDF
-\RequirePackage[utf8]{inputenc}              % Translate UTF into ASCII for using non-ASCII chars
-\RequirePackage{microtype}                   % use micro-typography (slightly more compact, better to read)
-\PassOptionsToPackage{warn}{textcomp}        % to address font issues with \textrightarrow
-\RequirePackage{textcomp}                    % use better special symbols
-\RequirePackage{times}                       % we use Times as the main font
-\renewcommand*\ttdefault{txtt}               % a nicer typewriter font
-\RequirePackage{cite}                        % needed to automatically sort the references
-\RequirePackage{enumitem}                    % more compact lists
-\setlist[enumerate]{itemsep=1pt,topsep=3pt}
-\setlist[itemize]{itemsep=1pt,topsep=3pt}
-\setlist[description]{itemsep=1pt,topsep=3pt}
-
-
 
 
 % ------------ main code --------------
@@ -427,7 +405,7 @@
 
 \newcommand{\vgtc@DOI}{xx.xxxx/TVCG.201x.xxxxxxx/}
 
-\iftoggle{vgtcjournal}{%
+\iftoggle{vgtc@journal}{%
   \newcommand{\vgtc@preprinttext}{\parbox{0.9\textwidth}{$\copyright$ \the\year~IEEE. This is the author's version of the article that has been published in IEEE Transactions on Visualization and Computer Graphics. The final version of this record is available at: \href{https://doi.org/\vgtc@DOI}{\color{blue}\vgtc@DOI}}}
 }{%
   \newcommand{\vgtc@preprinttext}{\parbox{0.9\textwidth}{$\copyright$ \the\year~IEEE. This is the author's version of the article that has been published in the proceedings of IEEE Visualization conference. The final version of this record is available at: \href{https://doi.org/\vgtc@DOI}{\color{blue}\vgtc@DOI}}}
@@ -467,12 +445,7 @@
   }
 }
 
-\newcommand{\ifcamera}[1]{\iftoggle{vgtc@camera}{#1}{}}
-\newcommand{\ifreview}[1]{\iftoggle{vgtc@review}{#1}{}}
-\newcommand{\ifcameraelse}[2]{\iftoggle{vgtc@camera}{#1}{#2}}
-\newcommand{\ifreviewelse}[2]{\iftoggle{vgtc@review}{#1}{#2}}
-
-\iftoggle{vgtcjournal}{%
+\iftoggle{vgtc@journal}{%
   \renewcommand{\figurename}{Fig.}
 
   \setlength{\textheight}{9.625in}
@@ -486,17 +459,10 @@
   \newlength{\captionmargin}
   \setlength{\captionmargin}{0in}
 
-  \iftoggle{tvcgsize}{%
-    \setlength\paperheight {10.75in}
-    \setlength\paperwidth  {7.875in}
-    \setlength{\evensidemargin}{-0.6875in} %1in-0.3125
-    \setlength{\oddsidemargin}{-.58in} %1in-0.4375
-  }{%else assume letter
-    \setlength\paperheight {11in}
-    \setlength\paperwidth  {8.5in}
-    \setlength{\evensidemargin}{-0.375in} %1-(0.3125+0.3125)
-    \setlength{\oddsidemargin}{-.25in} %1-(0.4375+0.3125)
-  }
+  \setlength\paperheight {11in}
+  \setlength\paperwidth  {8.5in}
+  \setlength{\evensidemargin}{-0.375in} %1-(0.3125+0.3125)
+  \setlength{\oddsidemargin}{-.25in} %1-(0.4375+0.3125)
 }{
   % conference template margins
   \setlength{\textheight}{9.25in}
@@ -515,7 +481,7 @@
 }
 
 % adjust marginpars so that they can be used for comments during editing
-\iftoggle{vgtcjournal}{% for journal style
+\iftoggle{vgtc@journal}{% for journal style
   \addtolength{\marginparwidth}{-1.5mm} % fix margin
 }{% conference style
   \addtolength{\marginparwidth}{16mm}
@@ -540,7 +506,7 @@
 
 
 
-  \iftoggle{vgtcjournal}{%
+  \iftoggle{vgtc@journal}{%
     \ifboolexpr { not togl {vgtc@review} and not togl {vgtc@preprint} }{%       
       % \renewcommand{\@evenhead}{\hfil\sffamily\small\MakeUppercase{\journalidtxt}}%
       % \renewcommand{\@oddhead}{\sffamily\small\MakeUppercase{\shortauthortitletext}\hfil}%
@@ -568,7 +534,7 @@
     \renewcommand{\@oddfoot}{\hfil\textrm{\thepage}\hfil}%
   }{}%
 
-  \iftoggle{vgtcjournal}{%
+  \iftoggle{vgtc@journal}{%
     \ifboolexpr { not togl {vgtc@review} and not togl {vgtc@preprint} }{%
       % \renewcommand{\@oddhead}{\sffamily\small\MakeUppercase{\journalidtxt}\hfil}%
       \renewcommand{\@oddfoot}{\hfil{\small\sffamily\copyrighttext}\hfil}%
@@ -661,14 +627,14 @@
   \long\def\@makecaption#1#2{%
     \if\instring{Table}{#1}\else\vskip\abovecaptionskip\fi
     \leftskip = \captionmargin \rightskip = \leftskip%
-    \sbox\@tempboxa{\captionfonts #1\iftoggle{vgtcjournal}{.}{:} #2}%
+    \sbox\@tempboxa{\captionfonts #1\iftoggle{vgtc@journal}{.}{:} #2}%
     \ifdim \wd\@tempboxa >\hsize
-      {\captionfonts #1\iftoggle{vgtcjournal}{.}{:} #2\par}
+      {\captionfonts #1\iftoggle{vgtc@journal}{.}{:} #2\par}
     \else %single line caption
       \global \@minipagefalse
       \def\@figcaptype{figure}
       \hskip0.0in%needed to make leftskip work
-      \hb@xt@\hsize{\iftoggle{vgtcjournal}{\ifx\@captype\@figcaptype\else\hfil\fi}{\hfil}\box\@tempboxa\hfil}%
+      \hb@xt@\hsize{\iftoggle{vgtc@journal}{\ifx\@captype\@figcaptype\else\hfil\fi}{\hfil}\box\@tempboxa\hfil}%
     \fi
     \if\instring{Table}{#1}\vskip.5\abovecaptionskip\else\vskip\belowcaptionskip\fi%
   }
@@ -720,6 +686,14 @@
 \newcommand{\papertype}[1]{\renewcommand{\vgtc@papertype}{#1}}
 \newcommand{\vgtcpapertype}[1]{\papertype{#1}}
 
+
+%% Check to see if we include the appendix
+\iftoggle{vgtc@hideappendix}{%
+      % There should not be anything after \end{document}. LaTeX will simply
+      % stop and do cleanup, so we can just call it early to remove everything
+      % in the appendices w/o issue.
+      \renewcommand{\appendix}{\end{document}}% 
+		}{}
 
 % Check if a cross reference exists (e.g., for an optionally-removed appendix). If so, do one thing. If not, do the other.
 % https://tex.stackexchange.com/questions/111311/how-to-make-a-conditional-reference-to-a-text-label
@@ -797,7 +771,7 @@
   \iftoggle{vgtc@review}{%
     \begin{center}%
       \renewcommand{\thanks}[1]{}
-      {\sffamily\iftoggle{vgtcjournal}{\huge}{\LARGE\bfseries}%
+      {\sffamily\iftoggle{vgtc@journal}{\huge}{\LARGE\bfseries}%
         \vgtc@sectionfont%
         \@title \par}%
       \vspace{1\baselineskip}%
@@ -816,10 +790,10 @@
     \end{center} \par%
   }{%
     \begin{center}%
-      {\sffamily\iftoggle{vgtcjournal}{\huge}{\LARGE\bfseries}%
+      {\sffamily\iftoggle{vgtc@journal}{\huge}{\LARGE\bfseries}%
         \vgtc@sectionfont%
         \@title \par}%
-      \iftoggle{vgtcjournal}{%
+      \iftoggle{vgtc@journal}{%
         \vspace{14pt}%
       }{%
         \vspace{1\baselineskip}
@@ -832,7 +806,7 @@
         \par\vspace{1\baselineskip}%
         \vgtc@affiliation\par%
       \fi%
-      \iftoggle{vgtcjournal}{\vspace{0.08in}}{\vspace{\titlespace}}%
+      \iftoggle{vgtc@journal}{\vspace{0.08in}}{\vspace{\titlespace}}%
       \ifx\vgtc@teaser\vgtc@empty \else%
         {
           \begingroup%
@@ -844,7 +818,7 @@
       \fi%
     \end{center} \par%
   }%
-  \iftoggle{vgtcjournal}{%
+  \iftoggle{vgtc@journal}{%
     {%
       \scriptsize\sffamily%
       \leftskip = 0.33in \rightskip = \leftskip%
@@ -877,7 +851,7 @@
   \iftoggle{vgtc@doublespaced}{%
     \renewcommand{\baselinestretch}{1.66}\selectfont%
   }{}%
-  \iftoggle{vgtcjournal}{% no copyrightspace for journal, but authorfooter
+  \iftoggle{vgtc@journal}{% no copyrightspace for journal, but authorfooter
     \iftoggle{vgtc@review}{}{%
       \renewcommand{\thefootnote}{}%
       \footnotetext[0]{
@@ -899,7 +873,7 @@
       \renewcommand{\thefootnote}{\arabic{footnote}}
     }%
   }{%
-    \iftoggle{havecopyrightspace}{\copyrightspace}{}%
+    \iftoggle{vgtc@havecopyrightspace}{\copyrightspace}{}%
     \ifx\vgtc@abstxt\vgtc@empty \else%
       \begingroup%
       \begin{origabstract} \vgtc@abstxt \end{origabstract} %
@@ -919,7 +893,7 @@
     \fi%
   }%
   \ifx\firstsectiontxt\vgtc@empty \else
-    \iftoggle{vgtcjournal}{%
+    \iftoggle{vgtc@journal}{%
       \section*{}
       \vskip -1.5em
     }{%
@@ -949,11 +923,11 @@
   \renewcommand{\thefootnote}{\arabic{footnote}}
 }
 
-\newcommand{\nocopyrightspace}{\havecopyrightspacefalse}
+\newcommand{\nocopyrightspace}{\togglefalse{vgtc@havecopyrightspace}}
 \renewcommand{\footnoterule}{%
   \kern-3pt
   \leftline{\hskip1in\vbox{\hrule width 0.45\columnwidth}\hfil}
-  \iftoggle{vgtcjournal}{}{\kern 2.6pt}
+  \iftoggle{vgtc@journal}{}{\kern 2.6pt}
 }
 
 \newcommand{\vgtc@contactname}{}
