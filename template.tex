@@ -456,7 +456,11 @@ in order to cross-reference to the appendix with \verb|\cref| if it exists, but 
 \lipsum[1-3]% Just add some more arbitrary text so we see a fuller paper example
 
 
-%% VVVVV EVERYTHING HERE DOES NOT COUNT FOR THE CONTENT PAGE LIMIT (UP TO 2 PAGES) VVVVV %%
+%% FOR IEEE VIS, EVERYTHING HERE MAY BE INCLUDED IN THE 2-PAGE ALLOTMENT %%
+%% VVVVV   FOR REFERENCES, FIGURE CREDITS, AND ACKNOWLEDGEMENTS    VVVVV %%
+
+\textbf{For IEEE VIS}, this section may be included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
+
 
 \section*{Supplemental Materials}
 \label{sec:supplemental_materials}
@@ -497,9 +501,10 @@ Here are the actual figure credits for this template:
 \bibliography{template}
 
 
-%% ^^^^^ EVERYTHING HERE DOES NOT COUNT FOR THE CONTENT PAGE LIMIT (UP TO 2 PAGES) ^^^^^ %%
+%% ^^^^^   FOR IEEE VIS, EVERYTHING HERE MAY BE INCLUDED IN THE    ^^^^^ %%
+%% 2-PAGE ALLOTMENT FOR REFERENCES, FIGURE CREDITS, AND ACKNOWLEDGEMENTS %%
 
-\appendix
+\appendix % You can use the `hideappendix` class option to skip everything after \appendix
 
 \section{About Appendices}
 Refer to \cref{sec:appendices_inst} for instructions regarding appendices.
