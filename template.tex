@@ -1,7 +1,10 @@
-\documentclass[journal]{vgtc}                % final (journal style)
-%\documentclass[review,journal]{vgtc}         % review (journal style)
-%\documentclass[widereview]{vgtc}             % wide-spaced review
-%\documentclass[preprint,journal]{vgtc}       % preprint (journal style)
+\documentclass[journal]{vgtc}                     % final (journal style)
+%\documentclass[journal,hideappendix]{vgtc}        % final (journal style) without appendices
+%\documentclass[review,journal]{vgtc}              % review (journal style)
+%\documentclass[review,journal,hideappendix]{vgtc} % review (journal style)
+%\documentclass[widereview]{vgtc}                  % wide-spaced review
+%\documentclass[preprint,journal]{vgtc}            % preprint (journal style)
+
 
 %% Uncomment one of the lines above depending on where your paper is
 %% in the conference process. ``review'' and ``widereview'' are for review
@@ -88,7 +91,7 @@
 
 %% Copyright space is enabled by default as required by guidelines.
 %% It is disabled by the 'review' option or via the following command:
-% \nocopyrightspace
+%\nocopyrightspace
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -156,11 +159,11 @@ The style uses the \verb|hyperref| package which can typeset clickable hyperlink
 The style also uses \verb|cleveref| to automatically and consistently format cross references.
 We recommend that you use the \verb|\cref{label}| and \verb|\Cref{label}| calls instead of \verb|Figure~\ref{label}| or similar.
 \verb|\Cref| should be used when starting a sentence to spell out the reference (e.g.\ ``Section'') while \verb|\cref| should be used when referencing within a sentence to abbreviate (e.g.\ ``Sec.'').
-Here are examples for use within a sentence: \cref{fig:vis_papers}, \cref{tab:vis_papers}, \cref{sec:supplement_inst,sec:references}, \cref{eq:sum}.
+Here are examples for use within a sentence: \cref{fig:vis_papers}, \cref{tab:vis_papers}, \cref{sec:supplement_inst,sec:references_inst}, \cref{eq:sum}.
 The following sentences all start with a reference, so use \verb|\Cref|.
 \Cref{fig:vis_papers} is a \verb|figure| environment.
 \Cref{tab:vis_papers} is a \verb|table| environment.
-\Cref{sec:supplement_inst,sec:references} are \verb|section| environments.
+\Cref{sec:supplement_inst,sec:references_inst} are \verb|section| environments.
 \Cref{eq:sum} is an \verb|equation| environment.
 
 
@@ -224,6 +227,17 @@ Note that \verb|\subref| only works for one label at a time.
   \subfigsCaption{Example of adding subfigures with the \texttt{subcaption} package.}
   \label{fig:ex_subfigs}
 \end{figure}
+
+\subsection{Figure Credits}
+\label{sec:figure_credits_inst}
+
+In the \hyperref[sec:figure_credits]{Figure Credits} section at the end of the paper, authors should credit the original sources of any figures that were reproduced or modified.
+Include any license details necessary, as well as links to the original materials whenever possible.
+For credits to figures from academic papers, include a citation that is listed in the \textbf{References} section.
+An example is provided \hyperref[sec:figure_credits]{below}.
+
+\textbf{For IEEE VIS}, this section may be included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
+
 
 
 \section{Equations and Tables}
@@ -317,7 +331,7 @@ In particular, research should be:
   \item \textit{Trustworthy}---This combination of transparency and reproducibility will help readers to gain trust in the research process and results.
 \end{itemize}
 
-\textbf{Research should be replicable and transferable.}
+\textbf{Research should be replicable or transferable.}
 We believe that our community should support knowledge transfer between teams and that research results should stand up to scrutiny by future researchers. An independent team should be able to replicate or transfer the research results in other contexts, locations, domains, and in multiple trials. By making research more transparent and reproducible, we make it easier for future researchers to adopt and adapt the research methodologies to new situations as well as larger or otherwise more convincing studies.
 
 \subsection{Where to upload supplementary material}
@@ -325,15 +339,27 @@ We recommend using \url{https://osf.io} as the primary repository for supplement
 In some cases, \url{https://databrary.org} or \url{https://dataverse.org} may be more appropriate.
 We caution authors against using solely IEEE Xplore and IEEE Dataport, GitHub \& GitLab, or institutional repositories / homepages / lab pages, but do encourage hosting multiple mirrors of material.
 
+Using OSF, you can create anonymous view-only links for blind peer review.
+For example: \url{https://osf.io/2nbsg/?view_only=bb2c55b2d13e42e39172d27d443273f5}.
+This link was created following \href{https://help.osf.io/article/201-create-a-view-only-link-for-a-project}{OSF's instructions}.
+You can use a custom short hyperlink text for peer review, e.g., ``see our supplemental material at \href{https://osf.io/2nbsg/?view_only=bb2c55b2d13e42e39172d27d443273f5}{osf.io (anonymous link)}''.
+However, ensure that you make the OSF project public and spell out the URL in text for the camera-ready publication.
+
+
 \subsection{What to include in the Supplemental Material section}
 
-In the Supplemental Material section at the end of the paper, authors should try to be as descriptive and complete as possible about (1) what supplemental materials are available, (2) where they are hosted, and (3) justifications for why materials were omitted (if any).
-This section does not count against the page limit, instead being included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
-An example is provided below.
+In the \hyperref[sec:supplemental_materials]{Supplemental Materials} section at the end of the paper, authors should try to be as descriptive and complete as possible about (1) what supplemental materials are available, (2) where they are hosted, and (3) justifications for why materials were omitted (if any).
+An example is provided \hyperref[sec:supplemental_materials]{below}.
+
+\textbf{For IEEE VIS}, this section may be included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
 
 
 \section{References}
-\label{sec:references}
+\label{sec:references_inst}
+
+An example of the reference formatting is provided in the \textbf{References} section at the end.
+
+\textbf{For IEEE VIS}, the References section may be included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
 
 \subsection{Include DOIs}
 
@@ -399,16 +425,46 @@ See the examples in the bib\TeX\ file and the bibliography at the end of this te
   \item When citing references, do not use the reference as a sentence object; e.g., wrong: ``In \cite{Lorensen:1987:MCA} the authors describe \dots'', correct: ``Lorensen and Cline \cite{Lorensen:1987:MCA} describe \dots''
 \end{itemize}
 
+\section{Appendices}
+\label{sec:appendices_inst}
+
+Appendices can be specified using \verb|\appendix|.
+For example, our Troubleshooting instructions in
+\iflabelexists{appendix:troubleshooting}
+  {\cref{appendix:troubleshooting}}
+  {the appendix of the full paper at \url{https://osf.io/nrmyc}}.
+
+Note that the paper submission has to end after the \textbf{References} section and within the page limit of the conference you are submitting to.
+Any version of Appendices or the paper with Appendices included has to be submitted separately as supplementary material.
+You can use the \verb|hideappendix| class option to remove everything after \verb|\appendix|.
+We encourage authors to submit a full version of their paper to a preprint server with any appendices included.
+
+We provide the \verb|\iflabelexists| macro to help you cross reference an appendix from the main text, but only if that label (i.e.\ the appendix) actually exists.
+For example, above we use 
+
+\begin{verbatim}
+\iflabelexists{appendix:troubleshooting}
+  {\cref{appendix:troubleshooting}}
+  {the appendix of the full paper at
+   \url{https://osf.io/XXXXX}}.
+\end{verbatim}
+
+in order to cross-reference to the appendix with \verb|\cref| if it exists, but if the appendix is commented out then we will simply create a hyperlinked URL to it.
+
 
 \section{Filler Text to Flush Out the Paper}
 
-\lipsum[1-7]% Just add some more arbitrary text so we see a fuller paper example
+\lipsum[1-2]% Just add some more arbitrary text so we see a fuller paper example
 
 
-%% VVVVV EVERYTHING HERE DOES NOT COUNT FOR THE CONTENT PAGE LIMIT (UP TO 2 PAGES) VVVVV %%
+%% FOR IEEE VIS, EVERYTHING HERE MAY BE INCLUDED IN THE 2-PAGE ALLOTMENT %%
+%% VVVVV   FOR REFERENCES, FIGURE CREDITS, AND ACKNOWLEDGEMENTS    VVVVV %%
 
 \section*{Supplemental Materials}
 \label{sec:supplemental_materials}
+
+Refer to the instructions for this section (\cref{sec:supplement_inst}).
+Below is an example you can follow that includes the actual supplemental material for this template:
 
 All supplemental materials are available on OSF at \url{https://doi.org/10.17605/OSF.IO/2NBSG}, released under a CC BY 4.0 license.
 In particular, they include (1) Excel files containing the data for and analyses for creating \cref{tab:vis_papers} and \cref{fig:vis_papers}, (2) figure images in multiple formats, and (3) a full version of this paper with all appendices.
@@ -416,6 +472,10 @@ Our other code is intellectual property of a corporation---Starbucks Research---
 
 
 \section*{Figure Credits}
+\label{sec:figure_credits}
+
+Refer to the instructions for this section (\cref{sec:figure_credits_inst}).
+Here are the actual figure credits for this template:
 
 \Cref{fig:teaser} image credit: Scott Miller / Special to the Vancouver Sun, January 22, 2009, page A6.
 
@@ -424,7 +484,9 @@ Our other code is intellectual property of a corporation---Starbucks Research---
 
 %% if specified like this the section will be ommitted in review mode
 \acknowledgments{%
-  The authors wish to thank A, B, and C.
+  \textbf{For IEEE VIS}, this section may be included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
+	
+	The authors wish to thank A, B, and C.
   This work was supported in part by a grant from XYZ (\# 12345-67890).%
 }
 
@@ -436,18 +498,17 @@ Our other code is intellectual property of a corporation---Starbucks Research---
 
 \bibliography{template}
 
-%% ^^^^^ EVERYTHING HERE DOES NOT COUNT FOR THE CONTENT PAGE LIMIT (UP TO 2 PAGES) ^^^^^ %%
 
-\appendix
+%% ^^^^^   FOR IEEE VIS, EVERYTHING HERE MAY BE INCLUDED IN THE    ^^^^^ %%
+%% 2-PAGE ALLOTMENT FOR REFERENCES, FIGURE CREDITS, AND ACKNOWLEDGEMENTS %%
 
-\section{Appendices}
+\appendix % You can use the `hideappendix` class option to skip everything after \appendix
 
-Appendices can be specified using \verb|\appendix|.
-Note, however, that appendices do count against the page limit and that reviewers are not required to review appendices in the supplemental material.
-Regardless, we suggest creating a complete version of the paper with all appendices that you then upload in your supplemental material and to arXiv, OSF, or another preprint server.
-
+\section{About Appendices}
+Refer to \cref{sec:appendices_inst} for instructions regarding appendices.
 
 \section{Troubleshooting}
+\label{appendix:troubleshooting}
 
 \subsection{ifpdf error}
 
@@ -459,7 +520,6 @@ Note that your error is due to packages you use that define \verb|\ifpdf| which 
 
 Occasionally (for some \LaTeX\ distributions) this hyper-linked bib\TeX\ style may lead to \textbf{compilation errors} (\texttt{pdfendlink ended up in different nesting level ...}) if a reference entry is broken across two pages (due to a bug in \verb|hyperref|).
 In this case, make sure you have the latest version of the \verb|hyperref| package (i.e.\ update your \LaTeX\ installation/packages) or, alternatively, revert back to \verb|\bibliographystyle{abbrv-doi}| (at the expense of removing hyperlinks from the bibliography) and try \verb|\bibliographystyle{abbrv-doi-hyperref}| again after some more editing.
-
 
 \end{document}
 
