@@ -137,7 +137,7 @@ Therefore, \textbf{please leave the copyright statement at the bottom-left of th
 
 \section{Author Details}
 
-Authors should specify ORCID IDs (see \url{https://orcid.org/}  to register) for author disambiguation and long-term contact preservation.
+You should specify ORCID IDs for each author (see \url{https://orcid.org/}  to register) for disambiguation and long-term contact preservation.
 Use \verb|\authororcid{Author Name}{0000-0000-0000-0000}| for each author, replacing the ``Author Name'' and using the 16-digit (hyphenated) ORCID ID for the second parameter.
 The template shows an example without ORCID IDs for two of the authors.
 ORCID IDs should be provided in all cases.
@@ -198,7 +198,7 @@ Papers submitted with figures other than the optional teaser on the first page w
 You can add subfigures using the \texttt{subcaption} package that is automatically loaded.
 Inside a \verb|figure| environment, create a \verb|subfigure| environment.
 See \cref{fig:ex_subfigs} for an example.
-We can reference individual figures, either fully using \verb|\cref| (\cref{fig:ex_subfigs_a,fig:ex_subfigs_b}) or by letter using \verb|\subref|.
+You can reference individual figures, either fully using \verb|\cref| (\cref{fig:ex_subfigs_a,fig:ex_subfigs_b}) or by letter using \verb|\subref|.
 E.g., \subref{fig:ex_subfigs_b}, \subref{fig:ex_subfigs_c}.
 Note that \verb|\subref| only works for one label at a time.
 
@@ -231,13 +231,10 @@ Note that \verb|\subref| only works for one label at a time.
 \subsection{Figure Credits}
 \label{sec:figure_credits_inst}
 
-In the \hyperref[sec:figure_credits]{Figure Credits} section at the end of the paper, authors should credit the original sources of any figures that were reproduced or modified.
+In the \hyperref[sec:figure_credits]{Figure Credits} section at the end of the paper, you should credit the original sources of any figures that were reproduced or modified.
 Include any license details necessary, as well as links to the original materials whenever possible.
 For credits to figures from academic papers, include a citation that is listed in the \textbf{References} section.
 An example is provided \hyperref[sec:figure_credits]{below}.
-
-\textbf{For IEEE VIS}, this section may be included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
-
 
 
 \section{Equations and Tables}
@@ -313,45 +310,9 @@ Tables, such as \cref{tab:vis_papers} can also be included.
 \section{Supplemental Material Instructions}
 \label{sec:supplement_inst}
 
-\subsection{Long-term Open Science goals}
-
-\textbf{Research should be accessible to everyone.}
-Financial means and privileged access should not limit anyone's ability to participate in and learn from research.
-As such, research articles and their accompanying supplemental materials should be freely accessible to researchers from all backgrounds, discoverable, and uniquely and persistently identifiable in perpetuity.
-
-\textbf{Research should be transparent, reproducible, and trustworthy.}
-Authors should be as transparent as possible about their research process.
-Increased transparency can help reviewers and readers judge for themselves whether the research conducted was plausible and whether the results are reliable.
-In particular, research should be:
-\begin{itemize}
-  \item \textit{Transparent}---enough description and supplemental material should be provided so that reviewers and readers can follow all important details of any processes or analyses.
-
-  \item \textit{Reproducible}---a reviewer or reader should, to the extent possible, be able to use the process, software, data, and operating conditions provided by the authors to obtain the same result
-
-  \item \textit{Trustworthy}---This combination of transparency and reproducibility will help readers to gain trust in the research process and results.
-\end{itemize}
-
-\textbf{Research should be replicable or transferable.}
-We believe that our community should support knowledge transfer between teams and that research results should stand up to scrutiny by future researchers. An independent team should be able to replicate or transfer the research results in other contexts, locations, domains, and in multiple trials. By making research more transparent and reproducible, we make it easier for future researchers to adopt and adapt the research methodologies to new situations as well as larger or otherwise more convincing studies.
-
-\subsection{Where to upload supplementary material}
-We recommend using \url{https://osf.io} as the primary repository for supplemental materials and that authors justify using an alternative repository.
-In some cases, \url{https://databrary.org} or \url{https://dataverse.org} may be more appropriate.
-We caution authors against using solely IEEE Xplore and IEEE Dataport, GitHub \& GitLab, or institutional repositories / homepages / lab pages, but do encourage hosting multiple mirrors of material.
-
-Using OSF, you can create anonymous view-only links for blind peer review.
-For example: \url{https://osf.io/2nbsg/?view_only=bb2c55b2d13e42e39172d27d443273f5}.
-This link was created following \href{https://help.osf.io/article/201-create-a-view-only-link-for-a-project}{OSF's instructions}.
-You can use a custom short hyperlink text for peer review, e.g., ``see our supplemental material at \href{https://osf.io/2nbsg/?view_only=bb2c55b2d13e42e39172d27d443273f5}{osf.io (anonymous link)}''.
-However, ensure that you make the OSF project public and spell out the URL in text for the camera-ready publication.
-
-
-\subsection{What to include in the Supplemental Material section}
-
-In the \hyperref[sec:supplemental_materials]{Supplemental Materials} section at the end of the paper, authors should try to be as descriptive and complete as possible about (1) what supplemental materials are available, (2) where they are hosted, and (3) justifications for why materials were omitted (if any).
-An example is provided \hyperref[sec:supplemental_materials]{below}.
-
-\textbf{For IEEE VIS}, this section may be included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
+In support of transparent research practices and long-term open science goals, you are encouraged to make your supplemental materials available on a publicly-accessible repository.
+Please describe the available supplemental materials in the \hyperref[sec:supplemental_materials]{Supplemental Materials} section.
+These details could include (1) what materials are available, (2) where they are hosted, and (3) any necessary omissions.
 
 
 \section{References}
@@ -359,7 +320,6 @@ An example is provided \hyperref[sec:supplemental_materials]{below}.
 
 An example of the reference formatting is provided in the \textbf{References} section at the end.
 
-\textbf{For IEEE VIS}, the References section may be included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
 
 \subsection{Include DOIs}
 
@@ -437,9 +397,9 @@ For example, our Troubleshooting instructions in
 Note that the paper submission has to end after the \textbf{References} section and within the page limit of the conference you are submitting to.
 Any version of Appendices or the paper with Appendices included has to be submitted separately as supplementary material.
 You can use the \verb|hideappendix| class option to remove everything after \verb|\appendix|.
-We encourage authors to submit a full version of their paper to a preprint server with any appendices included.
+We encourage you to submit a full version of your paper to a preprint server with any appendices included.
 
-We provide the \verb|\iflabelexists| macro to help you cross reference an appendix from the main text, but only if that label (i.e.\ the appendix) actually exists.
+You can use the \verb|\iflabelexists| macro to cross reference an appendix from the main text, but only if that label (i.e.\ the appendix) actually exists.
 For example, above we use 
 
 \begin{verbatim}
@@ -456,9 +416,6 @@ in order to cross-reference to the appendix with \verb|\cref| if it exists, but 
 
 \lipsum[1-2]% Just add some more arbitrary text so we see a fuller paper example
 
-
-%% FOR IEEE VIS, EVERYTHING HERE MAY BE INCLUDED IN THE 2-PAGE ALLOTMENT %%
-%% VVVVV   FOR REFERENCES, FIGURE CREDITS, AND ACKNOWLEDGEMENTS    VVVVV %%
 
 \section*{Supplemental Materials}
 \label{sec:supplemental_materials}
@@ -484,8 +441,6 @@ Here are the actual figure credits for this template:
 
 %% if specified like this the section will be ommitted in review mode
 \acknowledgments{%
-  \textbf{For IEEE VIS}, this section may be included in the \textbf{2-page allotment for References, Figure Credits, and Acknowledgments}.
-	
 	The authors wish to thank A, B, and C.
   This work was supported in part by a grant from XYZ (\# 12345-67890).%
 }
@@ -498,9 +453,6 @@ Here are the actual figure credits for this template:
 
 \bibliography{template}
 
-
-%% ^^^^^   FOR IEEE VIS, EVERYTHING HERE MAY BE INCLUDED IN THE    ^^^^^ %%
-%% 2-PAGE ALLOTMENT FOR REFERENCES, FIGURE CREDITS, AND ACKNOWLEDGEMENTS %%
 
 \appendix % You can use the `hideappendix` class option to skip everything after \appendix
 
