@@ -31,7 +31,7 @@ pictures/       - subdirectory with sample images, both in EPS and in direct pix
 Usage
 =====
 
-The template can be used with an established LaTeX environment by calling pdfLaTeX or LaTex. For online collaborative editing or without a local LaTeX installation, one option is to use https://www.overleaf.com/. For Windows-based LaTeX installations you can use, for example, the environment provided by http://www.texniccenter.org/ along with MikTeX (http://miktex.org/). For Unux-based installations, please use your favorite LaTeX distribution and editing environment or use the makefile following the instructions below.
+The template can be used with an established LaTeX environment by calling pdfLaTeX or LaTex. For online collaborative editing or without a local LaTeX installation, one option is to use https://www.overleaf.com/. For Windows-based LaTeX installations you can use, for example, the environment provided by http://www.texniccenter.org/ along with MikTeX (http://miktex.org/). For Unix-based installations, please use your favorite LaTeX distribution and editing environment or use the makefile following the instructions below.
 
 Use of the Makefile
 ===================
