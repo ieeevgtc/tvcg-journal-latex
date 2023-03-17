@@ -391,7 +391,7 @@
   \WarningFilter{caption}{The option `hypcap=true' will be ignored for this}
   \RequirePackage{caption}
   \RequirePackage[aboveskip=4pt, belowskip=4pt]{subcaption}                % for subfigures
-  \captionsetup{subrefformat=parens}
+  \captionsetup{subrefformat=parens,font={scriptsize,sf}}
   \newcommand{\subfigsCaption}[1]{\vspace{-.9em}\caption{#1}}
 }
 
