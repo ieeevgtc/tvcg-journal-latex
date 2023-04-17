@@ -320,7 +320,7 @@
   \hypersetup{
     pdfpagemode=UseNone,
     pdftitle={\@title},
-    pdfauthor={\@author},
+    pdfauthor={\iftoggle{vgtc@review}{anonymous authors}{\@author}},
     pdfsubject={VGTC Special Issue Paper for TVCG},
     pdfkeywords={\vgtc@keywords},
     pageanchor=true,
