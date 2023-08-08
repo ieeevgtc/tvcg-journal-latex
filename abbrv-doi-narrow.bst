@@ -24,6 +24,8 @@ ENTRY
     number
     organization
     pages
+    articleno
+    numpages
     publisher
     school
     series
@@ -73,7 +75,7 @@ FUNCTION {add.link} % title
 	    {
 			  doi #1 #7 substring$ "http://" =
 				  { "\href{" doi * "}{" * t * "}" * }
-				  { "\href{http://dx.doi.org/" doi * "}{" * t * "}" * }
+				  { "\href{https://doi.org/" doi * "}{" * t * "}" * }
 				if$
 		  }
       if$ }
@@ -156,7 +158,7 @@ FUNCTION {add.doi}
           {
 					  #3 'nth.dash :=
 					  #1 'doi.string.pos :=
-						"https://dx.doi.org/" 'doi.urlstr :=
+						"https://doi.org/" 'doi.urlstr :=
 					}
           {}
         if$
@@ -172,7 +174,7 @@ FUNCTION {add.doi}
 					  {}
 					  {
 							#1 'doi.string.pos :=
-							"https://dx.doi.org/" 'doi.urlstr :=
+							"https://doi.org/" 'doi.urlstr :=
 						}
 					if$
 				}
@@ -530,6 +532,21 @@ FUNCTION {format.edition}
   if$
 }
 
+FUNCTION {format.articleno}
+{ articleno empty$
+    {""}
+    { " article no. "  articleno *}
+  if$
+}
+
+FUNCTION {format.numpages}
+{ numpages empty$
+    {""}
+    { " " numpages * " pages" *  }
+  if$
+}
+
+
 INTEGERS { multiresult }
 
 FUNCTION {multi.page.check}
@@ -732,9 +749,13 @@ FUNCTION {article}
   crossref missing$
     { journal emphasize "journal" output.check
       format.vol.num.pages output
+      format.articleno output
+      format.numpages output
       format.date "year" output.check
     }
     { format.article.crossref output.nonnull
+      format.articleno output
+      format.numpages output
       format.pages output
     }
   if$
@@ -859,6 +880,8 @@ FUNCTION {inproceedings}
     { format.in.ed.booktitle "booktitle" output.check
       format.bvolume output
       format.number.series output
+      format.articleno output
+      format.numpages output
       format.pages output
       address empty$
         { organization publisher new.sentence.checkb
@@ -875,6 +898,8 @@ FUNCTION {inproceedings}
       if$
     }
     { format.incoll.inproc.crossref output.nonnull
+      format.articleno output
+      format.numpages output
       format.pages output
     }
   if$
