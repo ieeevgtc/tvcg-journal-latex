@@ -301,7 +301,7 @@ Tables, such as \cref{tab:vis_papers} can also be included.
   \centering % avoid the use of \begin{center}...\end{center} and use \centering instead (more compact)
   \includegraphics[width=\columnwidth]{paper-count-2016}
   \caption{%
-  	A visualization of the 1990--2016 data from \cref{tab:vis_papers}, recreated based on Fig.\ 1 from \cite{Isenberg:2017:VMC}.%
+  	A visualization of the 1990--2016 data from \cref{tab:vis_papers}, recreated based on Fig.\ 1 from \cite{Isenberg2017Vispubdata.orgMetadataCollection}.%
   }
   \label{fig:vis_papers}
 \end{figure}
@@ -347,7 +347,7 @@ See the examples in the bib\TeX\ file and the bibliography at the end of this te
 \begin{itemize}
   \item All bibliographic entries should be sorted alphabetically by the last name of the first author.
         This \LaTeX/bib\TeX\ template takes care of this sorting automatically.
-  \item Merge multiple references into one; e.\,g., use \cite{Max:1995:OMF,Kitware:2003} (not \cite{Kitware:2003}\cite{Max:1995:OMF}).
+  \item Merge multiple references into one; e.\,g., use \cite{Max1995OpticalModelsDirect,Kitware2003VisualizationToolkitUsers} (not \cite{Kitware2003VisualizationToolkitUsers}\cite{Max1995OpticalModelsDirect}).
         Within each set of multiple references, the references should be sorted in ascending order.
         This \LaTeX/bib\TeX\ template takes care of both the merging and the sorting automatically.
   \item Verify all data obtained from digital libraries, even ACM's DL and IEEE Xplore  etc.\ are sometimes wrong or incomplete.
@@ -361,6 +361,7 @@ See the examples in the bib\TeX\ file and the bibliography at the end of this te
   	      \item volume
   	      \item number
   	      \item month of publication as variable name (i.e., \{jan\} for January, etc.; month ranges using \{jan \#\{/\}\# feb\} or \{jan \#\{-{}-\}\# feb\})
+          \item series. E.g., ``TVCG``, ``TVCG/VIS`` for special issue VIS papers, ``EuroVis``, ``CGF/EuroVis``.
         \end{itemize}
   \item Use journal names in proper style: correct: ``IEEE Transactions on Visualization and Computer Graphics'', incorrect: ``Visualization and Computer Graphics, IEEE Transactions on''
   \item Papers in proceedings---items to include:
@@ -369,20 +370,19 @@ See the examples in the bib\TeX\ file and the bibliography at the end of this te
   	      \item title
   	      \item abbreviated proceedings name: e.g., ``Proc.\textbackslash{} CONF\_ACRONYNM'' without the year; example: ``Proc.\textbackslash{} CHI'', ``Proc.\textbackslash{} 3DUI'', ``Proc.\textbackslash{} Eurographics'', ``Proc.\textbackslash{} EuroVis''
   	      \item year
-  	      \item publisher
-  	      \item town with country of publisher (the town can be abbreviated for well-known towns such as New York or Berlin)
+  	      \item series. E.g., ``VIS`` and ``EuroVis`` for short papers, ``CHI``...
         \end{itemize}
 
   \item Article/paper title convention: refrain from using curly brackets, except for acronyms/proper names/words following dashes/question marks etc.; example:\\\\
         %
         The paper ``Marching Cubes: A High Resolution 3D Surface Construction Algorithm'' should be entered as ``\{M\}arching \{C\}ubes: A High Resolution \{3D\} Surface Construction Algorithm'' or  ``\{M\}arching \{C\}ubes: A high resolution \{3D\} surface construction algorithm''.
-        It will then be typeset as ``Marching Cubes: A high resolution 3D surface construction algorithm''
+        It will then be typeset as ``Marching Cubes: A high resolution 3D surface construction algorithm''.
   \item For all entries:
         \begin{itemize}
   	      \item DOI can be entered in the DOI field as plain DOI number or as DOI url.
-  	      \item Provide full page ranges AA-{}-BB
+  	      \item ``pages`` or ``articleno``: Provide full page ranges AA-{}-BB, OR, if an article number is available like recent ACM conferences, use that instead. E.g., see the entry for Panavas et al.\ \cite{Panavas2022JuvenileGraphicalPerception}.
         \end{itemize}
-  \item When citing references, do not use the reference as a sentence object; e.g., wrong: ``In \cite{Lorensen:1987:MCA} the authors describe \dots'', correct: ``Lorensen and Cline \cite{Lorensen:1987:MCA} describe \dots''
+  \item When citing references, do not use the reference as a sentence object; e.g., wrong: ``In \cite{Lorensen1987MarchingCubesHigh} the authors describe \dots'', correct: ``Lorensen and Cline \cite{Lorensen1987MarchingCubesHigh} describe \dots''
 \end{itemize}
 
 \section{Appendices}
@@ -436,7 +436,7 @@ Here are the actual figure credits for this template:
 
 \Cref{fig:teaser} image credit: Scott Miller / Special to the Vancouver Sun, January 22, 2009, page A6.
 
-\Cref{fig:vis_papers} is a partial recreation of Fig.\ 1 from \cite{Isenberg:2017:VMC}, which is in the public domain.
+\Cref{fig:vis_papers} is a partial recreation of Fig.\ 1 from \cite{Isenberg2017Vispubdata.orgMetadataCollection}, which is in the public domain.
 
 
 %% if specified like this the section will be ommitted in review mode
