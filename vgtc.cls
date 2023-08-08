@@ -339,7 +339,8 @@
     citecolor=NavyBlue,
     anchorcolor=black,      % changing this colors te teaser caption using dvips
     nesting=true,
-    linktocpage}
+    linktocpage,
+    pdfdisplaydoctitle}
   \ifpdf%                   % if we use pdflatex
   \else%                    % else we use pure latex
     \renewcommand{\pdfbookmark}[3][]{}
