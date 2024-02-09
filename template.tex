@@ -78,7 +78,7 @@
 %% A teaser figure can be included as follows
 \teaser{
   \centering
-  \includegraphics[width=\linewidth]{CypressView}
+  \includegraphics[width=\linewidth, alt={A view of a city with buildings peeking out of the clouds.}]{CypressView}
   \caption{%
   	In the Clouds: Vancouver from Cypress Mountain.
   	Note that the teaser may not be wider than the abstract block.%
@@ -186,6 +186,10 @@ Of the raster graphics formats, screenshots of user interfaces and text, as well
 jpg is better for photographs.
 Make sure all raster graphics are captured in high enough resolution so they look crisp and scale well.
 
+\subsection{Alt texts}
+
+Add alternative texts that describe the content of the image to all figures.
+
 \subsection{Figures on the first page}
 
 The teaser figure should only have the width of the abstract as the template enforces it.
@@ -206,21 +210,21 @@ Note that \verb|\subref| only works for one label at a time.
   \centering
   \begin{subfigure}[b]{0.45\columnwidth}
   	\centering
-  	\includegraphics[width=\textwidth]{example-image-a}
+  	\includegraphics[width=\textwidth, alt={Big letter A on a gray background.}]{example-image-a}
   	\caption{The letter A.}
   	\label{fig:ex_subfigs_a}
   \end{subfigure}%
   \hfill%
   \begin{subfigure}[b]{0.45\columnwidth}
   	\centering
-  	\includegraphics[width=\textwidth]{example-image-b}
+  	\includegraphics[width=\textwidth, alt={Big letter B on a gray background.}]{example-image-b}
   	\caption{The letter B.}
   	\label{fig:ex_subfigs_b}
   \end{subfigure}%
   \\%
   \begin{subfigure}[b]{0.45\columnwidth}
   	\centering
-  	\includegraphics[width=\textwidth]{example-image-c}
+  	\includegraphics[width=\textwidth, alt={Big letter C on a gray background.}]{example-image-c}
   	\caption{The letter C.}
   	\label{fig:ex_subfigs_c}
   \end{subfigure}%
@@ -299,7 +303,7 @@ Tables, such as \cref{tab:vis_papers} can also be included.
 
 \begin{figure}[tb]% specify a combination of t, b, p, or h for top, bottom, on its own page, or here
   \centering % avoid the use of \begin{center}...\end{center} and use \centering instead (more compact)
-  \includegraphics[width=\columnwidth]{paper-count-2016}
+  \includegraphics[width=\columnwidth, alt={A line graph showing paper counts between 0 and 160 from 1990 to 2016 for 9 venues.}]{paper-count-2016}
   \caption{%
   	A visualization of the 1990--2016 data from \cref{tab:vis_papers}, recreated based on Fig.\ 1 from \cite{Isenberg2017Vispubdata.orgMetadataCollection}.%
   }
