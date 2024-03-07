@@ -327,7 +327,7 @@ An example of the reference formatting is provided in the \textbf{References} se
 
 \subsection{Include DOIs}
 
-All references which have a DOI should have it included in the bib\TeX\ for the style to display.
+All references which have a DOI should have it included in the Bib\TeX\ for the style to display.
 The DOI can be entered with or without the \url{https://doi.org/} prefix.
 
 \subsection{Narrow DOI option}
@@ -342,18 +342,18 @@ DVI-based processes to compile the template apparently cannot handle the differe
 \subsection{Disabling hyperlinks}
 
 To avoid adding hyperlinks to the references (the default) you can use \verb|\bibliographystyle{abbrv-doi}| instead of \verb|\bibliographystyle{abbrv-doi-hyperref}|.
-By default, the DOI field in a bib\TeX\ entry is turned into a hyperlink.
+By default, the DOI field in a Bib\TeX\ entry is turned into a hyperlink.
 
-See the examples in the bib\TeX\ file and the bibliography at the end of this template.
+See the examples in the Bib\TeX\ file and the bibliography at the end of this template.
 
-\subsection{Guidelines for bibTeX}
+\subsection{Guidelines for BibTeX}
 
 \begin{itemize}
   \item All bibliographic entries should be sorted alphabetically by the last name of the first author.
-        This \LaTeX/bib\TeX\ template takes care of this sorting automatically.
+        This \LaTeX/Bib\TeX\ template takes care of this sorting automatically.
   \item Merge multiple references into one; e.\,g., use \cite{Max1995OpticalModelsDirect,Kitware2003VisualizationToolkitUsers} (not \cite{Kitware2003VisualizationToolkitUsers}\cite{Max1995OpticalModelsDirect}).
         Within each set of multiple references, the references should be sorted in ascending order.
-        This \LaTeX/bib\TeX\ template takes care of both the merging and the sorting automatically.
+        This \LaTeX/Bib\TeX\ template takes care of both the merging and the sorting automatically.
   \item Verify all data obtained from digital libraries, even ACM's DL and IEEE Xplore etc.\ are sometimes wrong or incomplete.
   \item Do not trust bibliographic data from other services such as Mendeley.com, Google Scholar, or similar; these are even more likely to be incorrect or incomplete.
   \item Articles in journal---items to include:
@@ -474,7 +474,7 @@ Note that your error is due to packages you use that define \verb|\ifpdf| which 
 
 \subsection{\texttt{pdfendlink} error}
 
-Occasionally (for some \LaTeX\ distributions) this hyper-linked bib\TeX\ style may lead to \textbf{compilation errors} (\texttt{pdfendlink ended up in different nesting level ...}) if a reference entry is broken across two pages (due to a bug in \verb|hyperref|).
+Occasionally (for some \LaTeX\ distributions) this hyper-linked Bib\TeX\ style may lead to \textbf{compilation errors} (\texttt{pdfendlink ended up in different nesting level ...}) if a reference entry is broken across two pages (due to a bug in \verb|hyperref|).
 In this case, make sure you have the latest version of the \verb|hyperref| package (i.e.\ update your \LaTeX\ installation/packages) or, alternatively, revert back to \verb|\bibliographystyle{abbrv-doi}| (at the expense of removing hyperlinks from the bibliography) and try \verb|\bibliographystyle{abbrv-doi-hyperref}| again after some more editing.
 
 \end{document}
