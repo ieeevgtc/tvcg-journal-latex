@@ -52,7 +52,7 @@ DVIPS = dvips
 RERUN = "(There were undefined references|Rerun to get (cross-references|the bars) right)"
 RERUNBIB = "No file.*\.bbl|Citation.*undefined" 
 
-PSFILES  = $(DVIFILES:.dvi=.ps) 
+PSFILES = $(DVIFILES:.dvi=.ps) 
 
 PDFFILES7 = $(DVIFILES:.dvi=.pdf7) 
 PDFFILES8 = $(DVIFILES:.dvi=.pdf8) 
@@ -112,7 +112,7 @@ $(MAINTEXFILE) : $(SUBTEXFILES) $(BIBFILES)
 				egrep -i "(Reference|Citation).*undefined" $*.log ; true
 
 %.ps:			%.dvi
-#				dvips -T 7.875in,10.75in -Ppdf -G0 $< -o $@  #use tvcgpapersize
+#				dvips -T 7.875in,10.75in -Ppdf -G0 $< -o $@ #use tvcgpapersize
 #				dvips -Ppdf -G0 $< -o $@
 				dvips $(DVIPSPAPERSIZE) -Pdownload35 -Ppdf -G0 $< -o $@
 #				dvips $< -o $@

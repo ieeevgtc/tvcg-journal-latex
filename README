@@ -32,7 +32,7 @@ pictures/       - subdirectory with sample images, both in EPS and in direct pix
 Usage
 =====
 
-The template can be used with an established LaTeX environment by calling pdfLaTeX or LaTex. For online collaborative editing or without a local LaTeX installation, one option is to use https://www.overleaf.com/. For Windows-based LaTeX installations you can use, for example, the environment provided by http://www.texniccenter.org/ along with MikTeX (http://miktex.org/). For Unix-based installations, please use your favorite LaTeX distribution and editing environment or use the makefile following the instructions below.
+The template can be used with an established LaTeX environment by calling pdfLaTeX or LaTeX. For online collaborative editing or without a local LaTeX installation, one option is to use https://www.overleaf.com/. For Windows-based LaTeX installations you can use, for example, the environment provided by http://www.texniccenter.org/ along with MikTeX (http://miktex.org/). For Unix-based installations, please use your favorite LaTeX distribution and editing environment or use the makefile following the instructions below.
 
 Use of the Makefile
 ===================
@@ -56,7 +56,7 @@ or manually, if the makefile does not work for you
 
 If you run 'make' for the first time, a successful compilation will create a file called 'template.pdf'. Please make sure, that its layout is identical to the file 'template-journal.pdf' provided with this package.
 
-The included makefile also allows you to run each step of the process manually.  Below are a list of available options that may be passed to make
+The included makefile also allows you to run each step of the process manually. Below are a list of available options that may be passed to make
 
  "make clean"
    removes all files that can be generated automatically.
@@ -68,7 +68,7 @@ The included makefile also allows you to run each step of the process manually. 
    This will perform all functions to build a proper paper using GhostScript 8.
 
  "make dvi"
-   This will process the .tex file and produce a DVI output file.  This
+   This will process the .tex file and produce a DVI output file. This
    step may process the .tex file several times to process all references
    and citations.
 
@@ -77,11 +77,11 @@ The included makefile also allows you to run each step of the process manually. 
    PostScript file.
 
  "make pdf"
-   This will process the .tex file using pdfTeX/pdflatex to produce a PDF
+   This will process the .tex file using pdfTeX/pdfLaTeX to produce a PDF
    file directly (not using a DVI and PostScript file).
    Please make sure that all fonts are embedded.
    You can use pdffonts my_document.pdf to check if they are.
-   It is standard in all modern latex distributions.
+   It is standard in all modern LaTeX distributions.
    If you use eps figures (e.g. R or gnuplot figures) which you convert to
    PDF using epstopdf, do the following:
    Use GL_OPTIONS, a global environment variable for ghostscript:
