@@ -27,15 +27,6 @@
 %% declare the category of your paper, only shown in review mode
 \vgtccategory{Research}
 
-%% please declare the paper type of your paper to help reviewers, only shown in review mode
-%% choices:
-%% * algorithm/technique
-%% * application/design study
-%% * evaluation
-%% * system
-%% * theory/model
-\vgtcpapertype{please specify}
-
 %% Paper title.
 \title{Global Illumination for Fun and Profit}
 
@@ -109,6 +100,7 @@
 \usepackage{booktabs}                  % only used for the table example
 \usepackage{lipsum}                    % used to generate placeholder text
 \usepackage{mwe}                       % used to generate placeholder figures
+\usepackage{ccicons}                   % package to be able to use icons from creative commons
 
 %% We encourage the use of mathptmx for consistent usage of times font
 %% throughout the proceedings. However, if you encounter conflicts
@@ -177,13 +169,13 @@ Figures should be in CMYK or Grey scale format, otherwise, colour shifting may o
 
 \subsection{Vector figures}
 
-Vector graphics like svg, eps, pdf are best for charts and other figures with text or lines.
+Vector graphics like \texttt{pdf} and \texttt{eps} (can be generated from a \texttt{svg}) are best for charts and other figures with text or lines.
 They will look much nicer and crisper and any text in them will be more selectable, searchable, and accessible.
 
 \subsection{Raster figures}
 
-Of the raster graphics formats, screenshots of user interfaces and text, as well as line art, are better shown with png.
-jpg is better for photographs.
+Of the raster graphics formats, screenshots of user interfaces and text, as well as line art, are better shown with \texttt{png}.
+\texttt{jpg} is better for photographs.
 Make sure all raster graphics are captured in high enough resolution so they look crisp and scale well.
 
 \subsection{Alt texts}
@@ -252,60 +244,70 @@ Equations can be added like so:
 
 Tables, such as \cref{tab:vis_papers} can also be included.
 
-
 \begin{table}[tb]
   \caption{%
-  	VIS/VisWeek accepted/presented papers: 1990--2016.%
+  	VIS/VisWeek accepted/presented papers: 1990--2025, data from \href{https://www.vispubdata.org/}{vispubdata} \cite{Isenberg2017Vispubdata.orgMetadataCollection}.%
   }
   \label{tab:vis_papers}
   \scriptsize%
+	\newlength{\digitwidth}%
+  \settowidth{\digitwidth}{0}%
   \centering%
   \begin{tabu}{%
   	  r%
-  	  	*{7}{c}%
-  	  	*{2}{r}%
+  	  	*{8}{@{\hspace{5.5pt}}c@{\hspace{5.5pt}}}%
+  	  	*{2}{@{\hspace{5.5pt}}r}%
   	}
   	\toprule
-  	year & \rotatebox{90}{Vis/SciVis} &   \rotatebox{90}{SciVis conf} &   \rotatebox{90}{InfoVis} &   \rotatebox{90}{VAST} &   \rotatebox{90}{VAST conf} &   \rotatebox{90}{TVCG @ VIS} &   \rotatebox{90}{CG\&A @ VIS} &   \rotatebox{90}{VIS/VisWeek} \rotatebox{90}{incl.\ TVCG/CG\&A}   &   \rotatebox{90}{VIS/VisWeek} \rotatebox{90}{w/o TVCG/CG\&A}   \\
+  	year & \rotatebox{90}{VIS (from 2021)} & \rotatebox{90}{Vis/SciVis} &   \rotatebox{90}{SciVis conf} &   \rotatebox{90}{InfoVis} &   \rotatebox{90}{VAST} &   \rotatebox{90}{VAST conf} &   \rotatebox{90}{TVCG @ VIS} &   \rotatebox{90}{CG\&A @ VIS} &   \rotatebox{90}{VIS/VisWeek} \rotatebox{90}{incl.\ TVCG/CG\&A}   &   \rotatebox{90}{VIS/VisWeek} \rotatebox{90}{w/o TVCG/CG\&A}   \\
   	\midrule
-  	2016 & 30 &   & 37 & 33 & 15 & 23 & 10 & 148 & 115 \\
-  	2015 & 33 & 9 & 38 & 33 & 14 & 17 & 15 & 159 & 127 \\
-  	2014 & 34 &   & 45 & 33 & 21 & 20 &    & 153 & 133 \\
-  	2013 & 31 &   & 38 & 32 &    & 20 &    & 121 & 101 \\
-  	2012 & 42 &   & 44 & 30 &    & 23 &    & 139 & 116 \\
-  	2011 & 49 &   & 44 & 26 &    & 20 &    & 139 & 119 \\
-  	2010 & 48 &   & 35 & 26 &    &    &    & 109 & 109 \\
-  	2009 & 54 &   & 37 & 26 &    &    &    & 117 & 117 \\
-  	2008 & 50 &   & 28 & 21 &    &    &    &  99 &  99 \\
-  	2007 & 56 &   & 27 & 24 &    &    &    & 107 & 107 \\
-  	2006 & 63 &   & 24 & 26 &    &    &    & 113 & 113 \\
-  	2005 & 88 &   & 31 &    &    &    &    & 119 & 119 \\
-  	2004 & 70 &   & 27 &    &    &    &    &  97 &  97 \\
-  	2003 & 74 &   & 29 &    &    &    &    & 103 & 103 \\
-  	2002 & 78 &   & 23 &    &    &    &    & 101 & 101 \\
-  	2001 & 74 &   & 22 &    &    &    &    &  96 &  96 \\
-  	2000 & 73 &   & 20 &    &    &    &    &  93 &  93 \\
-  	1999 & 69 &   & 19 &    &    &    &    &  88 &  88 \\
-  	1998 & 72 &   & 18 &    &    &    &    &  90 &  90 \\
-  	1997 & 72 &   & 16 &    &    &    &    &  88 &  88 \\
-  	1996 & 65 &   & 12 &    &    &    &    &  77 &  77 \\
-  	1995 & 56 &   & 18 &    &    &    &    &  74 &  74 \\
-  	1994 & 53 &   &    &    &    &    &    &  53 &  53 \\
-  	1993 & 55 &   &    &    &    &    &    &  55 &  55 \\
-  	1992 & 53 &   &    &    &    &    &    &  53 &  53 \\
-  	1991 & 50 &   &    &    &    &    &    &  50 &  50 \\
-  	1990 & 53 &   &    &    &    &    &    &  53 &  53 \\
+  	2025 & 131 &    &   &    &    &    & 75 & 12 & 218 & 131 \\
+  	2024 & 124 &    &   &    &    &    & 65 & 12 & 201 & 124 \\
+  	2023 & 133 &    &   &    &    &    & 60 & \hspace{\digitwidth}9 & 202 & 133 \\
+  	2022 & 119 &    &   &    &    &    & 67 & 18 & 204 & 119 \\
+  	2021 & 109 &    &   &    &    &    & 50 & 11 & 170 & 109 \\
+  	2020 &     & 32 &   & 64 & 51 & 10 & 41 & 12 & 210 & 157 \\
+  	2019 &     & 25 &   & 53 & 42 & \hspace{\digitwidth}9 & 47 & 12 & 188 & 129 \\
+  	2018 &     & 32 &   & 47 & 41 & \hspace{\digitwidth}7 & 42 & 12 & 181 & 127 \\
+  	2017 &     & 23 &   & 39 & 37 & 15 & 21 & \hspace{\digitwidth}8 & 143 & 114 \\
+  	2016 &     & 30 &   & 37 & 33 & 15 & 23 & 10 & 148 & 115 \\
+  	2015 &     & 33 & 9 & 38 & 33 & 14 & 17 & 15 & 159 & 127 \\
+  	2014 &     & 34 &   & 45 & 33 & 21 & 20 &    & 153 & 133 \\
+  	2013 &     & 31 &   & 38 & 32 &    & 20 &    & 121 & 101 \\
+  	2012 &     & 42 &   & 44 & 30 &    & 23 &    & 139 & 116 \\
+  	2011 &     & 49 &   & 44 & 26 &    & 20 &    & 139 & 119 \\
+  	2010 &     & 48 &   & 35 & 26 &    &    &    & 109 & 109 \\
+  	2009 &     & 54 &   & 37 & 26 &    &    &    & 117 & 117 \\
+  	2008 &     & 50 &   & 28 & 21 &    &    &    &  99 &  99 \\
+  	2007 &     & 56 &   & 27 & 24 &    &    &    & 107 & 107 \\
+  	2006 &     & 63 &   & 24 & 26 &    &    &    & 113 & 113 \\
+  	2005 &     & 88 &   & 31 &    &    &    &    & 119 & 119 \\
+  	2004 &     & 70 &   & 27 &    &    &    &    &  97 &  97 \\
+  	2003 &     & 74 &   & 29 &    &    &    &    & 103 & 103 \\
+  	2002 &     & 78 &   & 23 &    &    &    &    & 101 & 101 \\
+  	2001 &     & 74 &   & 22 &    &    &    &    &  96 &  96 \\
+  	2000 &     & 73 &   & 20 &    &    &    &    &  93 &  93 \\
+  	1999 &     & 69 &   & 19 &    &    &    &    &  88 &  88 \\
+  	1998 &     & 72 &   & 18 &    &    &    &    &  90 &  90 \\
+  	1997 &     & 72 &   & 16 &    &    &    &    &  88 &  88 \\
+  	1996 &     & 65 &   & 12 &    &    &    &    &  77 &  77 \\
+  	1995 &     & 56 &   & 18 &    &    &    &    &  74 &  74 \\
+  	1994 &     & 53 &   &    &    &    &    &    &  53 &  53 \\
+  	1993 &     & 55 &   &    &    &    &    &    &  55 &  55 \\
+  	1992 &     & 53 &   &    &    &    &    &    &  53 &  53 \\
+  	1991 &     & 50 &   &    &    &    &    &    &  50 &  50 \\
+  	1990 &     & 53 &   &    &    &    &    &    &  53 &  53 \\
   	\midrule               
-  	\textbf{sum} & \textbf{1545} & \textbf{9} & \textbf{632} & \textbf{310} & \textbf{50} & \textbf{123} & \textbf{25} & \textbf{2694} & \textbf{2546} \\
+  	\textbf{sum} & \textbf{616} & \textbf{1657} & \textbf{9} & \textbf{835} & \textbf{481} & \textbf{91} & \textbf{591} & \textbf{131} & \textbf{4411} & \textbf{3689} \\
   	\bottomrule
   \end{tabu}%
 \end{table}
 
 \begin{figure}[tb]% specify a combination of t, b, p, or h for top, bottom, on its own page, or here
   \centering % avoid the use of \begin{center}...\end{center} and use \centering instead (more compact)
-  \includegraphics[width=\columnwidth, alt={A line graph showing paper counts between 0 and 160 from 1990 to 2016 for 9 venues.}]{paper-count-2016}
+  \includegraphics[width=\columnwidth, alt={A line graph showing paper counts between 0 and 160 from 1990 to 2016 for 9 venues.}]{paper-count-2024}
   \caption{%
-  	A visualization of the 1990--2016 data from \cref{tab:vis_papers}, recreated based on Fig.\ 1 from \cite{Isenberg2017Vispubdata.orgMetadataCollection}.%
+  	A visualization of the 1990--2024 data from \cref{tab:vis_papers}, recreated based on Fig.\ 1 from \cite{Isenberg2017Vispubdata.orgMetadataCollection}.%
   }
   \label{fig:vis_papers}
 \end{figure}
@@ -318,6 +320,10 @@ In support of transparent research practices and long-term open science goals, y
 Please describe the available supplemental materials in the \hyperref[sec:supplemental_materials]{Supplemental Materials} section.
 These details could include (1) what materials are available, (2) where they are hosted, and (3) any necessary omissions.
 
+\section{Reporting of User Studies}
+
+Please note that for the reporting of any experimental results that involve human participants you are \textbf{required} to ``include a statement in the article that the research was performed under the oversight of an institutional review board or equivalent local/regional body, including the official name of the IRB/ethics committee, or include an explanation as to why such a review was not conducted. For research involving human subjects, authors shall also report that consent from the human subjects in the research was obtained or explain why consent was not obtained'' \cite[Section 8.1.1.E]{IEEEPublications2025}. Ideally, for an IRB approval or similar, you include the case number under which the permission was granted. For instance:
+``Our experiment was approved by our university's IRB (No. 12345678). [...] At the start of the experiment, we obtained informed consent from all participants, who filled in and signed a consent form (which we share in our additional materials).''
 
 \section{References}
 \label{sec:references_inst}
@@ -326,9 +332,10 @@ An example of the reference formatting is provided in the \textbf{References} se
 
 
 \subsection{Include DOIs}
+\label{sec:references_inst:doi}
 
-All references which have a DOI should have it included in the bib\TeX\ for the style to display.
-The DOI can be entered with or without the \url{https://doi.org/} prefix.
+All references which have a DOI (which are virtually all entries of a list of references today), by default, should have it included in the bib\TeX\ file such that they are displayed in the list of references (as a courtesy for your reviewers and your readers).
+The DOI can be entered with or without the \url{https://doi.org/} prefix. Note that you can also use short DOIs; for these use the interface from \href{https://shortdoi.org/}{\texttt{shortdoi\discretionary{}{.}{.}org}} to obtain a short version of any valid DOI, as showcased in the example \textbf{References} section at the end of the template.
 
 \subsection{Narrow DOI option}
 
@@ -364,27 +371,25 @@ See the examples in the bib\TeX\ file and the bibliography at the end of this te
   	      \item year
   	      \item volume
   	      \item number
-  	      \item month of publication as variable name (i.e., \{jan\} for January, etc.; month ranges using \{jan \#\{/\}\# feb\} or \{jan \#\{-{}-\}\# feb\})
-          \item series. E.g., ``TVCG``, ``TVCG/VIS`` for special issue VIS papers, ``EuroVis``, ``CGF/EuroVis``.
+  	      \item (optionally) month of publication as variable name (i.e., \texttt{\{jan\}} for January, etc.; month ranges using \texttt{\{jan \#\{/\}\# feb\}} or \texttt{\{jan \#\{-{}-\}\# feb\}})
         \end{itemize}
-  \item Use journal names in proper style: correct: ``IEEE Transactions on Visualization and Computer Graphics'', incorrect: ``Visualization and Computer Graphics, IEEE Transactions on''
+  \item Use journal names in proper style: correct: ``\texttt{IEEE Transactions on Visualization and Computer Graphics}'', incorrect: ``\texttt{Visualization and Computer Graphics, IEEE Transactions on}'', also incorrect: ``\texttt{IEEE transactions on visualization and computer graphics}''.  You can also (consistently) use the ISO4 abbreviation standard for journal names. In this case TVCG would be ``\texttt{IEEE Trans Vis Comput Graph}''. You can search for ISO4 abbreviations at \href{https://journal-abbreviations.library.ubc.ca/}{\texttt{journal\discretionary{}{-}{-}abbreviations\discretionary{}{.}{.}library\discretionary{}{.}{.}ubc\discretionary{}{.}{.}ca}} or at \href{https://woodward.library.ubc.ca/woodward/research-help/journal-abbreviations/}{\texttt{woodward\discretionary{}{.}{.}library\discretionary{}{.}{.}ubc\discretionary{}{.}{.}ca\discretionary{/}{}{/}woodward\discretionary{/}{}{/}research\discretionary{}{-}{-}help\discretionary{/}{}{/}journal\discretionary{}{-}{-}abbreviations}} (if the full journal name is not available, search for its individual words).
   \item Papers in proceedings---items to include:
         \begin{itemize}
   	      \item author names
   	      \item title
-  	      \item abbreviated proceedings name: e.g., ``Proc.\textbackslash{} CONF\_ACRONYNM'' without the year; example: ``Proc.\textbackslash{} CHI'', ``Proc.\textbackslash{} 3DUI'', ``Proc.\textbackslash{} Eurographics'', ``Proc.\textbackslash{} EuroVis''
+  	      \item abbreviated proceedings name: e.g., ``\texttt{Proc.\textbackslash{} CONF\_ACRONYNM}'' \textbf{without the year}; example: ``\texttt{Proc.\textbackslash{} CHI}'', ``\texttt{Proc.\textbackslash{} 3DUI}'', ``\texttt{Proc.\textbackslash{} Eurographics}'', ``\texttt{Proc.\textbackslash{} EuroVis}''
   	      \item year
-  	      \item series. E.g., ``VIS`` and ``EuroVis`` for short papers, ``CHI``...
         \end{itemize}
 
   \item Article/paper title convention: refrain from using curly brackets, except for acronyms/proper names/words following dashes/question marks etc.; example:\\\\
         %
-        The paper ``Marching Cubes: A High Resolution 3D Surface Construction Algorithm'' should be entered as ``\{M\}arching \{C\}ubes: A High Resolution \{3D\} Surface Construction Algorithm'' or  ``\{M\}arching \{C\}ubes: A high resolution \{3D\} surface construction algorithm''.
+        The paper ``Marching Cubes: A High Resolution 3D Surface Construction Algorithm'' should be entered as ``\texttt{\{M\}arching \{C\}ubes: A High Resolution \{3D\} Surface Construction Algorithm}'' or  ``\texttt{\{M\}arching \{C\}ubes: A high resolution \{3D\} surface construction algorithm}''.
         It will then be typeset as ``Marching Cubes: A high resolution 3D surface construction algorithm''.
   \item For all entries:
         \begin{itemize}
-  	      \item DOI can be entered in the DOI field as plain DOI number or as DOI url.
-  	      \item ``pages`` or ``articleno``: Provide full page ranges AA-{}-BB, OR, if an article number is available like recent ACM conferences, use that instead. E.g., see the entry for Panavas et al.\ \cite{Panavas2022JuvenileGraphicalPerception}.
+  	      \item DOI (or short DOI, see \cref{sec:references_inst:doi}) can be entered in the DOI field as plain DOI number or as DOI url.
+  	      \item ``\texttt{articleno}'' plus ``\texttt{numpages}'' or ``\texttt{pages}'': Provide full page ranges \texttt{AA-{}-BB}. Alternatively, if an article number is available like for recent ACM conference publications, use that plus the corresponding number of pages instead (e.g., see the entry for Panavas et al.\ \cite{Panavas2022JuvenileGraphicalPerception}).
         \end{itemize}
   \item When citing references, do not use the reference as a sentence object; e.g., wrong: ``In \cite{Lorensen1987MarchingCubesHigh} the authors describe \dots'', correct: ``Lorensen and Cline \cite{Lorensen1987MarchingCubesHigh} describe \dots''
 \end{itemize}
@@ -399,11 +404,11 @@ For example, our Troubleshooting instructions in
   {the appendix of the full paper at \url{https://osf.io/nrmyc}}.
 
 Note that the paper submission has to end after the \textbf{References} section and within the page limit of the conference you are submitting to.
-Any version of Appendices or the paper with Appendices included has to be submitted separately as supplementary material.
+Any version of Appendices or the paper with Appendices included has to be submitted separately as supplementary material (not that, for IEEE VIS starting in 2026, you can optionally also submit an additional full version including the appendices).
 You can use the \verb|hideappendix| class option to remove everything after \verb|\appendix|.
 We encourage you to submit a full version of your paper to a preprint server with any appendices included.
 
-You can use the \verb|\iflabelexists| macro to cross reference an appendix from the main text, but only if that label (i.e.\ the appendix) actually exists.
+You can use the \verb|\iflabelexists| macro to cross reference an appendix from the main text, but only if that label (i.e., the appendix) actually exists.
 For example, above we use 
 
 \begin{verbatim}
@@ -413,7 +418,7 @@ For example, above we use
    \url{https://osf.io/XXXXX}}.
 \end{verbatim}
 
-in order to cross-reference to the appendix with \verb|\cref| if it exists, but if the appendix is commented out then we will simply create a hyperlinked URL to it.
+In order to cross-reference to the appendix with \verb|\cref| if it exists, but if the appendix is commented out then we will simply create a hyperlinked URL to it.
 
 
 \section{Filler Text to Flush Out the Paper}
@@ -427,20 +432,19 @@ in order to cross-reference to the appendix with \verb|\cref| if it exists, but 
 Refer to the instructions for this section (\cref{sec:supplement_inst}).
 Below is an example you can follow that includes the actual supplemental material for this template:
 
-All supplemental materials are available on OSF at \url{https://doi.org/10.17605/OSF.IO/2NBSG}, released under a CC BY 4.0 license.
+All supplemental materials are available on OSF at \href{https://doi.org/10.17605/OSF.IO/2NBSG}{\texttt{osf\discretionary{}{.}{.}io\discretionary{/}{}{/}2nbsg}}, released under a \href{https://creativecommons.org/licenses/by/4.0/}{\ccby{} CC BY 4.0 license}.
 In particular, they include (1) Excel files containing the data for and analyses for creating \cref{tab:vis_papers} and \cref{fig:vis_papers}, (2) figure images in multiple formats, and (3) a full version of this paper with all appendices.
 Our other code is intellectual property of a corporation---Starbucks Research---and there is no feasible way to share it publicly.
 
 
-\section*{Figure Credits}
+\section*{Figure Credits and Copyrights}
 \label{sec:figure_credits}
 
 Refer to the instructions for this section (\cref{sec:figure_credits_inst}).
 Here are the actual figure credits for this template:
 
 \Cref{fig:teaser} image credit: Scott Miller / Special to the Vancouver Sun, January 22, 2009, page A6.
-
-\Cref{fig:vis_papers} is a partial recreation of Fig.\ 1 from \cite{Isenberg2017Vispubdata.orgMetadataCollection}, which is in the public domain.
+\Cref{fig:vis_papers} is a partial recreation of Fig.\ 1 from \cite{Isenberg2017Vispubdata.orgMetadataCollection}. The new image is from \href{https://github.com/pisenberg/vispubdata/}{\texttt{github\discretionary{}{.}{.}com\discretionary{/}{}{/}pisenberg\discretionary{/}{}{/}vispubdata}} and we use it under a \href{https://creativecommons.org/licenses/by/4.0/}{\ccby{} CC BY 4.0 license}. All other figures (in particular, \cref{fig:ex_subfigs}) remain under the authors' own copyright, with the permission to be used here. We also share them under a \href{https://creativecommons.org/licenses/by/4.0/}{\ccby{} CC BY 4.0 license} at \href{https://doi.org/10.17605/OSF.IO/2NBSG}{\texttt{osf\discretionary{}{.}{.}io\discretionary{/}{}{/}2nbsg}}.
 
 
 %% if specified like this the section will be omitted in review mode
@@ -459,6 +463,7 @@ Here are the actual figure credits for this template:
 
 
 \appendix % You can use the `hideappendix` class option to skip everything after \appendix
+\crefalias{section}{appendix} % this is to make sure that cleverref switches to referring to Appx. X from here on
 
 \section{About Appendices}
 Refer to \cref{sec:appendices_inst} for instructions regarding appendices.

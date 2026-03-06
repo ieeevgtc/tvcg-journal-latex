@@ -51,6 +51,24 @@ FUNCTION {init.state.consts}
   #3 'after.block :=
 }
 
+FUNCTION {not}
+{   { #0 }
+    { #1 }
+  if$
+}
+
+FUNCTION {and}
+{   'skip$
+    { pop$ #0 }
+  if$
+}
+
+FUNCTION {or}
+{   { pop$ #1 }
+    'skip$
+  if$
+}
+
 STRINGS { s t }
 
 FUNCTION {add.link} % title
@@ -74,6 +92,7 @@ FUNCTION {add.link} % title
       	if$ }
 	    {
 			  doi #1 #7 substring$ "http://" =
+			  doi #1 #8 substring$ "https://" = or
 				  { "\href{" doi * "}{" * t * "}" * }
 				  { "\href{https://doi.org/" doi * "}{" * t * "}" * }
 				if$
@@ -303,24 +322,6 @@ FUNCTION {new.sentence}
   if$
 }
 
-FUNCTION {not}
-{   { #0 }
-    { #1 }
-  if$
-}
-
-FUNCTION {and}
-{   'skip$
-    { pop$ #0 }
-  if$
-}
-
-FUNCTION {or}
-{   { pop$ #1 }
-    'skip$
-  if$
-}
-
 FUNCTION {new.block.checka}
 { empty$
     'skip$
@@ -367,9 +368,69 @@ FUNCTION {emphasize}
   if$
 }
 
-INTEGERS { nameptr namesleft numnames }
+INTEGERS { nameptr namesleft numnames maxnames }
 
 FUNCTION {format.names}
+{ 
+  's :=
+  #1 'nameptr :=
+	#6 'maxnames :=
+  s num.names$ 'numnames :=
+  numnames 'namesleft :=
+  numnames maxnames >
+    {
+      { nameptr maxnames #1 + < }
+      { s nameptr "{f.~}{vv~}{ll}{, jj}" format.name$ 't :=
+        nameptr #1 >
+          { namesleft #1 >
+              { ", " * t * }
+              { numnames #2 >
+                  { "," * }
+                  'skip$
+                if$
+                t "others" =
+                  { " et al." * }
+                  { " and " * t * }
+                if$
+              }
+            if$
+          }
+          't
+        if$
+        nameptr #1 + 'nameptr :=
+        namesleft #1 - 'namesleft :=
+      }
+			while$
+			" et al." *
+		}
+    {
+      { namesleft #0 > }
+      { s nameptr "{f.~}{vv~}{ll}{, jj}" format.name$ 't :=
+        nameptr #1 >
+          { namesleft #1 >
+              { ", " * t * }
+              { numnames #2 >
+                  { "," * }
+                  'skip$
+                if$
+                t "others" =
+                  { " et al." * }
+                  { " and " * t * }
+                if$
+              }
+            if$
+          }
+          't
+        if$
+        nameptr #1 + 'nameptr :=
+        namesleft #1 - 'namesleft :=
+      }
+    while$
+  }
+  if$
+}
+
+FUNCTION {format.names.non_cutting}
 { 's :=
   #1 'nameptr :=
   s num.names$ 'numnames :=
@@ -384,7 +445,7 @@ FUNCTION {format.names}
                 'skip$
               if$
               t "others" =
-                { " et~al." * }
+                { " et al." * }
                 { " and " * t * }
               if$
             }
@@ -534,14 +595,19 @@ FUNCTION {format.edition}
 FUNCTION {format.articleno}
 { articleno empty$
     {""}
-    { " article no. "  articleno *}
+    { " art. no. "  articleno *}
   if$
 }
 
 FUNCTION {format.numpages}
 { numpages empty$
     {""}
-    { " " numpages * " pages" *  }
+    {
+      articleno empty$ pages empty$ not and
+        { "" }
+        { " " numpages * " pages" * }
+      if$
+    }
   if$
 }
 
@@ -560,6 +626,7 @@ FUNCTION {multi.page.check}
       swap$ duplicate$ "," =
       swap$ "+" =
       or or
+      t #1 #3 substring$ "–" = or
         { #1 'multiresult := }
         { t #2 global.max$ substring$ 't := }
       if$
@@ -571,9 +638,14 @@ FUNCTION {multi.page.check}
 FUNCTION {format.pages}
 { pages empty$
     { "" }
-    { pages multi.page.check
-        { "pp." pages n.dashify tie.or.space.connect }
-        { "p." pages tie.or.space.connect }
+    {
+      articleno empty$
+        { pages multi.page.check
+            { "pp." pages n.dashify tie.or.space.connect }
+            { "p." pages tie.or.space.connect }
+          if$
+        }
+        { "" }
       if$
     }
   if$
@@ -594,7 +666,12 @@ FUNCTION {format.vol.num.pages}
     'skip$
     { duplicate$ empty$
         { pop$ format.pages }
-        { ":" * pages n.dashify * }
+        { 
+          articleno empty$
+            { ":" * pages n.dashify * }
+            { "" * }
+          if$
+        }
       if$
     }
   if$
@@ -676,11 +753,11 @@ FUNCTION {format.crossref.editor}
 { editor #1 "{vv~}{ll}" format.name$
   editor num.names$ duplicate$
   #2 >
-    { pop$ " et~al." * }
+    { pop$ " et al." * }
     { #2 <
         'skip$
         { editor #2 "{ff }{vv }{ll}{ jj}" format.name$ "others" =
-            { " et~al." * }
+            { " et al." * }
             { " and " * editor #2 "{vv~}{ll}" format.name$ * }
           if$
         }

@@ -8,6 +8,7 @@ modified by Tobias Isenberg, July 2016
 modified by Cagatay Turkay and Soumya Dutta, September 2019
 modified by Cody Dunne, January and March 2023
 modified by Matt Brehmer, Feburary 2024
+modified by Tobias Isenberg, December 2025
 
 This distribution provides a document class for formatting papers according to the specifications for submission to conferences sponsored by the IEEE Visualization & Graphics Technical Committee (VGTC).
 
@@ -27,7 +28,7 @@ template.bib    - a small bibliography file used by the example
 template.pdf    - an example proper pdf output in default journal mode
 abbrv-doi*.bst  - four different versions to generate the bibliography including DOI output, with and without hyperref support, with and without narrow rendering of DOIs
 makefile        - makefile including bibtex compilation and proper PDF generation
-pictures/       - subdirectory with sample images, both in EPS and in direct pixel/vector format
+figs/           - subdirectory with sample images, both in EPS and in direct pixel/vector format
 
 Usage
 =====
@@ -82,7 +83,7 @@ The included makefile also allows you to run each step of the process manually. 
    Please make sure that all fonts are embedded.
    You can use pdffonts my_document.pdf to check if they are.
    It is standard in all modern latex distributions.
-   If you use eps figures (e.g. R or gnuplot figures) which you convert to
+   If you use eps figures (e.g., R or gnuplot figures) which you convert to
    PDF using epstopdf, do the following:
    Use GL_OPTIONS, a global environment variable for ghostscript:
    export GS_OPTIONS="-dEmbedAllFonts=true -dPDFSETTINGS=/printer"

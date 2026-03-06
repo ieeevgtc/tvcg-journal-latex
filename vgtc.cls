@@ -5,6 +5,25 @@
 % Changelog:
 % - modifications by Graziano Blasilli on 2026/01/23
 %   - addedd inline option in enumitem package to allow compact inline lists (e.g., \begin{enumerate*} ... \end{enumerate*})
+% -modifications by Tobias Isenberg 2025/12/02
+%   - BST files
+%     - abbreviation of ``article no.'' to ``art. no.'' (shorter references)
+%     - limitation of author names before outputting ``et al.'' to 6 (shorter references)
+%     - fix for ndash not being recognized as signifying a multi-page page range
+%     - fix for when to output pages, numpages, and articleno based on their respective availability
+%     - fix for treating https:// links for DOIs correctly (in add.link function, but this is inactive code a.t.m.)
+%   - main template
+%     - removal of \vgtcpapertype{} example (no longer needed/used)
+%     - years of the copyrights etc. updated to 202X
+%     - table with VIS publication data updated to 2025
+%     - image of VIS stats updated in example figure (up to 2024)
+%     - removed the recommendations to include series names, these led to overly long citations
+%     - added recommendation to use short DOIs
+%     - added recommendation to use ISO4 journal name abbreviations
+%     - clarified some of the other BibTeX instructions and examples
+%     - added \interlinepenalty=10000 to avoid hyperref errors
+%     - fixed incorrect spaces for author footer
+%     - fixed incorrect spacing around the footnote that contains author items and copyright note
 % - modifications by Cody Dunne 2023/01/04
 %   - author-facing changes and documentation
 %     - added Supplemental Materials and Figure Credits sections at the end.
@@ -148,7 +167,7 @@
 
 % ------------ identification --------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{vgtc}[2023/01/04 IEEE VGTC]
+\ProvidesClass{vgtc}[2025/12/02 IEEE VGTC]
 
 % ------------ initial code --------------
 
@@ -359,6 +378,16 @@
   \Crefname{table}{Table}{Tables}
   \crefname{section}{Sec.}{Secs.}
   \Crefname{section}{Section}{Sections}
+  \crefname{subsection}{Sec.}{Secs.}
+  \Crefname{subsection}{Section}{Sections}
+  \crefname{subsubsection}{Sec.}{Secs.}
+  \Crefname{subsubsection}{Section}{Sections}
+  \crefname{appendix}{Appx.}{Appx.}
+  \Crefname{appendix}{Apendix}{Appendices}
+  \crefname{subappendix}{Appx.}{Appx.}
+  \Crefname{subappendix}{Apendix}{Appendices}
+  \crefname{subsubappendix}{Appx.}{Appx.}
+  \Crefname{subsubappendix}{Apendix}{Appendices}
 
   %% Hyperlinked ORCID icons for authors. Usage:
   %% \@orcidiconlink{<Author Name>}{<ORCID without https://orcid.org/ included}.
@@ -407,7 +436,7 @@
 %\newcommand{\vgtc@preprinttext}{To appear in IEEE Transactions on Visualization and Computer Graphics}
 %\newcommand{\preprinttext}[1]{\renewcommand{\vgtc@preprinttext}{#1}}
 
-\newcommand{\vgtc@DOI}{xx.xxxx/TVCG.201x.xxxxxxx/}
+\newcommand{\vgtc@DOI}{xx.xxxx/TVCG.202x.xxxxxxx/}
 
 \iftoggle{vgtc@journal}{%
   \newcommand{\vgtc@preprinttext}{\parbox{0.9\textwidth}{$\copyright$ \the\year~IEEE. This is the author's version of the article that has been published in IEEE Transactions on Visualization and Computer Graphics. The final version of this record is available at: \href{https://doi.org/\vgtc@DOI}{\color{blue}\vgtc@DOI}}}
@@ -425,8 +454,8 @@
 \newcommand{\shortauthortitle}[1]{\renewcommand{\shortauthortitletext}{#1}}
 
 %%Comment from here
-\newcommand{\manuscriptnotetxt}{
-  Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx xxx. 201x; date of current version xx xxx. 201x. For information on obtaining reprints of this article, please send  e-mail to: reprints@ieee.org. Digital Object Identifier: xx.xxxx/TVCG.201x.xxxxxxx
+\newcommand{\manuscriptnotetxt}{%
+  Manuscript received xx xxx. 202x; accepted xx xxx. 202x. Date of Publication xx xxx. 202x; date of current version xx xxx. 202x. For information on obtaining reprints of this article, please send  e-mail to: reprints@ieee.org. Digital Object Identifier: xx.xxxx/TVCG.202x.xxxxxxx
 }
 %% to here to not use the blank
 
@@ -668,6 +697,7 @@
       \clubpenalty4000
       \@clubpenalty \clubpenalty
       \widowpenalty4000%
+      \interlinepenalty=10000% added by TI to avoid the \pdfendlink ended up in different nesting level than \pdfstartlink errors
       \sfcode`\.\@m%
   }
   {%
@@ -709,7 +739,6 @@
 %   {the appendix, available at \url{} % You have another macro that inserts the OSF link
 \RequirePackage{etoolbox}
 \newcommand{\iflabelexists}[3]{\ifcsundef{r@#1}{#3}{#2}}
-
 
 %% handle old commands used in the template gracefully
 \newcommand{\vgtcformat}[1]{\ClassError{vgtc}{%
@@ -859,22 +888,31 @@
     \iftoggle{vgtc@review}{}{%
       \renewcommand{\thefootnote}{}%
       \footnotetext[0]{
-        \begin{flushleft}
-          \vskip -6pt
+        %\begin{flushleft}% commented out by TI, replaced by \raggedright
+        %  \vskip -6pt
+        \raggedright
           \begin{list}{\textbullet}{
-            \setlength{\partopsep}{0pt}
-            \setlength{\topsep}{0pt}
-            \setlength{\itemsep}{-2pt}
-            \setlength{\itemindent}{-4pt}
-            \setlength{\leftmargin}{12pt}%
+            %\setlength{\partopsep}{0pt}% commented out by TI, replacement below
+            %\setlength{\topsep}{0pt}
+            %\setlength{\itemsep}{-2pt}
+            %\setlength{\itemindent}{-4pt}
+            %\setlength{\leftmargin}{12pt}%
+            \setlength{\partopsep}{-0pt}%
+            \setlength{\topsep}{-0pt}%
+            \setlength{\itemsep}{-2pt}%
+            \settowidth{\labelwidth}{\textbullet}%
+            \setlength{\labelsep}{3pt}%
+            \setlength{\itemindent}{0pt}%
+            \setlength{\leftmargin}{\labelwidth}%
+            \addtolength{\leftmargin}{\labelsep}%
           }
             \authorfootertext
           \end{list}
           \vskip 4pt
           \textit{\manuscriptnotetxt}
-        \end{flushleft}
+        %\end{flushleft}
       }%
-      \renewcommand{\thefootnote}{\arabic{footnote}}
+      \renewcommand{\thefootnote}{\arabic{footnote}}%
     }%
   }{%
     \iftoggle{vgtc@havecopyrightspace}{\copyrightspace}{}%
