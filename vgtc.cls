@@ -3,6 +3,8 @@
 % OF THE VGTC PUBLICATIONS CHAIR (submissions@vgtc.org).
 %
 % Changelog:
+% - modifications by Dominik Moritz on 2026/06/26
+%   - Spell out reference names.
 % -modifications by Tobias Isenberg 2026/03/09
 %   - main template:
 %     - correction of how authors are printed out at the top, which was shifted to the right by about 8pt by mistake
@@ -388,8 +390,12 @@
   %% AND ``\Crefname`` must be specified for each, otherwise cleveref uses whatever is
   %% given for both cases.
   \RequirePackage[nameinlink,capitalise]{cleveref}
+  \crefname{figure}{Fig.}{Figs.}
+  \Crefname{figure}{Figure}{Figures}
   \crefname{table}{Tab.}{Tabs.}
   \Crefname{table}{Table}{Tables}
+  \crefname{equation}{Eq.}{Eqs.}
+  \Crefname{equation}{Equation}{Equations}
   \crefname{section}{Sec.}{Secs.}
   \Crefname{section}{Section}{Sections}
   \crefname{subsection}{Sec.}{Secs.}
@@ -493,8 +499,6 @@
 }
 
 \iftoggle{vgtc@journal}{%
-  \renewcommand{\figurename}{Fig.}
-
   \setlength{\textheight}{9.625in}
   \setlength{\topmargin}{-0.625in}
   \setlength{\headheight}{0.0625in}
