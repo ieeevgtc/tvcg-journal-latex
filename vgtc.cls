@@ -1,4 +1,4 @@
-% `vgtc' LaTeX class. 
+% `vgtc' LaTeX class.
 % THIS FILE MAY NOT BE MODIFIED WITHOUT THE EXPRESS APPROVAL
 % OF THE VGTC PUBLICATIONS CHAIR (submissions@vgtc.org).
 %
@@ -35,12 +35,12 @@
 % - modifications by Cody Dunne 2023/01/04
 %   - author-facing changes and documentation
 %     - added Supplemental Materials and Figure Credits sections at the end.
-%     - added supplemental materials instructions and goals, an example project 
+%     - added supplemental materials instructions and goals, an example project
 %       on OSF, and an OSF link in abstract.
-%     - replaced paper count figure with newly-made ones and the source files 
-%       and instructions for creating them. This goes along with the supplemental 
+%     - replaced paper count figure with newly-made ones and the source files
+%       and instructions for creating them. This goes along with the supplemental
 %       material examples.
-%     - added \authororcid command and instructions for adding hyperlinked ORCID ID 
+%     - added \authororcid command and instructions for adding hyperlinked ORCID ID
 %       icons for each author.
 %     - moved figures to /fig folder.
 %     - expanded discussion of figures, esp. vector graphics.
@@ -66,22 +66,22 @@
 %       - replaced lorem ipsum text with content and calls to \lipsum from the lipsum package.
 %     - removed sample.pdf & sample.eps.
 %     - removed Google Scholar fields from template.bib.
-%     - updated Readme.md and added Overleaf links. **NOTE: I did not test readme.md 
+%     - updated Readme.md and added Overleaf links. **NOTE: I did not test readme.md
 %       makefile instructions.**
 %   - non-author-facing changes
-%     - eliminated redundant hyperref code (which removed the need for \vgtcinsertpkg 
+%     - eliminated redundant hyperref code (which removed the need for \vgtcinsertpkg
 %       in the .tex file).
 %     - consolidated errors for using old commands like \vgtcinsertpkg.
 %     - eliminated the unused electronic, cameraready, and tvcgsize options
 %       (which has been the default) but kept the code.
 %     - the widereview option fix motivated the class-wide change to using etoolbox
-%       toggles rather than plain LaTeX if statements to avoid unexpected problems: 
-%       https://tex.stackexchange.com/a/5896. 
+%       toggles rather than plain LaTeX if statements to avoid unexpected problems:
+%       https://tex.stackexchange.com/a/5896.
 %     - applied automatic then manual formatting to .cls file to increase readability,
 %       esp. for nested if statements.
 %     - removed commented code that seemed to no longer serve a purpose.
 %     - added comments with my name for potential future code to remove.
-%     - tested all changes with the options in the template.tex file using both pdflatex 
+%     - tested all changes with the options in the template.tex file using both pdflatex
 %       and dvips from MikTeX on Windows 11.
 % - modifications by Cagatay Turkay and Soumya Dutta on 2019/09/11
 %   - modified the preprint article style to contain the IEEE copyright notices to produce IEEE-compliant OA preprints.
@@ -159,7 +159,7 @@
 %      - new caption style
 %      - new reference style
 %      - copyrightspace reduced to 0.5in
-% - borrows *heavily* from Daniel Kartch's 'siggraph' class. 
+% - borrows *heavily* from Daniel Kartch's 'siggraph' class.
 % - also uses pieces of 'apalike.sty' and 'authordate1-4.cls'
 % - version 0.1 2001/06/01 Stephen Spencer (spencer@acm.org)
 % - version 0.2 2001/10/15 Stephen Spencer
@@ -439,7 +439,7 @@
   \RequirePackage[aboveskip=4pt, belowskip=4pt]{subcaption}                % for subfigures
   \captionsetup{subrefformat=parens,font={scriptsize,sf}}
   \newcommand{\subfigsCaption}[1]{\vspace{-.9em}\caption{#1}}
-  
+
 }
 
 
@@ -554,7 +554,7 @@
 
 
   \iftoggle{vgtc@journal}{%
-    \ifboolexpr { not togl {vgtc@review} and not togl {vgtc@preprint} }{%       
+    \ifboolexpr { not togl {vgtc@review} and not togl {vgtc@preprint} }{%
       % \renewcommand{\@evenhead}{\hfil\sffamily\small\MakeUppercase{\journalidtxt}}%
       % \renewcommand{\@oddhead}{\sffamily\small\MakeUppercase{\shortauthortitletext}\hfil}%
       \renewcommand{\@oddfoot}{}% no page number
@@ -688,9 +688,7 @@
   %
   % fix the font size of the bibliography to 8pt
   \newdimen\bibindent
-  %\newdimen\bibspacing
   \setlength\bibindent{1em}
-  %\setlength{\bibspacing}{\z@}
   \renewenvironment{thebibliography}[1]{%
     \section*{\refname}%
       \scriptsize%
@@ -700,8 +698,6 @@
           \settowidth\labelwidth{\@biblabel{#1}}%
           \leftmargin\labelwidth
           \advance\leftmargin\labelsep
-          %\itemsep\bibspacing    % should this be commented out?
-          %\parsep\bibspacing     % should this be commented out?
 					\iftoggle{vgtc@protectagainstpdfendlink}{%
 					  \setlength{\itemsep}{0pt plus 2pt}% TI: this is an alternative if the \interlinepenalty=10000 below is used
 					  \setlength{\parsep}{0pt plus 2pt}% TI: this is an alternative if the \interlinepenalty=10000 below is used
@@ -752,7 +748,7 @@
       % There should not be anything after \end{document}. LaTeX will simply
       % stop and do cleanup, so we can just call it early to remove everything
       % in the appendices w/o issue.
-      \renewcommand{\appendix}{\end{document}}% 
+      \renewcommand{\appendix}{\end{document}}%
 		}{}
 
 % Check if a cross reference exists (e.g., for an optionally-removed appendix). If so, do one thing. If not, do the other.
@@ -1024,4 +1020,3 @@
 \endinput
 
 % End of file 'vgtc.cls'.
-
