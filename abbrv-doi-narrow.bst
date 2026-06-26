@@ -606,12 +606,16 @@ FUNCTION {format.numpages}
     {
       articleno empty$ pages empty$ not and
         { "" }
-        { " " numpages * " pages" * }
+        {
+          "1" numpages =
+            { " " numpages * " p." * }
+            { " " numpages * " pp." * }
+          if$
+        }
       if$
     }
   if$
 }
-
 
 INTEGERS { multiresult }
 

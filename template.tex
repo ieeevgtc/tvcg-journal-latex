@@ -479,6 +479,9 @@ Note that your error is due to packages you use that define \verb|\ifpdf| which 
 \subsection{\texttt{pdfendlink} error}
 
 Occasionally (for some \LaTeX\ distributions) this hyper-linked bib\TeX\ style may lead to \textbf{compilation errors} (\texttt{pdfendlink ended up in different nesting level ...}) if a reference entry is broken across two pages (due to a bug in \verb|hyperref|).
-In this case, make sure you have the latest version of the \verb|hyperref| package (i.e.\ update your \LaTeX\ installation/packages) or, alternatively, revert back to \verb|\bibliographystyle{abbrv-doi}| (at the expense of removing hyperlinks from the bibliography) and try \verb|\bibliographystyle{abbrv-doi-hyperref}| again after some more editing.
+In this case, make sure you have the latest version of the \verb|hyperref| package (i.e.\ update your \LaTeX\ installation/packages).
+If this package update does not fix the error for you, you can use the \verb|documentclass| option \verb|protectagainstpdfendlink| such as as follows:\\[1ex]
+{\footnotesize\verb|\documentclass[journal]{vgtc,protectagainstpdfendlink}|}\\[1ex]
+to set the \LaTeX/bib\TeX{} processing to avoid breaking reference entries in the list of references. Alternatively, you can revert back to \verb|\bibliographystyle{abbrv-doi}| (at the expense of removing hyperlinks from the bibliography) and then to try \verb|\bibliographystyle{abbrv-doi-hyperref}| again after some more editing.
 
 \end{document}
