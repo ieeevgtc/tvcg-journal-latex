@@ -1,15 +1,3 @@
-Created by Torsten Moeller, April 6 2004
-modified by Steven Bergner and Torsten Moeller, June 30 2006
-modified by James Peltier and Torsten Moeller, March 28, 2007
-modified by Bernhard Finkbeiner, July 5, 2010
-modified by Tobias Isenberg, January 2016
-modified by Filip Sadlo, March 2016
-modified by Tobias Isenberg, July 2016
-modified by Cagatay Turkay and Soumya Dutta, September 2019
-modified by Cody Dunne, January and March 2023
-modified by Matt Brehmer, Feburary 2024
-modified by Tobias Isenberg, December 2025
-
 This distribution provides a document class for formatting papers according to the specifications for submission to conferences sponsored by the IEEE Visualization & Graphics Technical Committee (VGTC).
 
 Conferences that use the 'journal' document option:
