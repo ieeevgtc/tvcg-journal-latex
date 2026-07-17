@@ -13,3 +13,4 @@
 /*.fls
 /*.fdb_latexmk
 /template.ps
+.DS_Store
