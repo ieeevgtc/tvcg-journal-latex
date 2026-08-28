@@ -226,11 +226,11 @@ Note that \verb|\subref| only works for one label at a time.
 \subsection{Figure Credits}
 \label{sec:figure_credits_inst}
 
-In the \hyperref[sec:figure_credits]{Figure Credits} section at the end of the paper, you should credit the original sources of any figures that were reproduced or modified.
-Include any license details necessary, as well as links to the original materials whenever possible.
+In the \hyperref[sec:figure_credits]{Figure Credits} section at the end of the paper, you should credit the original sources of any figures that were reproduced, generated, and/or modified.
+For reproduced figures, include any license details necessary, as well as links to the original materials whenever possible.
 For credits to figures from academic papers, include a citation that is listed in the \textbf{References} section.
 An example is provided \hyperref[sec:figure_credits]{below}.
-
+For AI-generated content appearing in figures, describe how this content was created in sufficient detail so as to support reproducibility. 
 
 \section{Equations and Tables}
 
@@ -311,13 +311,22 @@ Tables, such as \cref{tab:vis_papers} can also be included.
   \label{fig:vis_papers}
 \end{figure}
 
+\begin{figure}[tb]% specify a combination of t, b, p, or h for top, bottom, on its own page, or here
+  \centering % avoid the use of \begin{center}...\end{center} and use \centering instead (more compact)
+  \includegraphics[width=\columnwidth, alt={A bar chart showing a red bar for six apples, a purple bar for five eggplants, and a green bar for 3 melons.}]{chat-gpt-bar-chart}
+  \caption{%
+  	A bar chart comparing the number of apples, eggplants, and melons.%
+  }
+  \label{fig:generated-figure}
+\end{figure}
+
 
 \section{Supplemental Material Instructions}
 \label{sec:supplement_inst}
 
 In support of transparent research practices and long-term open science goals, you are encouraged to make your supplemental materials available on a publicly-accessible repository.
 Please describe the available supplemental materials in the \hyperref[sec:supplemental_materials]{Supplemental Materials} section.
-These details could include (1) what materials are available, (2) where they are hosted, and (3) any necessary omissions.
+These details could include (1) what materials are available, (2) where they are hosted, (3) the provenance of any materials reproduced from other sources or generated with AI assistance, and (4) any necessary omissions.
 
 \section{Reporting of User Studies}
 
@@ -443,7 +452,9 @@ Refer to the instructions for this section (\cref{sec:figure_credits_inst}).
 Here are the actual figure credits for this template:
 
 \Cref{fig:teaser} image credit: Dominik Moritz, licensed under \href{https://creativecommons.org/public-domain/cc0/}{CC0}.
-\Cref{fig:vis_papers} is a partial recreation of Fig.\ 1 from \cite{Isenberg2017Vispubdata.orgMetadataCollection}. The new image is from \href{https://github.com/pisenberg/vispubdata/}{\texttt{github\discretionary{}{.}{.}com\discretionary{/}{}{/}pisenberg\discretionary{/}{}{/}vispubdata}} and we use it under a \href{https://creativecommons.org/licenses/by/4.0/}{\ccby{} CC BY 4.0 license}. All other figures (in particular, \cref{fig:ex_subfigs}) remain under the authors' own copyright, with the permission to be used here. We also share them under a \href{https://creativecommons.org/licenses/by/4.0/}{\ccby{} CC BY 4.0 license} at \href{https://doi.org/10.17605/OSF.IO/2NBSG}{\texttt{osf\discretionary{}{.}{.}io\discretionary{/}{}{/}2nbsg}}.
+\Cref{fig:vis_papers} is a partial recreation of Fig.\ 1 from \cite{Isenberg2017Vispubdata.orgMetadataCollection}. The new image is from \href{https://github.com/pisenberg/vispubdata/}{\texttt{github\discretionary{}{.}{.}com\discretionary{/}{}{/}pisenberg\discretionary{/}{}{/}vispubdata}} and we use it under a \href{https://creativecommons.org/licenses/by/4.0/}{\ccby{} CC BY 4.0 license}. 
+\Cref{fig:generated-figure} was generated with OpenAI ChatGPT (GPT-5.5) using a text prompt describing the desired visualization (640 × 480 bitmap; bar chart with red, purple, and green bars representing 6 apples, 5 eggplants, and 3 melons, respectively). The numeric values were specified by the author in the prompt rather than derived from an external dataset. The legal status of AI-generated images varies across jurisdictions and is an evolving area of copyright law. Accordingly, no claim regarding the copyright status of the figure is made here. 
+All other figures (in particular, \cref{fig:ex_subfigs}) remain under the authors' own copyright, with the permission to be used here. We also share them under a \href{https://creativecommons.org/licenses/by/4.0/}{\ccby{} CC BY 4.0 license} at \href{https://doi.org/10.17605/OSF.IO/2NBSG}{\texttt{osf\discretionary{}{.}{.}io\discretionary{/}{}{/}2nbsg}}.
 
 
 %% if specified like this the section will be omitted in review mode
